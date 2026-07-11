@@ -13,6 +13,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = () => {
     const tempErrors: Record<string, string> = {};
@@ -37,18 +38,50 @@ export default function ContactForm() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
+      setSubmitError(null);
       
-      // Simulate API submission
-      setTimeout(() => {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey) {
+        setSubmitError('Web3Forms Access Key is not configured. Please add VITE_WEB3FORMS_ACCESS_KEY in your environment/secrets configuration.');
         setIsSubmitting(false);
-        setIsSuccess(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setErrors({});
-      }, 1500);
+        return;
+      }
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            from_name: 'Project Luminary'
+          })
+        });
+
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          setIsSuccess(true);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setErrors({});
+        } else {
+          setSubmitError(result.message || 'Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        setSubmitError('Unable to connect to Web3Forms. Please check your internet connection and try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -57,6 +90,9 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+    if (submitError) {
+      setSubmitError(null);
     }
   };
 
@@ -195,6 +231,13 @@ export default function ContactForm() {
           </p>
         )}
       </div>
+
+      {submitError && (
+        <div className="p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+          <AlertCircle size={16} />
+          <span>{submitError}</span>
+        </div>
+      )}
 
       {/* Submit Button */}
       <button

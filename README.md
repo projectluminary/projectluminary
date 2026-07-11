@@ -1,1 +1,1 @@
-Project Luminary Website
+Project Luminary
