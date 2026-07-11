@@ -1,0 +1,6 @@
+{
+  "name": "Project Luminary Portal",
+  "description": "A highly polished, modern, and responsive website for Project Luminary, showcasing community activities, environmental projects, volunteer opportunities, and impact stats.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
