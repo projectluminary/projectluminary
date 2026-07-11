@@ -37,6 +37,8 @@ jobs:
         run: npm install
 
       - name: Build Application
+        env:
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
         run: npm run build
 
       - name: Upload Build Artifacts
