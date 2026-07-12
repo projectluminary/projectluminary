@@ -18,13 +18,13 @@ export const SITE_CONFIG = {
   heroTitlePrimary: 'Lighting Pathways. ',
   heroTitleGradient: 'Empowering Futures.',
   heroDescription: "Project Luminary is a youth-led initiative founded by students who experienced Myanmar's disrupted education system firsthand. Through free higher education guidance, skills development, and civic learning, we empower underserved Burmese youth to pursue opportunities, develop leadership, and build brighter futures.",
-  heroImage: '/images/logo/PL-Logo-2.png',
+  heroImage: 'images/logo/PL-Logo-2.png',
   
   // About preview section on Home
   aboutSummaryTitle: 'Student-led Civic Education Initiative',
   aboutSummaryPara1: 'Project Luminary is a student-led civic education initiative founded in December 2023 by Parami University students who transformed their own educational challenges into opportunities for others. What began as a simple effort to help peers discover higher education pathways has grown into a community-driven movement that supports young people across Myanmar and beyond.',
   aboutSummaryPara2: 'We provide free programs that combine university application support, practical skill development, and meaningful civic engagement. By creating inclusive spaces where youth learn from experts and one another, we help participants develop the confidence, knowledge, and critical thinking needed to shape their own futures and contribute positively to their communities.',
-  aboutSummaryImage: 'file/PL-Logo-2.png',
+  aboutSummaryImage: 'images/logo/PL-Logo-2.png',
 
   // About Page details
   aboutPageBadge: 'About Project Luminary',
@@ -84,7 +84,7 @@ export const ACTIVITIES_DATA: Activity[] = [
     date: 'July 15, 2026',
     description: 'Description',
     content: 'Content.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     readTime: '5 min read'
   },
   {
@@ -94,7 +94,7 @@ export const ACTIVITIES_DATA: Activity[] = [
     date: 'July 15, 2026',
     description: 'Description',
     content: 'Content.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     readTime: '7 min read'
   },
   {
@@ -104,7 +104,7 @@ export const ACTIVITIES_DATA: Activity[] = [
     date: 'July 15, 2026',
     description: 'Description',
     content: 'Content.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     readTime: '6 min read'
   },
   {
@@ -114,7 +114,7 @@ export const ACTIVITIES_DATA: Activity[] = [
     date: 'July 15, 2026',
     description: 'Description',
     content: 'Content.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     readTime: '4 min read'
   },
   {
@@ -124,7 +124,7 @@ export const ACTIVITIES_DATA: Activity[] = [
     date: 'July 15, 2026',
     description: 'Description',
     content: 'Content.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     readTime: '5 min read'
   },
   {
@@ -134,7 +134,7 @@ export const ACTIVITIES_DATA: Activity[] = [
     date: 'July 15, 2026',
     description: 'Description',
     content: 'Content.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     readTime: '8 min read'
   }
 ];
@@ -178,7 +178,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Htet Khant Linn',
     position: 'IT & Operation',
     bio: 'Text Here',
-    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
       email: 'info@projectluminary.com'
@@ -189,7 +189,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Htet Khant Linn',
     position: 'IT & Operation',
     bio: 'Text Here',
-    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
       email: 'info@projectluminary.com'
@@ -200,7 +200,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Htet Khant Linn',
     position: 'IT & Operation',
     bio: 'Text Here',
-    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
       email: 'info@projectluminary.com'
@@ -211,7 +211,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Htet Khant Linn',
     position: 'IT & Operation',
     bio: 'Text Here',
-    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
       email: 'info@projectluminary.com'
@@ -225,7 +225,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Kaung Myat Phyo (Kelvin)',
     position: 'Project Lead & Advancement Lead',
     comment: 'We see this award not only as a recognition of Project Luminary, but also as a tribute to the wider community of grassroots initiatives and Burmese youth who continue to learn, lead, and imagine better futures despite extraordinary challenges.',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     rating: 5
   },
   {
@@ -233,7 +233,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Name',
     position: 'Position',
     comment: 'Content',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     rating: 5
   },
   {
@@ -241,7 +241,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Name',
     position: 'Position',
     comment: 'Content',
-    image: 'file/PL-Logo-2.png',
+    image: 'images/logo/PL-Logo-2.png',
     rating: 5
   }
 ];
