@@ -158,9 +158,7 @@ export default function Footer({ setActivePage }: FooterProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-slate-850 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <div>
-          &copy; {new Date().getFullYear()} {SITE_CONFIG.brandName} Initiative. All rights reserved. Registered 501(c)(3) nonprofit organization.
-        </div>
+
         <div className="flex items-center space-x-6">
           <a href="#" className="hover:text-emerald-400 transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-emerald-400 transition-colors">Terms of Service</a>

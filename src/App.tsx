@@ -61,9 +61,19 @@ export default function App() {
   const [selectedOppCategory, setSelectedOppCategory] = useState<string>('All');
   const [selectedOppLocation, setSelectedOppLocation] = useState<string>('All');
 
-  // Automatically scroll to top on page navigation
+  // Automatically scroll to top on page navigation and update browser title
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+    
+    const pageTitleMap: Record<string, string> = {
+      home: 'Home',
+      about: 'About Us',
+      activities: 'Activities',
+      opportunities: 'Opportunities',
+      contact: 'Contact Us'
+    };
+    const currentLabel = pageTitleMap[activePage] || 'Home';
+    document.title = `${currentLabel} | Project Luminary`;
   }, [activePage]);
 
   // Derived categories from data
@@ -429,9 +439,9 @@ export default function App() {
                               <LinkedinIcon />
                             </a>
                           )}
-                          {member.socials.twitter && (
-                            <a href={member.socials.twitter} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
-                              <TwitterIcon />
+                          {member.socials.email && (
+                            <a href={`mailto:${member.socials.email}`} className="hover:text-emerald-600 transition-colors">
+                              <Mail size={16} />
                             </a>
                           )}
                           {member.socials.instagram && (
@@ -661,7 +671,7 @@ export default function App() {
                     Get in Touch with Project Luminary
                   </h1>
                   <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed">
-                    Have any questions, alignment ideas, or feedback? Send us a message and we will connect you with a regional coordinator.
+                    Have any questions, alignment ideas, or feedback? Send us a message and we will connect you very soon.
                   </p>
                 </div>
 

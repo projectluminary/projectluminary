@@ -18,7 +18,7 @@ export const SITE_CONFIG = {
   heroTitlePrimary: 'Lighting Pathways. ',
   heroTitleGradient: 'Empowering Futures.',
   heroDescription: "Project Luminary is a youth-led initiative founded by students who experienced Myanmar's disrupted education system firsthand. Through free higher education guidance, skills development, and civic learning, we empower underserved Burmese youth to pursue opportunities, develop leadership, and build brighter futures.",
-  heroImage: 'file/PL-Logo-2.png',
+  heroImage: '/images/logo/PL-Logo-2.png',
   
   // About preview section on Home
   aboutSummaryTitle: 'Student-led Civic Education Initiative',
@@ -175,46 +175,46 @@ export const OPPORTUNITIES_DATA: Opportunity[] = [
 export const TEAM_DATA: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Dr. Sarah Jenkins',
-    position: 'Executive Director & Co-Founder',
-    bio: 'Sarah holds a PhD in Ecology and has spent 15 years leading cross-border climate adaptation initiatives before establishing Project Luminary.',
-    image: 'file/PL-Logo-2.png',
+    name: 'Htet Khant Linn',
+    position: 'IT & Operation',
+    bio: 'Text Here',
+    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://twitter.com'
+      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
+      email: 'info@projectluminary.com'
     }
   },
   {
     id: 'team-2',
-    name: 'Dr. Aris Thorne',
-    position: 'Chief Scientific Officer',
-    bio: 'Aris leads our research team, specializing in urban microclimates, biodiversity metrics, and hydrological environmental impact modeling.',
-    image: 'file/PL-Logo-2.png',
+    name: 'Htet Khant Linn',
+    position: 'IT & Operation',
+    bio: 'Text Here',
+    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
-      linkedin: 'https://linkedin.com',
-      github: 'https://github.com'
+      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
+      email: 'info@projectluminary.com'
     }
   },
   {
     id: 'team-3',
-    name: 'Marcus Vance',
-    position: 'Director of Community Programs',
-    bio: 'A passionate community organizer, Marcus coordinates our volunteer groups, local farm cooperatives, and city-level public townhalls.',
-    image: 'file/PL-Logo-2.png',
+    name: 'Htet Khant Linn',
+    position: 'IT & Operation',
+    bio: 'Text Here',
+    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
-      twitter: 'https://twitter.com',
-      instagram: 'https://instagram.com'
+      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
+      email: 'info@projectluminary.com'
     }
   },
   {
     id: 'team-4',
-    name: 'Elena Rostova',
-    position: 'Lead Curriculum Architect',
-    bio: 'Elena designs the educational programs integrated into regional schools, ensuring next-generation climate literacy aligns with STEM fields.',
-    image: 'file/PL-Logo-2.png',
+    name: 'Htet Khant Linn',
+    position: 'IT & Operation',
+    bio: 'Text Here',
+    image: '/images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
-      linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com'
+      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
+      email: 'info@projectluminary.com'
     }
   }
 ];

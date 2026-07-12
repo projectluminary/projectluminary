@@ -33,6 +33,7 @@ export interface TeamMember {
     twitter?: string;
     instagram?: string;
     github?: string;
+    email?: string;
   };
 }
 
