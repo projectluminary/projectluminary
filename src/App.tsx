@@ -72,8 +72,14 @@ export default function App() {
     '/contact': 'contact'
   };
 
+  const getHashPath = (): string => {
+    const hash = window.location.hash;
+    if (!hash || hash === '#' || hash === '#/') return '/home';
+    return hash.startsWith('#') ? hash.substring(1) : hash;
+  };
+
   const getInitialPage = (): string => {
-    const path = window.location.pathname;
+    const path = getHashPath();
     if (path.startsWith('/activities/')) {
       const id = path.substring('/activities/'.length);
       const hasActivity = ACTIVITIES_DATA.some(a => a.id === id);
@@ -88,7 +94,7 @@ export default function App() {
   };
 
   const getInitialActivity = (): Activity | null => {
-    const path = window.location.pathname;
+    const path = getHashPath();
     if (path.startsWith('/activities/')) {
       const id = path.substring('/activities/'.length);
       return ACTIVITIES_DATA.find(a => a.id === id) || null;
@@ -97,7 +103,7 @@ export default function App() {
   };
 
   const getInitialOpportunity = (): Opportunity | null => {
-    const path = window.location.pathname;
+    const path = getHashPath();
     if (path.startsWith('/opportunities/')) {
       const id = path.substring('/opportunities/'.length);
       return OPPORTUNITIES_DATA.find(o => o.id === id) || null;
@@ -119,7 +125,7 @@ export default function App() {
   const [selectedOppCategory, setSelectedOppCategory] = useState<string>('All');
   const [selectedOppLocation, setSelectedOppLocation] = useState<string>('All');
 
-  // Automatically scroll to top on page navigation and update browser title & URL path
+  // Automatically scroll to top on page navigation and update browser title & URL hash
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     
@@ -140,7 +146,7 @@ export default function App() {
     }
     document.title = `${currentLabel} | Project Luminary`;
 
-    // Sync state with URL path
+    // Sync state with URL hash
     let targetPath = '/home';
     if (activePage === 'activity-detail' && selectedActivity) {
       targetPath = `/activities/${selectedActivity.id}`;
@@ -150,8 +156,9 @@ export default function App() {
       targetPath = PAGE_TO_PATH[activePage] || '/home';
     }
 
-    if (window.location.pathname !== targetPath) {
-      window.history.pushState({ page: activePage }, '', targetPath);
+    const expectedHash = `#${targetPath}`;
+    if (window.location.hash !== expectedHash) {
+      window.location.hash = expectedHash;
     }
   }, [activePage, selectedActivity, selectedOpportunity]);
 
@@ -169,10 +176,10 @@ export default function App() {
     }
   }, [activePage, selectedOpportunity]);
 
-  // Listen to browser navigation (back/forward buttons)
+  // Listen to browser navigation (hashchange event)
   useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname;
+    const handleHashChange = () => {
+      const path = getHashPath();
       if (path.startsWith('/activities/')) {
         const id = path.substring('/activities/'.length);
         const act = ACTIVITIES_DATA.find(a => a.id === id);
@@ -201,18 +208,19 @@ export default function App() {
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handleHashChange);
     
-    // Redirect root "/" or any unknown URL paths to "/home"
-    const initialPath = window.location.pathname;
-    const isActivityPath = initialPath.startsWith('/activities/');
-    const isOpportunityPath = initialPath.startsWith('/opportunities/');
-    if (initialPath === '/' || (!PATH_TO_PAGE[initialPath] && !isActivityPath && !isOpportunityPath)) {
-      window.history.replaceState({ page: 'home' }, '', '/home');
+    // Redirect root or any unknown hash paths to "#/home"
+    const initialHash = window.location.hash;
+    const path = getHashPath();
+    const isActivityPath = path.startsWith('/activities/');
+    const isOpportunityPath = path.startsWith('/opportunities/');
+    if (!initialHash || initialHash === '#' || initialHash === '#/' || (!PATH_TO_PAGE[path] && !isActivityPath && !isOpportunityPath)) {
+      window.location.hash = '#/home';
     }
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
 
