@@ -22,13 +22,17 @@ import {
 // Import Types
 import { Activity, Opportunity, OpportunityType } from './types';
 
+import * as Icons from 'lucide-react';
+
 // Import Data
 import { 
   ACTIVITIES_DATA, 
   OPPORTUNITIES_DATA, 
   TEAM_DATA, 
   STATS_DATA,
-  SITE_CONFIG
+  SITE_CONFIG,
+  CORE_VALUES_DATA,
+  TIMELINE_DATA
 } from './data';
 
 // Import Components
@@ -64,9 +68,9 @@ export default function App() {
 
   // Derived categories from data
   const activityCategories = ['All', ...Array.from(new Set(ACTIVITIES_DATA.map(a => a.category)))];
-  const opportunityTypes = ['All', 'Volunteer', 'Internship', 'Job', 'Event', 'Training', 'Partnership'];
+  const opportunityTypes = ['All', ...Array.from(new Set(OPPORTUNITIES_DATA.map(o => o.type)))];
   const opportunityCategories = ['All', ...Array.from(new Set(OPPORTUNITIES_DATA.map(o => o.category)))];
-  const opportunityLocations = ['All', 'Seattle, WA (On-site / Field)', 'Remote / Virtual', 'Chicago, IL (Hybrid)', 'Denver, CO (On-site)', 'Global / Virtual', 'San Francisco, CA (On-site)'];
+  const opportunityLocations = ['All', ...Array.from(new Set(OPPORTUNITIES_DATA.map(o => o.location)))];
 
   // Handle CTA redirection from home
   const handleHomePrimaryCTA = () => {
@@ -86,7 +90,7 @@ export default function App() {
   const filteredOpportunities = OPPORTUNITIES_DATA.filter(opp => {
     const matchesType = selectedOppType === 'All' || opp.type === selectedOppType;
     const matchesCategory = selectedOppCategory === 'All' || opp.category === selectedOppCategory;
-    const matchesLocation = selectedOppLocation === 'All' || opp.location.includes(selectedOppLocation) || (selectedOppLocation === 'Remote / Virtual' && opp.location.includes('Remote'));
+    const matchesLocation = selectedOppLocation === 'All' || opp.location === selectedOppLocation;
     return matchesType && matchesCategory && matchesLocation;
   });
 
@@ -269,7 +273,7 @@ export default function App() {
                       </h2>
                       
                       <p className="font-sans text-emerald-100/80 text-sm md:text-base leading-relaxed">
-                        Whether you are a resident looking to restore local urban canopy forests, an academic searching for public research data, or an enterprise seeking ESG alignment partnerships, our door is open.
+                        Text here
                       </p>
 
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
@@ -309,13 +313,13 @@ export default function App() {
                 {/* About Main Header */}
                 <div className="text-center max-w-3xl mx-auto space-y-4">
                   <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100">
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider">About Project Luminary</span>
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider">{SITE_CONFIG.aboutPageBadge}</span>
                   </div>
                   <h1 className="font-sans font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight leading-none">
-                    Decarbonizing Our Footprint
+                    {SITE_CONFIG.aboutPageTitle}
                   </h1>
                   <p className="font-sans text-slate-500 text-base md:text-lg leading-relaxed">
-                    Project Luminary was founded in 2021 by a cooperative of scientists and activists to deliver hands-on, community-centered restoration programs.
+                    {SITE_CONFIG.aboutPageDescription}
                   </p>
                 </div>
 
@@ -324,22 +328,22 @@ export default function App() {
                   {/* Mission */}
                   <div className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm space-y-4">
                     <div className="bg-emerald-50 text-emerald-600 p-3.5 rounded-2xl w-fit">
-                      <Leaf size={24} />
+                      <Icons.Leaf size={24} />
                     </div>
-                    <h3 className="font-sans font-bold text-2xl text-slate-900 tracking-tight">Our Mission</h3>
+                    <h3 className="font-sans font-bold text-2xl text-slate-900 tracking-tight">{SITE_CONFIG.missionTitle}</h3>
                     <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed">
-                      To deploy scientific integrity and neighborhood mobilization to restore degraded regional microclimates, foster sustainable food sovereignty, and establish clean cooperative grid solutions.
+                      {SITE_CONFIG.missionDescription}
                     </p>
                   </div>
 
                   {/* Vision */}
                   <div className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm space-y-4">
                     <div className="bg-emerald-50 text-emerald-600 p-3.5 rounded-2xl w-fit">
-                      <Globe size={24} />
+                      <Icons.Globe size={24} />
                     </div>
-                    <h3 className="font-sans font-bold text-2xl text-slate-900 tracking-tight">Our Vision</h3>
+                    <h3 className="font-sans font-bold text-2xl text-slate-900 tracking-tight">{SITE_CONFIG.visionTitle}</h3>
                     <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed">
-                      We envision a world where urban communities actively regenerate global biodiversity, live in clean-energy grids, and drive closed-loop circular product cycles that eliminate e-waste.
+                      {SITE_CONFIG.visionDescription}
                     </p>
                   </div>
                 </div>
@@ -347,21 +351,15 @@ export default function App() {
                 {/* Core Values Section */}
                 <div className="space-y-12">
                   <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">Our Core Values</h2>
+                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">{SITE_CONFIG.coreValuesSectionTitle}</h2>
                     <p className="font-sans text-slate-500 text-sm leading-relaxed">
-                      Five underlying principles that govern our scientific audits, public outreach, and community engagement campaigns.
+                      {SITE_CONFIG.coreValuesSectionDescription}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-                    {[
-                      { icon: Shield, title: 'Integrity', desc: 'Every environmental claim is audited by peer-reviewed open science methodologies.' },
-                      { icon: Lightbulb, title: 'Innovation', desc: 'Deploying low-cost decentralized tech, permaculture, and community solar schemes.' },
-                      { icon: Users, title: 'Community', desc: 'Local residents are direct decision-makers and stewards of all planted forestry hubs.' },
-                      { icon: Leaf, title: 'Sustainability', desc: 'Every campaign utilizes recycled materials, zero-emission travel, and zero plastic.' },
-                      { icon: Handshake, title: 'Collaboration', desc: 'Bridging partnerships across schools, municipalities, and progressive enterprises.' }
-                    ].map((val, i) => {
-                      const ValIcon = val.icon;
+                    {CORE_VALUES_DATA.map((val, i) => {
+                      const ValIcon = (Icons as any)[val.iconName] || Icons.HelpCircle;
                       return (
                         <div key={i} className="bg-white border border-slate-100 rounded-2xl p-6 text-center space-y-3 shadow-sm hover:border-emerald-100 transition-colors">
                           <div className="bg-emerald-50 text-emerald-600 p-3 rounded-xl mx-auto w-fit">
@@ -378,20 +376,14 @@ export default function App() {
                 {/* Story/Journey Timeline */}
                 <div className="space-y-12">
                   <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">Our Journey Timeline</h2>
+                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">{SITE_CONFIG.journeyTimelineSectionTitle}</h2>
                     <p className="font-sans text-slate-500 text-sm leading-relaxed">
-                      From a four-person research cooperative to a national grassroots environmental network.
+                      {SITE_CONFIG.journeyTimelineSectionDescription}
                     </p>
                   </div>
 
                   <div className="relative border-l-2 border-slate-200 ml-4 md:ml-auto md:mr-auto max-w-3xl space-y-12 py-4">
-                    {[
-                      { year: '2021', title: 'Project Luminary Foundation', desc: 'Established in Seattle by Dr. Sarah Jenkins with four scientists. Launched environmental policy briefings and audited regional heat island data.' },
-                      { year: '2022', title: 'First Urban Forestry Initiative', desc: 'Organized neighborhood groups to plant 1,200 native Douglas firs and cedar saplings, introducing the heat micro-mitigation blueprint.' },
-                      { year: '2023', title: 'Ocean Conservation Expand', desc: 'Laid marine debris monitoring pipelines across key Puget Sound nesting hubs, reporting over 14 metric tons of collected plastic.' },
-                      { year: '2024', title: 'Decentralized Grid Deploy', desc: 'Conducted first solar sharing workshops and retrofitted 12 municipal housing blocks with clean community solar systems.' },
-                      { year: '2025', title: 'National Classroom Integration', desc: 'Developed modular interactive school STEM permaculture curriculum adopted across 40 regional public school districts.' }
-                    ].map((item, idx) => (
+                    {TIMELINE_DATA.map((item, idx) => (
                       <div key={idx} className="relative pl-8 md:pl-10 group">
                         {/* Timeline node */}
                         <div className="absolute -left-2.5 top-1.5 w-5 h-5 bg-emerald-500 rounded-full border-4 border-white shadow-sm group-hover:bg-emerald-600 transition-colors" />
@@ -690,15 +682,15 @@ export default function App() {
                       <ul className="space-y-4 text-sm text-slate-600 font-sans font-medium">
                         <li className="flex items-start space-x-3.5">
                           <MapPin size={20} className="text-emerald-600 mt-0.5 shrink-0" />
-                          <span>1200 Greenway Boulevard, Suite 400, Seattle, WA 98101</span>
+                          <span>{SITE_CONFIG.address}</span>
                         </li>
                         <li className="flex items-center space-x-3.5">
                           <Phone size={20} className="text-emerald-600 shrink-0" />
-                          <span>+1 (206) 555-0143</span>
+                          <span>{SITE_CONFIG.phone}</span>
                         </li>
                         <li className="flex items-center space-x-3.5">
                           <Mail size={20} className="text-emerald-600 shrink-0" />
-                          <span>hello@ecoreach.org</span>
+                          <span>{SITE_CONFIG.email}</span>
                         </li>
                       </ul>
                     </div>

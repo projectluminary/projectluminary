@@ -77,26 +77,7 @@ export default function Hero({ onPrimaryClick, onSecondaryClick }: HeroProps) {
             </button>
           </motion.div>
 
-          {/* Social Proof Badges */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="pt-6 border-t border-slate-200 flex flex-wrap items-center gap-y-4 gap-x-8 text-xs text-slate-400"
-          >
-            <div className="flex items-center space-x-2">
-              <span className="font-bold text-slate-800">501(c)(3)</span>
-              <span>Nonprofit Status</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="font-bold text-slate-800">100%</span>
-              <span>Open-Science Audited</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="font-bold text-slate-800">12K+</span>
-              <span>Metric Carbon Offset</span>
-            </div>
-          </motion.div>
+
         </div>
 
         {/* Right Column: Visual Mockup / Clean Photo Box */}

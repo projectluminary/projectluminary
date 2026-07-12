@@ -9,7 +9,7 @@ export interface Activity {
   readTime: string;
 }
 
-export type OpportunityType = 'Volunteer' | 'Internship' | 'Job' | 'Event' | 'Training' | 'Partnership';
+export type OpportunityType = 'Volunteer' | 'Internship' | 'Job' | 'Event' | 'Training' | 'Partnership' | string;
 
 export interface Opportunity {
   id: string;
@@ -52,3 +52,16 @@ export interface StatItem {
   suffix: string;
   iconName: string;
 }
+
+export interface CoreValue {
+  iconName: string;
+  title: string;
+  desc: string;
+}
+
+export interface TimelineEvent {
+  year: string;
+  title: string;
+  desc: string;
+}
+

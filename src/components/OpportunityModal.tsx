@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, MapPin, Calendar, Check, Send, Sparkles, CheckCircle2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { X, MapPin, Calendar, Check, Mail, FileText, Send, Copy, CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Opportunity } from '../types';
+import { SITE_CONFIG } from '../data';
 
 interface OpportunityModalProps {
   opportunity: Opportunity;
@@ -9,56 +10,12 @@ interface OpportunityModalProps {
 }
 
 export default function OpportunityModal({ opportunity, onClose }: OpportunityModalProps) {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    emailAddress: '',
-    motivation: '',
-    agreeToTerms: false
-  });
+  const [copied, setCopied] = useState(false);
 
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
-    setFormData((prev) => ({ ...prev, [name]: val }));
-    if (formErrors[name]) {
-      setFormErrors((prev) => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const validateForm = () => {
-    const errors: Record<string, string> = {};
-    if (!formData.fullName.trim()) {
-      errors.fullName = 'Please enter your full name.';
-    }
-    if (!formData.emailAddress.trim()) {
-      errors.emailAddress = 'Please enter your email.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.emailAddress)) {
-      errors.emailAddress = 'Please enter a valid email address.';
-    }
-    if (!formData.motivation.trim() || formData.motivation.trim().length < 10) {
-      errors.motivation = 'Please tell us a bit about your motivation (min 10 characters).';
-    }
-    if (!formData.agreeToTerms) {
-      errors.agreeToTerms = 'You must agree to the volunteer code of conduct.';
-    }
-
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleApplySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSuccess(true);
-      }, 1200);
-    }
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(SITE_CONFIG.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -107,6 +64,14 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
               </div>
             </div>
 
+            {opportunity.description && (
+              <div className="pt-4 border-t border-slate-800">
+                <p className="font-sans text-xs text-slate-300 leading-relaxed">
+                  {opportunity.description}
+                </p>
+              </div>
+            )}
+
             <div className="space-y-4 pt-4 border-t border-slate-800">
               <h4 className="font-sans font-bold text-sm text-white tracking-wide uppercase">
                 Core Requirements
@@ -127,8 +92,8 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
           </div>
         </div>
 
-        {/* Right Side: Apply Form or Success State */}
-        <div className="md:w-1/2 p-6 md:p-8 overflow-y-auto max-h-[50vh] md:max-h-[90vh] flex flex-col justify-center relative">
+        {/* Right Side: Apply Instructions Panel */}
+        <div className="md:w-1/2 p-6 md:p-8 overflow-y-auto max-h-[50vh] md:max-h-[90vh] flex flex-col justify-start relative">
           {/* Close button (desktop only) */}
           <button
             id="opportunity-modal-close-desktop"
@@ -138,144 +103,91 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
             <X size={20} />
           </button>
 
-          <AnimatePresence mode="wait">
-            {isSuccess ? (
-              <motion.div
-                key="apply-success"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-center space-y-4 py-8"
-              >
-                <div className="inline-flex bg-emerald-100 text-emerald-600 p-4 rounded-full mb-2">
-                  <CheckCircle2 size={32} />
+          <div className="space-y-6 pt-2">
+            <div className="space-y-1">
+              <h4 className="font-sans font-bold text-xl text-slate-900 tracking-tight">How to Apply</h4>
+              <p className="font-sans text-xs text-slate-400 font-medium leading-relaxed">
+                We are excited that you are interested in joining us! Please follow the guidelines below to submit your application.
+              </p>
+            </div>
+
+            {/* Email Box */}
+            <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-3">
+              <div className="flex items-center gap-2.5">
+                <div className="bg-emerald-50 text-emerald-600 p-2 rounded-xl">
+                  <Mail size={18} />
                 </div>
-                <h4 className="font-sans font-bold text-xl text-slate-900 tracking-tight">Application Submitted!</h4>
-                <p className="font-sans text-slate-500 text-xs leading-relaxed">
-                  Thank you for applying for the <strong>{opportunity.title}</strong> role. Our program coordinators have received your application and will follow up with you by email soon.
-                </p>
+                <div>
+                  <h5 className="font-sans text-xs font-bold text-slate-700">Submit Your Application To</h5>
+                  <p className="font-sans text-xs font-semibold text-slate-900 select-all">{SITE_CONFIG.email}</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-2">
                 <button
-                  id="opportunity-success-close"
-                  onClick={onClose}
-                  className="mt-6 font-sans text-xs font-semibold text-white bg-slate-900 hover:bg-emerald-600 px-6 py-3 rounded-xl transition-colors cursor-pointer"
+                  onClick={handleCopyEmail}
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 text-slate-600 font-sans font-medium py-2 px-3 rounded-xl text-xs transition-all cursor-pointer"
                 >
-                  Close Panel
+                  {copied ? (
+                    <>
+                      <CheckCircle2 size={13} className="text-emerald-500" />
+                      <span>Email Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={13} />
+                      <span>Copy Email</span>
+                    </>
+                  )}
                 </button>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="apply-form"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-4"
-              >
-                <div className="space-y-1">
-                  <h4 className="font-sans font-bold text-lg text-slate-900 tracking-tight">Apply for this Role</h4>
-                  <p className="font-sans text-xs text-slate-400 font-medium">Please complete the short intake form below.</p>
+                <a
+                  href={`mailto:${SITE_CONFIG.email}?subject=Application: ${opportunity.title}`}
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold py-2 px-3 rounded-xl text-xs transition-all text-center"
+                >
+                  <Send size={13} />
+                  <span>Send Email</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Application Requirements */}
+            <div className="space-y-3">
+              <h5 className="font-sans text-xs font-bold text-slate-800 tracking-wide uppercase flex items-center gap-1.5">
+                <FileText size={14} className="text-slate-500" />
+                <span>What to Include</span>
+              </h5>
+              <div className="space-y-3">
+                <div className="bg-slate-50/50 border border-slate-100/80 rounded-xl p-3.5 space-y-1">
+                  <span className="inline-block bg-slate-200 text-slate-700 text-[9px] font-bold px-2 py-0.5 rounded uppercase font-sans">Required</span>
+                  <h6 className="font-sans text-xs font-bold text-slate-800">Your Full CV / Resume</h6>
+                  <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
+                    Include an updated CV highlighting your relevant skills, previous roles, or educational background.
+                  </p>
                 </div>
 
-                <form id="opportunity-apply-form" onSubmit={handleApplySubmit} className="space-y-4">
-                  {/* Full Name */}
-                  <div className="space-y-1">
-                    <label htmlFor="apply-fullName" className="block text-xs font-bold text-slate-700">
-                      Full Name
-                    </label>
-                    <input
-                      id="apply-fullName"
-                      type="text"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      placeholder="Jane Doe"
-                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs outline-none transition-all ${
-                        formErrors.fullName ? 'border-red-300 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'
-                      }`}
-                    />
-                    {formErrors.fullName && (
-                      <p className="text-[10px] text-red-500 font-medium">{formErrors.fullName}</p>
-                    )}
-                  </div>
+                <div className="bg-slate-50/50 border border-slate-100/80 rounded-xl p-3.5 space-y-1">
+                  <span className="inline-block bg-slate-200 text-slate-700 text-[9px] font-bold px-2 py-0.5 rounded uppercase font-sans">Required</span>
+                  <h6 className="font-sans text-xs font-bold text-slate-800">Brief Motivation Statement</h6>
+                  <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
+                    Explain why you want to support Project Luminary, what excites you about this specific role, and how your background aligns with our mission.
+                  </p>
+                </div>
 
-                  {/* Email */}
-                  <div className="space-y-1">
-                    <label htmlFor="apply-emailAddress" className="block text-xs font-bold text-slate-700">
-                      Email Address
-                    </label>
-                    <input
-                      id="apply-emailAddress"
-                      type="email"
-                      name="emailAddress"
-                      value={formData.emailAddress}
-                      onChange={handleInputChange}
-                      placeholder="jane@example.com"
-                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs outline-none transition-all ${
-                        formErrors.emailAddress ? 'border-red-300 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'
-                      }`}
-                    />
-                    {formErrors.emailAddress && (
-                      <p className="text-[10px] text-red-500 font-medium">{formErrors.emailAddress}</p>
-                    )}
-                  </div>
+                <div className="bg-slate-50/50 border border-slate-100/80 rounded-xl p-3.5 space-y-1">
+                  <span className="inline-block bg-emerald-50 text-emerald-700 border border-emerald-100 text-[9px] font-bold px-2 py-0.5 rounded uppercase font-sans">Recommended</span>
+                  <h6 className="font-sans text-xs font-bold text-slate-800">Subject Line Format</h6>
+                  <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
+                    Please use the following format: <code className="bg-slate-100 text-emerald-700 px-1 py-0.5 rounded font-mono text-[10px] select-all">[Application] {opportunity.title} - [Your Name]</code>
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                  {/* Motivation */}
-                  <div className="space-y-1">
-                    <label htmlFor="apply-motivation" className="block text-xs font-bold text-slate-700">
-                      Why are you interested in this role?
-                    </label>
-                    <textarea
-                      id="apply-motivation"
-                      name="motivation"
-                      rows={3}
-                      value={formData.motivation}
-                      onChange={handleInputChange}
-                      placeholder="Briefly share why you'd like to support our sustainability mission..."
-                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs outline-none transition-all resize-none ${
-                        formErrors.motivation ? 'border-red-300 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'
-                      }`}
-                    />
-                    {formErrors.motivation && (
-                      <p className="text-[10px] text-red-500 font-medium">{formErrors.motivation}</p>
-                    )}
-                  </div>
-
-                  {/* Agree checkbox */}
-                  <div className="space-y-1.5 pt-2">
-                    <label className="flex items-start gap-2 text-slate-600 text-[11px] cursor-pointer font-sans select-none">
-                      <input
-                        type="checkbox"
-                        name="agreeToTerms"
-                        checked={formData.agreeToTerms}
-                        onChange={(e) => setFormData((prev) => ({ ...prev, agreeToTerms: e.target.checked }))}
-                        className="mt-0.5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
-                      />
-                      <span>I agree to Project Luminary's Volunteer Code of Conduct and Environmental standards.</span>
-                    </label>
-                    {formErrors.agreeToTerms && (
-                      <p className="text-[10px] text-red-500 font-medium">{formErrors.agreeToTerms}</p>
-                    )}
-                  </div>
-
-                  {/* Submit Apply */}
-                  <button
-                    id="apply-form-submit-btn"
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full mt-2 flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold py-3 rounded-xl text-xs transition-all shadow-sm cursor-pointer disabled:bg-emerald-400"
-                  >
-                    {isSubmitting ? (
-                      <span>Submitting Application...</span>
-                    ) : (
-                      <>
-                        <Send size={14} />
-                        <span>Submit Application</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            {/* Note */}
+            <p className="font-sans text-[10px] text-slate-400 leading-relaxed pt-2">
+              Our teams review applications on a rolling basis. You can expect to hear back from our HR or Program Coordinator team within 5-7 business days of submission.
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>

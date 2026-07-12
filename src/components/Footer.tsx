@@ -37,7 +37,7 @@ export default function Footer({ setActivePage }: FooterProps) {
             <span className="font-sans font-bold text-xl text-white tracking-tight">{SITE_CONFIG.brandName}</span>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed">
-            Protecting, restoring, and educating communities to achieve sustainable coexistence with our biosphere. Join our decentralized climate action movement.
+            Edit here
           </p>
           <div className="flex items-center space-x-3 pt-2">
             <a
