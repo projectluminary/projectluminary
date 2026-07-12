@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, 
+  ArrowLeft,
+  Clock,
   MapPin, 
   Mail, 
   Phone, 
@@ -16,7 +18,12 @@ import {
   Calendar,
   Sparkles,
   Globe,
-  Plus
+  Plus,
+  Check,
+  Send,
+  Copy,
+  CheckCircle2,
+  FileText
 } from 'lucide-react';
 
 // Import Types
@@ -48,9 +55,60 @@ import ActivityModal from './components/ActivityModal';
 import OpportunityModal from './components/OpportunityModal';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<string>('home');
-  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
-  const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
+  // Mapping between activePage state and URL path
+  const PAGE_TO_PATH: Record<string, string> = {
+    home: '/home',
+    about: '/about-us',
+    activities: '/activities',
+    opportunities: '/opportunities',
+    contact: '/contact'
+  };
+
+  const PATH_TO_PAGE: Record<string, string> = {
+    '/home': 'home',
+    '/about-us': 'about',
+    '/activities': 'activities',
+    '/opportunities': 'opportunities',
+    '/contact': 'contact'
+  };
+
+  const getInitialPage = (): string => {
+    const path = window.location.pathname;
+    if (path.startsWith('/activities/')) {
+      const id = path.substring('/activities/'.length);
+      const hasActivity = ACTIVITIES_DATA.some(a => a.id === id);
+      return hasActivity ? 'activity-detail' : 'activities';
+    }
+    if (path.startsWith('/opportunities/')) {
+      const id = path.substring('/opportunities/'.length);
+      const hasOpp = OPPORTUNITIES_DATA.some(o => o.id === id);
+      return hasOpp ? 'opportunity-detail' : 'opportunities';
+    }
+    return PATH_TO_PAGE[path] || 'home';
+  };
+
+  const getInitialActivity = (): Activity | null => {
+    const path = window.location.pathname;
+    if (path.startsWith('/activities/')) {
+      const id = path.substring('/activities/'.length);
+      return ACTIVITIES_DATA.find(a => a.id === id) || null;
+    }
+    return null;
+  };
+
+  const getInitialOpportunity = (): Opportunity | null => {
+    const path = window.location.pathname;
+    if (path.startsWith('/opportunities/')) {
+      const id = path.substring('/opportunities/'.length);
+      return OPPORTUNITIES_DATA.find(o => o.id === id) || null;
+    }
+    return null;
+  };
+
+  const [activePage, setActivePage] = useState<string>(getInitialPage);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(getInitialActivity);
+  const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(getInitialOpportunity);
+  const [oppCopied, setOppCopied] = useState(false);
 
   // Activities Filter and Load More State
   const [activeActivityCategory, setActiveActivityCategory] = useState<string>('All');
@@ -61,20 +119,112 @@ export default function App() {
   const [selectedOppCategory, setSelectedOppCategory] = useState<string>('All');
   const [selectedOppLocation, setSelectedOppLocation] = useState<string>('All');
 
-  // Automatically scroll to top on page navigation and update browser title
+  // Automatically scroll to top on page navigation and update browser title & URL path
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     
-    const pageTitleMap: Record<string, string> = {
-      home: 'Home',
-      about: 'About Us',
-      activities: 'Activities',
-      opportunities: 'Opportunities',
-      contact: 'Contact Us'
-    };
-    const currentLabel = pageTitleMap[activePage] || 'Home';
+    let currentLabel = 'Home';
+    if (activePage === 'activity-detail' && selectedActivity) {
+      currentLabel = selectedActivity.title;
+    } else if (activePage === 'opportunity-detail' && selectedOpportunity) {
+      currentLabel = selectedOpportunity.title;
+    } else {
+      const pageTitleMap: Record<string, string> = {
+        home: 'Home',
+        about: 'About Us',
+        activities: 'Activities',
+        opportunities: 'Opportunities',
+        contact: 'Contact Us'
+      };
+      currentLabel = pageTitleMap[activePage] || 'Home';
+    }
     document.title = `${currentLabel} | Project Luminary`;
-  }, [activePage]);
+
+    // Sync state with URL path
+    let targetPath = '/home';
+    if (activePage === 'activity-detail' && selectedActivity) {
+      targetPath = `/activities/${selectedActivity.id}`;
+    } else if (activePage === 'opportunity-detail' && selectedOpportunity) {
+      targetPath = `/opportunities/${selectedOpportunity.id}`;
+    } else {
+      targetPath = PAGE_TO_PATH[activePage] || '/home';
+    }
+
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({ page: activePage }, '', targetPath);
+    }
+  }, [activePage, selectedActivity, selectedOpportunity]);
+
+  // Clear selectedActivity state when navigating away from the activity-detail page
+  useEffect(() => {
+    if (activePage !== 'activity-detail' && selectedActivity !== null) {
+      setSelectedActivity(null);
+    }
+  }, [activePage, selectedActivity]);
+
+  // Clear selectedOpportunity state when navigating away from the opportunity-detail page
+  useEffect(() => {
+    if (activePage !== 'opportunity-detail' && selectedOpportunity !== null) {
+      setSelectedOpportunity(null);
+    }
+  }, [activePage, selectedOpportunity]);
+
+  // Listen to browser navigation (back/forward buttons)
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/activities/')) {
+        const id = path.substring('/activities/'.length);
+        const act = ACTIVITIES_DATA.find(a => a.id === id);
+        if (act) {
+          setSelectedActivity(act);
+          setActivePage('activity-detail');
+        } else {
+          setActivePage('activities');
+          setSelectedActivity(null);
+        }
+      } else if (path.startsWith('/opportunities/')) {
+        const id = path.substring('/opportunities/'.length);
+        const opp = OPPORTUNITIES_DATA.find(o => o.id === id);
+        if (opp) {
+          setSelectedOpportunity(opp);
+          setActivePage('opportunity-detail');
+        } else {
+          setActivePage('opportunities');
+          setSelectedOpportunity(null);
+        }
+      } else {
+        const matchedPage = PATH_TO_PAGE[path] || 'home';
+        setActivePage(matchedPage);
+        setSelectedActivity(null);
+        setSelectedOpportunity(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    
+    // Redirect root "/" or any unknown URL paths to "/home"
+    const initialPath = window.location.pathname;
+    const isActivityPath = initialPath.startsWith('/activities/');
+    const isOpportunityPath = initialPath.startsWith('/opportunities/');
+    if (initialPath === '/' || (!PATH_TO_PAGE[initialPath] && !isActivityPath && !isOpportunityPath)) {
+      window.history.replaceState({ page: 'home' }, '', '/home');
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
+  const handleReadActivity = (activity: Activity) => {
+    setSelectedActivity(activity);
+    setActivePage('activity-detail');
+  };
+
+  const handleSelectOpportunity = (opportunity: Opportunity) => {
+    setSelectedOpportunity(opportunity);
+    setActivePage('opportunity-detail');
+  };
 
   // Derived categories from data
   const activityCategories = ['All', ...Array.from(new Set(ACTIVITIES_DATA.map(a => a.category)))];
@@ -189,7 +339,7 @@ export default function App() {
                       <ActivityCard 
                         key={act.id} 
                         activity={act} 
-                        onReadMore={(activity) => setSelectedActivity(activity)} 
+                        onReadMore={handleReadActivity} 
                       />
                     ))}
                   </div>
@@ -521,7 +671,7 @@ export default function App() {
                         <ActivityCard
                           key={act.id}
                           activity={act}
-                          onReadMore={(activity) => setSelectedActivity(activity)}
+                          onReadMore={handleReadActivity}
                         />
                       ))}
                     </div>
@@ -541,6 +691,273 @@ export default function App() {
                     )}
                   </div>
                 )}
+              </div>
+            </motion.div>
+          )}
+
+          {/* ACTIVITY DETAIL PAGE VIEW */}
+          {activePage === 'activity-detail' && selectedActivity && (
+            <motion.div
+              key="activity-detail-page"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-24 md:py-32 bg-[#f8fafc]"
+            >
+              <div className="max-w-4xl mx-auto px-6 md:px-12 space-y-8">
+                
+                {/* Back button */}
+                <div className="flex items-center">
+                  <button
+                    onClick={() => {
+                      setActivePage('activities');
+                      setSelectedActivity(null);
+                    }}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-emerald-700 transition-colors group cursor-pointer"
+                  >
+                    <ArrowLeft size={16} className="transform group-hover:-translate-x-1 transition-transform" />
+                    <span>Back to Activities</span>
+                  </button>
+                </div>
+
+                {/* Main Article Card */}
+                <article className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-sm p-6 md:p-12 space-y-8">
+                  {/* Category and Title */}
+                  <div className="space-y-4">
+                    <span className="font-sans text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-150 px-3.5 py-1.5 rounded-full">
+                      {selectedActivity.category}
+                    </span>
+                    <h1 className="font-sans font-extrabold text-3xl md:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-tight">
+                      {selectedActivity.title}
+                    </h1>
+
+                    {/* Metadata bar */}
+                    <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 font-medium font-sans border-y border-slate-100 py-4">
+                      <span className="flex items-center gap-2">
+                        <Calendar size={16} className="text-emerald-600" />
+                        Published: {selectedActivity.date}
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Clock size={16} className="text-emerald-600" />
+                        {selectedActivity.readTime}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Feature Image */}
+                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-150 shadow-sm">
+                    <img
+                      src={selectedActivity.image}
+                      alt={selectedActivity.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Body Content */}
+                  <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed font-sans text-base md:text-lg">
+                    <p className="font-semibold text-slate-900 text-lg md:text-xl leading-relaxed">
+                      {selectedActivity.description}
+                    </p>
+                    <div className="whitespace-pre-line text-slate-600 font-sans">
+                      {selectedActivity.content}
+                    </div>
+                  </div>
+
+                  {/* Call to Action Card */}
+                  <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mt-12 shadow-sm">
+                    <div className="space-y-1">
+                      <h4 className="font-sans font-bold text-lg text-slate-900">Want to help with this initiative?</h4>
+                      <p className="font-sans text-sm text-slate-500 font-medium">We host monthly education workshops, mentor pairings, and training programs.</p>
+                    </div>
+                    <button
+                      onClick={() => setActivePage('opportunities')}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-md shrink-0 cursor-pointer"
+                    >
+                      Explore Open Opportunities
+                    </button>
+                  </div>
+                </article>
+
+              </div>
+            </motion.div>
+          )}
+
+          {/* OPPORTUNITY DETAIL PAGE VIEW */}
+          {activePage === 'opportunity-detail' && selectedOpportunity && (
+            <motion.div
+              key="opportunity-detail-page"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-24 md:py-32 bg-[#f8fafc]"
+            >
+              <div className="max-w-5xl mx-auto px-6 md:px-12 space-y-8">
+                
+                {/* Back button */}
+                <div className="flex items-center">
+                  <button
+                    onClick={() => {
+                      setActivePage('opportunities');
+                      setSelectedOpportunity(null);
+                    }}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-emerald-700 transition-colors group cursor-pointer"
+                  >
+                    <ArrowLeft size={16} className="transform group-hover:-translate-x-1 transition-transform" />
+                    <span>Back to Opportunities</span>
+                  </button>
+                </div>
+
+                {/* Main Two-Column Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  
+                  {/* Left Column: Details & Requirements (7 cols) */}
+                  <div className="lg:col-span-7 bg-white border border-slate-100 rounded-3xl p-6 md:p-10 shadow-sm space-y-8">
+                    {/* Header */}
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-sans text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-150 px-3.5 py-1.5 rounded-full">
+                          {selectedOpportunity.type}
+                        </span>
+                        <span className="font-sans text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1 rounded-full">
+                          {selectedOpportunity.category}
+                        </span>
+                      </div>
+                      <h1 className="font-sans font-extrabold text-2xl md:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
+                        {selectedOpportunity.title}
+                      </h1>
+
+                      {/* Metadata bar */}
+                      <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 font-medium font-sans border-y border-slate-100 py-4">
+                        <span className="flex items-center gap-2 flex-wrap">
+                          <MapPin size={15} className="text-emerald-600 shrink-0" />
+                          {selectedOpportunity.location}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Calendar size={15} className="text-emerald-600 shrink-0" />
+                          Apply by: {selectedOpportunity.deadline}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <div className="space-y-4">
+                      <h3 className="font-sans font-bold text-lg text-slate-900">Role Description</h3>
+                      <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed whitespace-pre-line">
+                        {selectedOpportunity.description}
+                      </p>
+                    </div>
+
+                    {/* Requirements */}
+                    <div className="space-y-4 pt-6 border-t border-slate-100">
+                      <h3 className="font-sans font-bold text-lg text-slate-900 uppercase tracking-wide">
+                        Core Requirements
+                      </h3>
+                      <ul className="space-y-3 text-sm text-slate-600 font-sans">
+                        {selectedOpportunity.requirements.map((req, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <Check size={16} className="text-emerald-600 shrink-0 mt-0.5" />
+                            <span>{req}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Right Column: How to Apply (5 cols) */}
+                  <div className="lg:col-span-5 space-y-6">
+                    <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
+                      <div className="space-y-2">
+                        <h3 className="font-sans font-bold text-xl text-slate-900 tracking-tight">How to Apply</h3>
+                        <p className="font-sans text-xs text-slate-500 leading-relaxed">
+                          We are excited that you want to join us! Please follow these guidelines to submit your application.
+                        </p>
+                      </div>
+
+                      {/* Email box */}
+                      <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-emerald-50 text-emerald-600 p-2.5 rounded-xl">
+                            <Mail size={18} />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h5 className="font-sans text-xs font-bold text-slate-700">Submit Your Application To</h5>
+                            <p className="font-sans text-xs font-semibold text-slate-900 select-all truncate">{SITE_CONFIG.email}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(SITE_CONFIG.email);
+                              setOppCopied(true);
+                              setTimeout(() => setOppCopied(false), 2000);
+                            }}
+                            className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 text-slate-600 font-sans font-medium py-2 px-3 rounded-xl text-xs transition-all cursor-pointer"
+                          >
+                            {oppCopied ? (
+                              <>
+                                <CheckCircle2 size={13} className="text-emerald-500" />
+                                <span>Copied!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy size={13} />
+                                <span>Copy Email</span>
+                              </>
+                            )}
+                          </button>
+                          <a
+                            href={`mailto:${SITE_CONFIG.email}?subject=Application: ${selectedOpportunity.title}`}
+                            className="flex-1 flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold py-2 px-3 rounded-xl text-xs transition-all text-center"
+                          >
+                            <Send size={13} />
+                            <span>Send Email</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Instructions */}
+                      <div className="space-y-4 pt-4 border-t border-slate-100">
+                        <h5 className="font-sans text-xs font-bold text-slate-800 tracking-wide uppercase flex items-center gap-1.5">
+                          <FileText size={14} className="text-slate-500" />
+                          <span>What to Include</span>
+                        </h5>
+                        <div className="space-y-3">
+                          <div className="bg-slate-50/50 border border-slate-100/80 rounded-xl p-3.5 space-y-1">
+                            <span className="inline-block bg-slate-200 text-slate-700 text-[9px] font-bold px-2 py-0.5 rounded uppercase font-sans">Required</span>
+                            <h6 className="font-sans text-xs font-bold text-slate-800">Your Full CV / Resume</h6>
+                            <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
+                              Include an updated CV highlighting relevant skills and experiences.
+                            </p>
+                          </div>
+
+                          <div className="bg-slate-50/50 border border-slate-100/80 rounded-xl p-3.5 space-y-1">
+                            <span className="inline-block bg-slate-200 text-slate-700 text-[9px] font-bold px-2 py-0.5 rounded uppercase font-sans">Required</span>
+                            <h6 className="font-sans text-xs font-bold text-slate-800">Motivation Statement</h6>
+                            <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
+                              Explain why you want to support Project Luminary and how your background aligns.
+                            </p>
+                          </div>
+
+                          <div className="bg-slate-50/50 border border-slate-100/80 rounded-xl p-3.5 space-y-1">
+                            <span className="inline-block bg-emerald-50 text-emerald-700 border border-emerald-100 text-[9px] font-bold px-2 py-0.5 rounded uppercase font-sans">Recommended</span>
+                            <h6 className="font-sans text-xs font-bold text-slate-800">Subject Line Format</h6>
+                            <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
+                              Use: <code className="bg-slate-100 text-emerald-700 px-1 py-0.5 rounded font-mono text-[10px] select-all">[Application] {selectedOpportunity.title} - [Your Name]</code>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="font-sans text-[10px] text-slate-400 leading-relaxed">
+                        Our teams review applications on a rolling basis. You can expect to hear back from our team within 5-7 business days of submission.
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
             </motion.div>
           )}
@@ -642,7 +1059,7 @@ export default function App() {
                       <OpportunityCard
                         key={opp.id}
                         opportunity={opp}
-                        onApply={(opportunity) => setSelectedOpportunity(opportunity)}
+                        onApply={handleSelectOpportunity}
                       />
                     ))}
                   </div>
@@ -682,8 +1099,8 @@ export default function App() {
                     <ContactForm />
                   </div>
 
-                  {/* Right Column: Contact Details & Vector Map Placeholder */}
-                  <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+                  {/* Right Column: Contact Details */}
+                  <div className="lg:col-span-5 flex flex-col justify-start">
                     
                     {/* Information block */}
                     <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm space-y-6">
@@ -705,44 +1122,6 @@ export default function App() {
                       </ul>
                     </div>
 
-                    {/* Elegant custom SVG map drawing placeholder reserving space */}
-                    <div className="bg-slate-900 text-slate-300 rounded-3xl p-8 shadow-sm flex-grow flex flex-col justify-between relative overflow-hidden h-72">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.1),transparent)]" />
-                      
-                      <div className="space-y-2 relative z-10">
-                        <span className="font-mono text-[10px] uppercase text-emerald-400 font-bold tracking-widest bg-emerald-950/40 px-2 py-0.5 border border-emerald-900/35 rounded-full">
-                          Regional Presence Map
-                        </span>
-                        <h4 className="font-sans font-bold text-sm text-white">Seattle &amp; Puget Sound Chapter</h4>
-                      </div>
-
-                      {/* Clean stylized vector graphic instead of boring grey box */}
-                      <div className="h-28 flex items-center justify-center relative z-10 border border-slate-800/80 rounded-2xl bg-slate-950/40 p-4">
-                        <svg viewBox="0 0 100 50" className="w-full h-full opacity-60 text-emerald-500 fill-none stroke-current stroke-1">
-                          {/* Map Contour path */}
-                          <path d="M 10 10 Q 25 5 40 15 T 70 25 T 90 30" strokeDasharray="2 2" />
-                          <path d="M 15 35 Q 35 25 55 45 T 85 20" strokeWidth="0.5" />
-                          {/* Chapter nodes */}
-                          <circle cx="40" cy="15" r="3" className="fill-emerald-400 animate-ping" />
-                          <circle cx="40" cy="15" r="2.5" className="fill-emerald-500" />
-                          
-                          <circle cx="55" cy="45" r="2.5" className="fill-emerald-500" />
-                          <circle cx="85" cy="20" r="2.5" className="fill-emerald-500" />
-                          {/* Coordinate axes decoration */}
-                          <line x1="5" y1="45" x2="15" y2="45" stroke="#334155" />
-                          <line x1="5" y1="45" x2="5" y2="35" stroke="#334155" />
-                        </svg>
-                        <div className="absolute text-[10px] text-emerald-400 bg-slate-900/90 border border-emerald-900 px-2 py-1 rounded-md font-mono flex items-center gap-1.5 shadow-sm">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>Active Monitoring Nodes</span>
-                        </div>
-                      </div>
-
-                      <div className="text-[10px] text-slate-500 font-sans relative z-10 leading-normal">
-                        This placeholder reserves area for real-time GIS Mapbox dashboard rendering integration in production releases.
-                      </div>
-                    </div>
-
                   </div>
                 </div>
               </div>
@@ -754,13 +1133,13 @@ export default function App() {
 
       {/* Global Modals for details overlays */}
       <AnimatePresence>
-        {selectedActivity && (
+        {selectedActivity && activePage !== 'activity-detail' && (
           <ActivityModal 
             activity={selectedActivity} 
             onClose={() => setSelectedActivity(null)} 
           />
         )}
-        {selectedOpportunity && (
+        {selectedOpportunity && activePage !== 'opportunity-detail' && (
           <OpportunityModal 
             opportunity={selectedOpportunity} 
             onClose={() => setSelectedOpportunity(null)} 

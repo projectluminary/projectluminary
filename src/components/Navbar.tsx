@@ -72,13 +72,13 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
               id={`nav-item-${item.id}`}
               onClick={() => handleNavClick(item.id)}
               className={`relative px-4 py-2 rounded-lg font-sans text-sm font-medium transition-colors ${
-                activePage === item.id
+                (activePage === item.id || (item.id === 'activities' && activePage === 'activity-detail') || (item.id === 'opportunities' && activePage === 'opportunity-detail'))
                   ? 'text-emerald-700 bg-emerald-50/60'
                   : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50'
               }`}
             >
               {item.label}
-              {activePage === item.id && (
+              {(activePage === item.id || (item.id === 'activities' && activePage === 'activity-detail') || (item.id === 'opportunities' && activePage === 'opportunity-detail')) && (
                 <motion.div
                   layoutId="activeNavIndicator"
                   className="absolute bottom-0 left-4 right-4 h-0.5 bg-emerald-600 rounded-full"
@@ -129,7 +129,7 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
                   id={`mobile-nav-item-${item.id}`}
                   onClick={() => handleNavClick(item.id)}
                   className={`w-full text-left px-4 py-3 rounded-xl font-sans text-base font-medium transition-colors ${
-                    activePage === item.id
+                    (activePage === item.id || (item.id === 'activities' && activePage === 'activity-detail') || (item.id === 'opportunities' && activePage === 'opportunity-detail'))
                       ? 'text-emerald-700 bg-emerald-50'
                       : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50'
                   }`}
