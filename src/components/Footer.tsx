@@ -85,10 +85,10 @@ export default function Footer({ setActivePage }: FooterProps) {
           <ul className="space-y-3 text-sm">
             {[
               { id: 'home', label: 'Home' },
-              { id: 'about', label: 'About Us' },
-              { id: 'activities', label: 'Activities' },
+              { id: 'about', label: 'About' },
+              { id: 'activities', label: 'Our Work' },
               { id: 'opportunities', label: 'Opportunities' },
-              { id: 'contact', label: 'Contact Us' }
+              { id: 'contact', label: 'Contact' }
             ].map((link) => (
               <li key={link.id}>
                 <button

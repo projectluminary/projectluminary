@@ -193,12 +193,13 @@ export default function ContactForm() {
           }`}
         >
           <option value="">-- Please select a subject --</option>
-          <option value="Volunteering & Activities">Volunteering &amp; Activities</option>
-          <option value="Internship Programs">Internship Programs</option>
-          <option value="Sponsorship & Partnerships">Sponsorship &amp; Partnerships</option>
-          <option value="Academic Research Co-labs">Academic Research Co-labs</option>
-          <option value="Media & Public Relations">Media &amp; Public Relations</option>
-          <option value="General Inquiries">General Inquiries</option>
+          <option value="General Inquiry">General Inquiry</option>
+          <option value="Partnership & Collaboration">Partnership &amp; Collaboration</option>
+          <option value="Programme Participation">Programme Participation</option>
+          <option value="Research & Academic Collaboration">Research &amp; Academic Collaboration</option>
+          <option value="Media & Speaking Requests">Media &amp; Speaking Requests</option>
+          <option value="Support Project Luminary">Support Project Luminary</option>
+          <option value="Other">Other</option>
         </select>
         {errors.subject && (
           <p className="text-xs text-red-500 flex items-center gap-1.5 font-medium animate-fade-in">

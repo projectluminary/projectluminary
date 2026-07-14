@@ -11,39 +11,39 @@ export const SITE_CONFIG = {
   tagline: 'Lighting Pathways. Empowering Futures.',
   email: 'info@projectluminary.com',
   phone: '+95 512345678',
-  address: 'Yangon, Myanmar',
+  address: 'Youth-led initiative serving Myanmar communities and beyond',
   
   // Hero section contents
-  heroBadge: 'Project Luminary in Action',
-  heroTitlePrimary: 'Lighting Pathways. ',
-  heroTitleGradient: 'Empowering Futures.',
-  heroDescription: "Project Luminary is a youth-led initiative founded by students who experienced Myanmar's disrupted education system firsthand. Through free higher education guidance, skills development, and civic learning, we empower underserved Burmese youth to pursue opportunities, develop leadership, and build brighter futures.",
+  heroBadge: 'FIRST-PLACE WINNER | 2026 MACJANNET PRIZE FOR GLOBAL CITIZENSHIP',
+  heroTitlePrimary: 'Helping Young People Learn,',
+  heroTitleGradient: 'Grow, and Contribute Beyond Themselves.',
+  heroDescription: "Founded by youths who experienced Myanmar’s educational disruption firsthand, Project Luminary creates high-quality learning opportunities that help young people access education, develop practical capabilities, think critically about the world around them, and contribute meaningfully to their communities.",
   heroImage: 'images/logo/PL-Logo-2.png',
   
   // About preview section on Home
-  aboutSummaryTitle: 'Student-led Civic Education Initiative',
-  aboutSummaryPara1: 'Project Luminary is a student-led civic education initiative founded in December 2023 by Parami University students who transformed their own educational challenges into opportunities for others. What began as a simple effort to help peers discover higher education pathways has grown into a community-driven movement that supports young people across Myanmar and beyond.',
-  aboutSummaryPara2: 'We provide free programs that combine university application support, practical skill development, and meaningful civic engagement. By creating inclusive spaces where youth learn from experts and one another, we help participants develop the confidence, knowledge, and critical thinking needed to shape their own futures and contribute positively to their communities.',
+  aboutSummaryTitle: 'Built by Young People, for Young People',
+  aboutSummaryPara1: 'Project Luminary began in 2023 when students at Parami University turned challenges they had personally experienced into opportunities for others. What started as an effort to help fellow young people navigate higher education has grown into a broader platform for learning, skills development, critical engagement, and youth-led action.',
+  aboutSummaryPara2: 'Our programmes bring together practical learning and a wider sense of social responsibility. Whether participants are preparing for university, developing research and professional skills, or exploring pressing social issues, we want them to leave Project Luminary better equipped to advance their own futures—and more prepared to contribute to the future of their communities.',
   aboutSummaryImage: 'images/logo/PL-Logo-2.png',
 
   // About Page details
   aboutPageBadge: 'About Project Luminary',
-  aboutPageTitle: 'Lighting Pathways. Empowering Futures.',
-  aboutPageDescription: 'Project Luminary was founded in December 2023 by a cooperative of passionate students to deliver free higher education guidance, skills training, and civic engagement pathways.',
+  aboutPageTitle: 'We Built What We Once Needed Ourselves.',
+  aboutPageDescription: 'Project Luminary was founded in December 2023 by Parami University students who had personally experienced the challenges of navigating education and opportunity amid Myanmar’s prolonged disruption. What began as one student’s determination to help others discover pathways he had struggled to find has grown into an award-winning youth-led initiative.',
   
   // Mission & Vision
-  missionTitle: 'Our Mission',
-  missionDescription: 'Temp: To provide free, inclusive, and high-quality higher education guidance, skill development, and civic learning that empowers underserved Burmese youth to overcome educational disruptions, pursue global opportunities, and drive positive changes.',
-  visionTitle: 'Our Vision',
-  visionDescription: 'Temp: We envision an inclusive and empowered society where every young person in Myanmar, regardless of background, has the support, skills, and critical thinking capacity to shape their own future and build a vibrant community.',
+  missionTitle: 'Mission',
+  missionDescription: 'To create high-quality learning opportunities that help young people from Myanmar access education, develop practical capabilities, think critically about the world around them, and contribute meaningfully to their communities.',
+  visionTitle: 'Vision',
+  visionDescription: 'A future in which young people from Myanmar are equipped not only to pursue opportunities for themselves, but also to think independently, engage responsibly with society, and contribute innovative solutions to the challenges facing their communities and country.',
 
   // Core Values Section
   coreValuesSectionTitle: 'Our Core Values',
-  coreValuesSectionDescription: 'Temp: Five underlying principles that govern our educational design, public outreach, and community empowerment programs.',
+  coreValuesSectionDescription: 'Five underlying principles that govern our educational design, public outreach, and community empowerment programs.',
 
   // Timeline Section
   journeyTimelineSectionTitle: 'Our Journey Timeline',
-  journeyTimelineSectionDescription: 'Temp: From a peer-to-peer mentoring initiative to a community-driven movement supporting young people across Myanmar.',
+  journeyTimelineSectionDescription: 'From a peer-to-peer mentoring initiative to a community-driven movement supporting young people across Myanmar.',
 
   // Stats / Impact section
   statsSectionTitle: 'Our Project Metrics that Matter',
@@ -59,20 +59,44 @@ export const SITE_CONFIG = {
 };
 
 export const CORE_VALUES_DATA: CoreValue[] = [
-  { iconName: 'Shield', title: 'Integrity', desc: 'Text Here' },
-  { iconName: 'Lightbulb', title: 'Innovation', desc: 'Text Here' },
-  { iconName: 'Users', title: 'Community', desc: 'Text Here' },
-  { iconName: 'Leaf', title: 'Sustainability', desc: 'Text Here' },
-  { iconName: 'Handshake', title: 'Collaboration', desc: 'Text Here' }
+  { iconName: 'BookOpen', title: 'Learning with Purpose', desc: 'We believe education should advance both individual potential and the wider good.' },
+  { iconName: 'Users', title: 'Youth Agency', desc: 'Young people should be active participants in shaping their learning, futures, and communities.' },
+  { iconName: 'Compass', title: 'Critical Inquiry', desc: 'We encourage questions, diverse perspectives, and thoughtful engagement with complex issues.' },
+  { iconName: 'Shield', title: 'Equity in Opportunity', desc: 'A young person’s circumstances should not determine the quality of opportunities available to them.' },
+  { iconName: 'Lightbulb', title: 'Innovation for Impact', desc: 'We continuously learn, adapt, and explore better and more sustainable ways to create meaningful change.' }
 ];
 
 export const TIMELINE_DATA: TimelineEvent[] = [
-  { year: 'December 2023', title: 'Project Luminary Foundation', desc: 'Project Luminary was founded by students at Parami University who had personally experienced the challenges of Myanmar\'s disrupted education system. What started as one student\'s effort to help peers discover higher education opportunities soon grew into a shared vision.' },
-  { year: 'Early 2024', title: 'First Pilot Programme', desc: 'With support from Parami University\'s Civic Engagement Grant, a team of passionate students transformed the idea into a structured, youth-led initiative. The first Pilot Programme was launched to provide free university guidance and mentorship for underserved Burmese youth.' },
-  { year: '2024', title: 'Pathways & Perspectives', desc: 'Following the success of the Pilot Programme, Project Luminary expanded its mission by launching Pathways & Perspectives, integrating university application support with discussions on civic responsibility, critical thinking, and social issues.' },
-  { year: '2025', title: 'LARC (Learning, Action, Research & Community)', desc: 'Project Luminary introduced LARC (Learning, Action, Research & Community), broadening its curriculum to include research, digital literacy, AI knowledge, financial literacy, and other practical skills shaped by community needs. The initiative also reached participants from Myanmar, Thailand, Malaysia, and the Cox\'s Bazar refugee community in Bangladesh.' },
-  { year: '2026', title: 'International Recognition', desc: 'Project Luminary was awarded First Place in the 2026 MacJannet Prize for Global Citizenship by the Talloires Network of Engaged Universities. The award recognizes outstanding university initiatives that advance civic engagement and social impact, celebrating Project Luminary\'s commitment to empowering underserved Burmese youth through education and community leadership.' },
-  { year: 'Looking Ahead', title: 'The Journey Continues', desc: 'Project Luminary continues to create pathways for young people to access higher education, develop practical skills, and become active citizens. Our vision is to expand opportunities, strengthen communities, and empower the next generation of leaders across Myanmar and beyond.' }
+  {
+    year: 'December 2023',
+    title: 'The Idea Takes Shape',
+    desc: 'Project Luminary was founded by Parami University students who transformed challenges they had personally experienced into an initiative for other young people.'
+  },
+  {
+    year: '2024',
+    title: 'Our First Programme',
+    desc: 'The Pilot Programme brought together young people from Myanmar and neighbouring contexts for higher education preparation and critical social learning and we won the Community Solution Award from Parami University.'
+  },
+  {
+    year: '2025',
+    title: 'From Learning to Research',
+    desc: 'The Lumina Academic Research Consortium expanded Project Luminary into practical skills development, training young researchers and supporting five community-focused research projects.'
+  },
+  {
+    year: '2025/2026',
+    title: 'Pathways & Perspectives',
+    desc: 'Building on lessons from the Pilot Programme, Pathways & Perspectives strengthened our model of combining higher education access with critical engagement and peer learning and we won the Civic Engagement Award from Parami University.'
+  },
+  {
+    year: '2026',
+    title: 'International Recognition',
+    desc: 'Project Luminary was named the First-Place Winner of the internationally competitive 2026 MacJannet Prize for Global Citizenship, awarded by Talliores Network of Engaged Universities.'
+  },
+  {
+    year: '2026',
+    title: 'Building the Next Chapter',
+    desc: 'Project Luminary began a comprehensive research and strategy process to better understand youth needs, map Myanmar’s social impact landscape, strengthen its Theory of Change, and explore pathways towards a sustainable social enterprise model.'
+  }
 ];
 
 
@@ -175,46 +199,53 @@ export const OPPORTUNITIES_DATA: Opportunity[] = [
 export const TEAM_DATA: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Htet Khant Linn',
-    position: 'IT & Operation',
-    bio: 'Text Here',
-    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    name: 'Kaung Myat Phyo (Kelvin)',
+    position: 'Project Lead, Advancement Lead',
+    bio: 'Directs overall strategic vision and partnerships to expand educational access for youth across Myanmar.',
+    image: 'initials:KM',
     socials: {
-      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
-      email: 'info@projectluminary.com'
+      email: 'kelvin@projectluminary.com'
     }
   },
   {
     id: 'team-2',
-    name: 'Htet Khant Linn',
-    position: 'IT & Operation',
-    bio: 'Text Here',
-    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    name: 'Ei Phyu Sin Win (Cathryn)',
+    position: 'Operations Lead',
+    bio: 'Coordinates program logistics, community relations, and day-to-day operations for Luminary initiatives.',
+    image: 'initials:EP',
     socials: {
-      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
-      email: 'info@projectluminary.com'
+      email: 'cathryn@projectluminary.com'
     }
   },
   {
     id: 'team-3',
-    name: 'Htet Khant Linn',
-    position: 'IT & Operation',
-    bio: 'Text Here',
-    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    name: 'Moe Honey',
+    position: 'Administration Lead',
+    bio: 'Manages organizational records, financial planning, and internal communications across our volunteer network.',
+    image: 'initials:MH',
     socials: {
-      linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
-      email: 'info@projectluminary.com'
+      email: 'moehoney@projectluminary.com'
     }
   },
   {
     id: 'team-4',
-    name: 'Htet Khant Linn',
-    position: 'IT & Operation',
-    bio: 'Text Here',
+    name: 'Htet Khant Linn (Charles)',
+    position: 'Tech Lead',
+    bio: 'Architects and maintains digital infrastructure, community tools, and learning resource databases.',
     image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
-      email: 'info@projectluminary.com'
+      email: 'charles@projectluminary.com'
+    }
+  },
+  {
+    id: 'team-5',
+    name: 'Phoo Myat Nay Chi (Pam)',
+    position: 'Research Associate',
+    bio: 'Supports youth-led community research projects and coordinates the Academic Research Consortium.',
+    image: 'initials:PM',
+    socials: {
+      email: 'pam@projectluminary.com'
     }
   }
 ];
@@ -249,23 +280,23 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
 export const STATS_DATA: StatItem[] = [
   {
     id: 'stat-1',
-    label: 'Youth Participants',
-    value: 96,
+    label: 'Programme Applications Received',
+    value: 200,
     suffix: '+',
     iconName: 'Users'
   },
   {
     id: 'stat-2',
-    label: 'Community Members Engaged',
-    value: 121,
+    label: 'Young People Selected for Intensive Programmes',
+    value: 65,
     suffix: '+',
     iconName: 'Users'
   },
   {
     id: 'stat-3',
-    label: 'Educators, Mentors & Guest Speakers',
-    value: 43,
-    suffix: '+',
+    label: 'Youth-Led Research Projects Supported',
+    value: 5,
+    suffix: '',
     iconName: 'Users'
   },
   {

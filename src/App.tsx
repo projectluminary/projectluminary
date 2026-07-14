@@ -137,10 +137,10 @@ export default function App() {
     } else {
       const pageTitleMap: Record<string, string> = {
         home: 'Home',
-        about: 'About Us',
-        activities: 'Activities',
+        about: 'About',
+        activities: 'Our Work',
         opportunities: 'Opportunities',
-        contact: 'Contact Us'
+        contact: 'Contact'
       };
       currentLabel = pageTitleMap[activePage] || 'Home';
     }
@@ -242,7 +242,7 @@ export default function App() {
 
   // Handle CTA redirection from home
   const handleHomePrimaryCTA = () => {
-    setActivePage('opportunities');
+    setActivePage('activities');
   };
 
   const handleHomeSecondaryCTA = () => {
@@ -305,7 +305,7 @@ export default function App() {
                       onClick={() => setActivePage('about')}
                       className="inline-flex items-center gap-1.5 font-sans font-bold text-emerald-700 hover:text-emerald-800 transition-colors group cursor-pointer"
                     >
-                      <span>Read Our Story &amp; Values</span>
+                      <span>Read Our Story</span>
                       <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
@@ -320,16 +320,92 @@ export default function App() {
                 </div>
               </section>
 
+              {/* What We Do Section */}
+              <section id="home-what-we-do" className="py-20 bg-slate-50 border-y border-slate-100/80">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+                  <div className="text-center max-w-3xl mx-auto space-y-4">
+                    <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100">
+                      <span className="font-sans text-xs font-bold uppercase tracking-wider">What We Do</span>
+                    </div>
+                    <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-slate-900 tracking-tight leading-tight">
+                      Empowering Youth Through Learning and Action
+                    </h2>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* ACCESS CARD */}
+                    <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-6">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="font-sans text-xs font-extrabold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-xl uppercase tracking-wider">
+                            Access
+                          </span>
+                          <div className="text-emerald-600 bg-emerald-50 p-2.5 rounded-xl">
+                            <Icons.Compass size={20} />
+                          </div>
+                        </div>
+                        <h3 className="font-sans font-extrabold text-xl text-slate-900 tracking-tight">
+                          Opening Pathways
+                        </h3>
+                        <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed">
+                          Helping young people navigate higher education, scholarships, and opportunities that might otherwise remain out of reach.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* CAPABILITY CARD */}
+                    <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-6">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="font-sans text-xs font-extrabold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-xl uppercase tracking-wider">
+                            Capability
+                          </span>
+                          <div className="text-emerald-600 bg-emerald-50 p-2.5 rounded-xl">
+                            <Icons.BookOpen size={20} />
+                          </div>
+                        </div>
+                        <h3 className="font-sans font-extrabold text-xl text-slate-900 tracking-tight">
+                          Building Practical Skills
+                        </h3>
+                        <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed">
+                          Developing research, digital, professional, and other capabilities that young people can apply to further study, work, and real-world challenges.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* ENGAGEMENT CARD */}
+                    <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-6">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="font-sans text-xs font-extrabold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-xl uppercase tracking-wider">
+                            Engagement
+                          </span>
+                          <div className="text-emerald-600 bg-emerald-50 p-2.5 rounded-xl">
+                            <Icons.Globe size={20} />
+                          </div>
+                        </div>
+                        <h3 className="font-sans font-extrabold text-xl text-slate-900 tracking-tight">
+                          Learning Beyond the Individual
+                        </h3>
+                        <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed">
+                          Creating spaces where young people critically explore social issues, exchange perspectives, and develop the confidence and responsibility to contribute to their communities.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
               {/* Featured Activities Preview */}
               <section id="home-featured-activities" className="py-20 bg-[#f8fafc]">
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
                   <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                     <div className="space-y-4">
                       <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100">
-                        <span className="font-sans text-xs font-bold uppercase tracking-wider">Active Programs</span>
+                        <span className="font-sans text-xs font-bold uppercase tracking-wider">FEATURED PROGRAMMES</span>
                       </div>
                       <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-slate-900 tracking-tight">
-                        Featured Activism Campaigns
+                        Learning in Action
                       </h2>
                     </div>
                     <button
@@ -360,11 +436,14 @@ export default function App() {
                   <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                     <div className="space-y-4">
                       <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100">
-                        <span className="font-sans text-xs font-bold uppercase tracking-wider">Get Involved</span>
+                        <span className="font-sans text-xs font-bold uppercase tracking-wider">Opportunities</span>
                       </div>
                       <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-slate-900 tracking-tight">
-                        Immediate Roles Open for Application
+                        Opportunities to Join Our Work
                       </h2>
+                      <p className="font-sans text-slate-500 text-sm md:text-base max-w-2xl leading-relaxed">
+                        Join a growing youth-led organisation working to better understand and respond to the changing needs of young people from Myanmar.
+                      </p>
                     </div>
                     <button
                       id="view-all-opportunities-btn"
@@ -401,13 +480,10 @@ export default function App() {
                     <h2 className="font-sans font-extrabold text-3xl md:text-4xl tracking-tight text-white">
                       {SITE_CONFIG.statsSectionTitle}
                     </h2>
-                    <p className="font-sans text-emerald-100/70 text-sm md:text-base leading-relaxed">
-                      {SITE_CONFIG.statsSectionDescription}
-                    </p>
                   </div>
 
                   {/* Dynamically Counting Stats Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     {STATS_DATA.map((stat) => (
                       <StatCounter
                         key={stat.id}
@@ -417,6 +493,75 @@ export default function App() {
                         iconName={stat.iconName}
                       />
                     ))}
+                  </div>
+
+                  {/* Geographic Reach Supporting Text */}
+                  <div className="text-center max-w-4xl mx-auto">
+                    <p className="font-sans text-emerald-100/70 text-sm md:text-base leading-relaxed">
+                      Participants have joined Project Luminary from communities across Myanmar - including Yangon, Mandalay, Bago, Magway, Shan, Ayeyarwady, Mon, Kayin, Kayah, and Tanintharyi - as well as Thailand, Malaysia, and the refugee context of Cox’s Bazar, Bangladesh.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* International Recognition Section */}
+              <section id="home-recognition-section" className="py-24 bg-white border-b border-slate-100">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    {/* Left Column: Info & Description */}
+                    <div className="lg:col-span-7 space-y-6">
+                      <div className="inline-flex items-center space-x-2 bg-amber-50 text-amber-800 px-3.5 py-1 rounded-full border border-amber-100 shadow-sm">
+                        <Icons.Award size={14} className="text-amber-600 animate-pulse" />
+                        <span className="font-sans text-xs font-bold uppercase tracking-wider">International Recognition</span>
+                      </div>
+                      
+                      <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-slate-900 tracking-tight leading-tight">
+                        First-Place Winner of the 2026 MacJannet Prize for Global Citizenship
+                      </h2>
+                      
+                      <p className="font-sans text-slate-600 text-sm md:text-base leading-relaxed">
+                        In 2026, Project Luminary was awarded First Place in the MacJannet Prize for Global Citizenship by the Talloires Network. The Selection Committee recognised the scale of the initiative’s accomplishments within its short lifespan, its work amid Myanmar’s challenging circumstances, its student leadership, and its promising path towards continued growth and impact.
+                      </p>
+                      
+                      <div className="pt-2">
+                        <a 
+                          href="https://talloiresnetwork.tufts.edu/about-the-macjannet-prize/2026-macjannet-prize-winners/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold px-6 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all group"
+                        >
+                          <span>Read About the Recognition</span>
+                          <Icons.ExternalLink size={16} className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Right Column: Quote Card */}
+                    <div className="lg:col-span-5">
+                      <div className="relative bg-gradient-to-tr from-amber-50/60 to-orange-50/40 border border-amber-100/70 rounded-3xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="absolute top-6 right-8 text-amber-200/50 shrink-0">
+                          <Icons.Quote size={64} className="transform rotate-180" />
+                        </div>
+                        
+                        <div className="space-y-6 relative z-10">
+                          <p className="font-sans text-slate-700 text-sm md:text-base leading-relaxed italic font-medium">
+                            &ldquo;We see this award not only as a recognition of Project Luminary, but also as a tribute to the wider community of grassroots initiatives and Burmese youth who continue to learn, lead, and imagine better futures despite increasing challenges.&rdquo;
+                          </p>
+                          
+                          <div className="flex items-center space-x-3 pt-4 border-t border-amber-100/60">
+                            <div className="bg-amber-100 p-2 rounded-lg text-amber-700">
+                              <Icons.Users size={16} />
+                            </div>
+                            <div>
+                              <div className="font-sans font-bold text-xs text-slate-900 uppercase tracking-wider">Project Luminary Team</div>
+                              <div className="font-sans text-[11px] text-slate-500">Talloires Network Global Recognition</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </section>
@@ -568,53 +713,73 @@ export default function App() {
 
                 {/* Team Section */}
                 <div className="space-y-12 pt-6">
-                  <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">Meet the Team</h2>
-                    <p className="font-sans text-slate-500 text-sm leading-relaxed">
-                      Our leadership brings together environmental science research, municipal policy, and active community organizing.
+                  <div className="text-center max-w-3xl mx-auto space-y-3">
+                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">Meet the People Behind Project Luminary</h2>
+                    <p className="font-sans text-slate-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                      Project Luminary is built by young people who believe that the challenges facing our generation should also inspire us to create better opportunities for one another.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {TEAM_DATA.map((member) => (
-                      <div key={member.id} id={`team-card-${member.id}`} className="bg-white border border-slate-100 rounded-3xl p-6 text-center space-y-4 shadow-sm">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          referrerPolicy="no-referrer"
-                          className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
-                        />
-                        <div className="space-y-1">
-                          <h4 className="font-sans font-bold text-base text-slate-900">{member.name}</h4>
-                          <p className="font-sans font-semibold text-xs text-emerald-600 uppercase tracking-wider">{member.position}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                    {TEAM_DATA.map((member) => {
+                      const isInitials = member.image.startsWith('initials:');
+                      const initials = isInitials ? member.image.split(':')[1] : '';
+                      
+                      // Map custom premium gradients based on initials
+                      let bgGradient = 'from-emerald-600 to-teal-700';
+                      if (initials === 'KM') bgGradient = 'from-emerald-500 to-teal-600';
+                      else if (initials === 'EP') bgGradient = 'from-teal-500 to-emerald-600';
+                      else if (initials === 'MH') bgGradient = 'from-amber-500 to-orange-600';
+                      else if (initials === 'PM') bgGradient = 'from-purple-500 to-pink-600';
+
+                      return (
+                        <div key={member.id} id={`team-card-${member.id}`} className="bg-white border border-slate-100 rounded-3xl p-6 text-center flex flex-col justify-between space-y-4 shadow-sm hover:shadow-md transition-all">
+                          <div className="space-y-4">
+                            {isInitials ? (
+                              <div className={`w-24 h-24 rounded-full mx-auto flex items-center justify-center bg-gradient-to-br ${bgGradient} text-white font-sans font-bold text-xl border-4 border-emerald-50/50 shadow-sm uppercase`}>
+                                {initials}
+                              </div>
+                            ) : (
+                              <img
+                                src={member.image}
+                                alt={member.name}
+                                referrerPolicy="no-referrer"
+                                className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
+                              />
+                            )}
+                            <div className="space-y-1">
+                              <h4 className="font-sans font-bold text-base text-slate-900 min-h-[48px] flex items-center justify-center leading-tight">{member.name}</h4>
+                              <p className="font-sans font-semibold text-[11px] text-emerald-600 uppercase tracking-wider min-h-[32px] flex items-center justify-center leading-normal">{member.position}</p>
+                            </div>
+                            <p className="font-sans text-slate-500 text-xs leading-relaxed">{member.bio}</p>
+                          </div>
+                          
+                          {/* Social Links */}
+                          <div className="flex items-center justify-center space-x-3 pt-4 border-t border-slate-50 text-slate-400">
+                            {member.socials.linkedin && (
+                              <a href={member.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
+                                <LinkedinIcon />
+                              </a>
+                            )}
+                            {member.socials.email && (
+                              <a href={`mailto:${member.socials.email}`} className="hover:text-emerald-600 transition-colors">
+                                <Mail size={16} />
+                              </a>
+                            )}
+                            {member.socials.instagram && (
+                              <a href={member.socials.instagram} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
+                                <InstagramIcon />
+                              </a>
+                            )}
+                            {member.socials.github && (
+                              <a href={member.socials.github} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
+                                <GithubIcon />
+                              </a>
+                            )}
+                          </div>
                         </div>
-                        <p className="font-sans text-slate-500 text-xs leading-relaxed">{member.bio}</p>
-                        
-                        {/* Social Links */}
-                        <div className="flex items-center justify-center space-x-3 pt-2 text-slate-400">
-                          {member.socials.linkedin && (
-                            <a href={member.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
-                              <LinkedinIcon />
-                            </a>
-                          )}
-                          {member.socials.email && (
-                            <a href={`mailto:${member.socials.email}`} className="hover:text-emerald-600 transition-colors">
-                              <Mail size={16} />
-                            </a>
-                          )}
-                          {member.socials.instagram && (
-                            <a href={member.socials.instagram} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
-                              <InstagramIcon />
-                            </a>
-                          )}
-                          {member.socials.github && (
-                            <a href={member.socials.github} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
-                              <GithubIcon />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -639,10 +804,10 @@ export default function App() {
                     <span className="font-sans text-xs font-bold uppercase tracking-wider">Our Activities</span>
                   </div>
                   <h1 className="font-sans font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight">
-                    Environmental Campaigns in Action
+                    Ideas Become Learning. Learning Becomes Action.
                   </h1>
                   <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed">
-                    Filter through our scientific and community restoration programs. Join as a volunteer or sponsor a project.
+                    Explore Project Luminary’s programmes, research initiatives, partnerships, and efforts to expand meaningful opportunities for young people.
                   </p>
                 </div>
 
@@ -987,10 +1152,10 @@ export default function App() {
                     <span className="font-sans text-xs font-bold uppercase tracking-wider">Join Us</span>
                   </div>
                   <h1 className="font-sans font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight">
-                    Explore Available Opportunities
+                    Find Your Place in What Comes Next.
                   </h1>
                   <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed">
-                    Apply for volunteer runs, academic research internships, corporate sponsor alignments, and climate advocacy roles.
+                    Whether you want to join our team, contribute to research, participate in a programme, share your expertise, or explore a partnership, discover opportunities to contribute to Project Luminary’s growing work.
                   </p>
                 </div>
 
@@ -1093,10 +1258,10 @@ export default function App() {
                     <span className="font-sans text-xs font-bold uppercase tracking-wider">Contact Us</span>
                   </div>
                   <h1 className="font-sans font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight">
-                    Get in Touch with Project Luminary
+                    Start a Conversation with Us.
                   </h1>
                   <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed">
-                    Have any questions, alignment ideas, or feedback? Send us a message and we will connect you very soon.
+                    Whether you are interested in collaborating, supporting our work, sharing expertise, or simply learning more about Project Luminary, we would be glad to hear from you.
                   </p>
                 </div>
 
@@ -1112,7 +1277,7 @@ export default function App() {
                     
                     {/* Information block */}
                     <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm space-y-6">
-                      <h3 className="font-sans font-bold text-xl text-slate-900">Headquarters Relations</h3>
+                      <h3 className="font-sans font-bold text-xl text-slate-900">Contact Information</h3>
                       
                       <ul className="space-y-4 text-sm text-slate-600 font-sans font-medium">
                         <li className="flex items-start space-x-3.5">

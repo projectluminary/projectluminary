@@ -65,7 +65,7 @@ export default function Hero({ onPrimaryClick, onSecondaryClick }: HeroProps) {
               onClick={onPrimaryClick}
               className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-emerald-600/15 hover:shadow-emerald-600/25 transition-all cursor-pointer group"
             >
-              <span>Explore Opportunities</span>
+              <span>Explore Our Work</span>
               <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
             </button>
             <button
@@ -73,7 +73,7 @@ export default function Hero({ onPrimaryClick, onSecondaryClick }: HeroProps) {
               onClick={onSecondaryClick}
               className="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-sans font-semibold px-8 py-4 rounded-2xl shadow-sm transition-all cursor-pointer"
             >
-              Learn Our Story
+              Discover Our Story
             </button>
           </motion.div>
 
