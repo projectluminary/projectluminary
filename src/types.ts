@@ -7,6 +7,7 @@ export interface Activity {
   content: string;
   image: string;
   readTime: string;
+  additionalImages?: string[];
 }
 
 export type OpportunityType = 'Volunteer' | 'Internship' | 'Job' | 'Event' | 'Training' | 'Partnership' | string;
@@ -20,6 +21,8 @@ export interface Opportunity {
   deadline: string;
   description: string;
   requirements: string[];
+  jdUrl?: string;
+  isAvailable?: boolean;
 }
 
 export interface TeamMember {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram, ArrowRight, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Facebook, ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '../data';
 import { Logo } from './Logo';
 
@@ -37,7 +37,7 @@ export default function Footer({ setActivePage }: FooterProps) {
             <span className="font-sans font-bold text-xl text-white tracking-tight">{SITE_CONFIG.brandName}</span>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed">
-            Edit here
+            Empowering Youth Through Learning and Action
           </p>
           <div className="flex items-center space-x-3 pt-2">
             <a
@@ -49,33 +49,17 @@ export default function Footer({ setActivePage }: FooterProps) {
             >
               <Linkedin size={18} />
             </a>
-            <a
-              href={SITE_CONFIG.socials.twitter}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-lg text-slate-400 transition-all cursor-pointer"
-              id="footer-social-twitter"
-            >
-              <Twitter size={18} />
-            </a>
-            <a
-              href={SITE_CONFIG.socials.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-lg text-slate-400 transition-all cursor-pointer"
-              id="footer-social-instagram"
-            >
-              <Instagram size={18} />
-            </a>
-            <a
-              href={SITE_CONFIG.socials.github}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-lg text-slate-400 transition-all cursor-pointer"
-              id="footer-social-github"
-            >
-              <Github size={18} />
-            </a>
+            {SITE_CONFIG.socials.facebook && (
+              <a
+                href={SITE_CONFIG.socials.facebook}
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-lg text-slate-400 transition-all cursor-pointer"
+                id="footer-social-facebook"
+              >
+                <Facebook size={18} />
+              </a>
+            )}
           </div>
         </div>
 
@@ -111,10 +95,7 @@ export default function Footer({ setActivePage }: FooterProps) {
               <MapPin size={18} className="text-emerald-500 mt-0.5 shrink-0" />
               <span>{SITE_CONFIG.address}</span>
             </li>
-            <li className="flex items-center space-x-3">
-              <Phone size={18} className="text-emerald-500 shrink-0" />
-              <span>{SITE_CONFIG.phone}</span>
-            </li>
+
             <li className="flex items-center space-x-3">
               <Mail size={18} className="text-emerald-500 shrink-0" />
               <span>{SITE_CONFIG.email}</span>

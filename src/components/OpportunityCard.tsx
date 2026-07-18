@@ -43,6 +43,15 @@ export default function OpportunityCard({ opportunity, onApply }: OpportunityCar
           <span className="font-sans text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1 rounded-full">
             {opportunity.category}
           </span>
+          {opportunity.isAvailable !== false ? (
+            <span className="font-sans text-[11px] font-bold px-2.5 py-1 rounded-full border border-emerald-100 text-emerald-700 bg-emerald-50">
+              ● Open
+            </span>
+          ) : (
+            <span className="font-sans text-[11px] font-bold px-2.5 py-1 rounded-full border border-rose-100 text-rose-700 bg-rose-50">
+              ● Closed
+            </span>
+          )}
         </div>
 
         {/* Title */}

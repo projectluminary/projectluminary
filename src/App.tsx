@@ -23,7 +23,8 @@ import {
   Send,
   Copy,
   CheckCircle2,
-  FileText
+  FileText,
+  ExternalLink
 } from 'lucide-react';
 
 // Import Types
@@ -57,31 +58,46 @@ import OpportunityModal from './components/OpportunityModal';
 export default function App() {
   // Mapping between activePage state and URL path
   const PAGE_TO_PATH: Record<string, string> = {
-    home: '/home',
+    home: '/',
     about: '/about-us',
-    activities: '/activities',
+    activities: '/our-work',
     opportunities: '/opportunities',
     contact: '/contact'
   };
 
   const PATH_TO_PAGE: Record<string, string> = {
+    '/': 'home',
     '/home': 'home',
     '/about-us': 'about',
     '/activities': 'activities',
+    '/our-work': 'activities',
     '/opportunities': 'opportunities',
     '/contact': 'contact'
   };
 
-  const getHashPath = (): string => {
+  const getCleanPath = (): string => {
     const hash = window.location.hash;
-    if (!hash || hash === '#' || hash === '#/') return '/home';
-    return hash.startsWith('#') ? hash.substring(1) : hash;
+    if (hash && hash.startsWith('#/')) {
+      const parsed = hash.substring(1);
+      if (parsed === '/home') return '/';
+      if (parsed === '/activities') return '/our-work';
+      return parsed;
+    }
+    const path = window.location.pathname || '/';
+    if (path === '/home') return '/';
+    if (path === '/activities') return '/our-work';
+    return path;
   };
 
   const getInitialPage = (): string => {
-    const path = getHashPath();
+    const path = getCleanPath();
     if (path.startsWith('/activities/')) {
       const id = path.substring('/activities/'.length);
+      const hasActivity = ACTIVITIES_DATA.some(a => a.id === id);
+      return hasActivity ? 'activity-detail' : 'activities';
+    }
+    if (path.startsWith('/our-work/')) {
+      const id = path.substring('/our-work/'.length);
       const hasActivity = ACTIVITIES_DATA.some(a => a.id === id);
       return hasActivity ? 'activity-detail' : 'activities';
     }
@@ -94,16 +110,20 @@ export default function App() {
   };
 
   const getInitialActivity = (): Activity | null => {
-    const path = getHashPath();
+    const path = getCleanPath();
     if (path.startsWith('/activities/')) {
       const id = path.substring('/activities/'.length);
+      return ACTIVITIES_DATA.find(a => a.id === id) || null;
+    }
+    if (path.startsWith('/our-work/')) {
+      const id = path.substring('/our-work/'.length);
       return ACTIVITIES_DATA.find(a => a.id === id) || null;
     }
     return null;
   };
 
   const getInitialOpportunity = (): Opportunity | null => {
-    const path = getHashPath();
+    const path = getCleanPath();
     if (path.startsWith('/opportunities/')) {
       const id = path.substring('/opportunities/'.length);
       return OPPORTUNITIES_DATA.find(o => o.id === id) || null;
@@ -124,8 +144,9 @@ export default function App() {
   const [selectedOppType, setSelectedOppType] = useState<string>('All');
   const [selectedOppCategory, setSelectedOppCategory] = useState<string>('All');
   const [selectedOppLocation, setSelectedOppLocation] = useState<string>('All');
+  const [selectedOppStatus, setSelectedOppStatus] = useState<string>('All');
 
-  // Automatically scroll to top on page navigation and update browser title & URL hash
+  // Automatically scroll to top on page navigation and update browser title & URL pathname
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     
@@ -144,21 +165,25 @@ export default function App() {
       };
       currentLabel = pageTitleMap[activePage] || 'Home';
     }
-    document.title = `${currentLabel} | Project Luminary`;
+    
+    if (activePage === 'home') {
+      document.title = 'Project Luminary';
+    } else {
+      document.title = `${currentLabel} | Project Luminary`;
+    }
 
-    // Sync state with URL hash
-    let targetPath = '/home';
+    // Sync state with URL pathname
+    let targetPath = '/';
     if (activePage === 'activity-detail' && selectedActivity) {
-      targetPath = `/activities/${selectedActivity.id}`;
+      targetPath = `/our-work/${selectedActivity.id}`;
     } else if (activePage === 'opportunity-detail' && selectedOpportunity) {
       targetPath = `/opportunities/${selectedOpportunity.id}`;
     } else {
-      targetPath = PAGE_TO_PATH[activePage] || '/home';
+      targetPath = PAGE_TO_PATH[activePage] || '/';
     }
 
-    const expectedHash = `#${targetPath}`;
-    if (window.location.hash !== expectedHash) {
-      window.location.hash = expectedHash;
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
     }
   }, [activePage, selectedActivity, selectedOpportunity]);
 
@@ -176,12 +201,22 @@ export default function App() {
     }
   }, [activePage, selectedOpportunity]);
 
-  // Listen to browser navigation (hashchange event)
+  // Listen to browser navigation (popstate event)
   useEffect(() => {
-    const handleHashChange = () => {
-      const path = getHashPath();
+    const handlePopState = () => {
+      const path = getCleanPath();
       if (path.startsWith('/activities/')) {
         const id = path.substring('/activities/'.length);
+        const act = ACTIVITIES_DATA.find(a => a.id === id);
+        if (act) {
+          setSelectedActivity(act);
+          setActivePage('activity-detail');
+        } else {
+          setActivePage('activities');
+          setSelectedActivity(null);
+        }
+      } else if (path.startsWith('/our-work/')) {
+        const id = path.substring('/our-work/'.length);
         const act = ACTIVITIES_DATA.find(a => a.id === id);
         if (act) {
           setSelectedActivity(act);
@@ -208,19 +243,18 @@ export default function App() {
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
     
-    // Redirect root or any unknown hash paths to "#/home"
+    // Redirect / clean up hashes if we started with one (hash url migration)
     const initialHash = window.location.hash;
-    const path = getHashPath();
-    const isActivityPath = path.startsWith('/activities/');
-    const isOpportunityPath = path.startsWith('/opportunities/');
-    if (!initialHash || initialHash === '#' || initialHash === '#/' || (!PATH_TO_PAGE[path] && !isActivityPath && !isOpportunityPath)) {
-      window.location.hash = '#/home';
+    if (initialHash && initialHash.startsWith('#/')) {
+      const cleanPath = getCleanPath();
+      window.history.replaceState({}, '', cleanPath);
+      handlePopState();
     }
 
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, []);
 
@@ -259,7 +293,10 @@ export default function App() {
     const matchesType = selectedOppType === 'All' || opp.type === selectedOppType;
     const matchesCategory = selectedOppCategory === 'All' || opp.category === selectedOppCategory;
     const matchesLocation = selectedOppLocation === 'All' || opp.location === selectedOppLocation;
-    return matchesType && matchesCategory && matchesLocation;
+    const matchesStatus = selectedOppStatus === 'All' || 
+      (selectedOppStatus === 'Open' && opp.isAvailable !== false) ||
+      (selectedOppStatus === 'Closed' && opp.isAvailable === false);
+    return matchesType && matchesCategory && matchesLocation && matchesStatus;
   });
 
   return (
@@ -309,12 +346,12 @@ export default function App() {
                       <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
-                  <div className="relative aspect-4/3 rounded-3xl overflow-hidden border border-slate-100 shadow-lg">
+                  <div className="relative rounded-3xl overflow-hidden border border-slate-100 shadow-lg bg-white">
                     <img
                       src={SITE_CONFIG.aboutSummaryImage}
-                      alt="Hands carefully planting organic soil bed saplings in community garden"
+                      alt="Project Luminary Community Work"
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-cover block"
                     />
                   </div>
                 </div>
@@ -460,7 +497,7 @@ export default function App() {
                       <OpportunityCard 
                         key={opp.id} 
                         opportunity={opp} 
-                        onApply={(opportunity) => setSelectedOpportunity(opportunity)} 
+                        onApply={handleSelectOpportunity} 
                       />
                     ))}
                   </div>
@@ -937,6 +974,25 @@ export default function App() {
                     </div>
                   </div>
 
+                  {/* Additional Gallery Images */}
+                  {selectedActivity.additionalImages && selectedActivity.additionalImages.length > 0 && (
+                    <div className="space-y-6 pt-8 border-t border-slate-100">
+                      <h4 className="font-sans font-extrabold text-slate-800 text-sm tracking-wide uppercase">Programme Highlights & Session Photos</h4>
+                      <div className="grid grid-cols-1 gap-8">
+                        {selectedActivity.additionalImages.map((imgUrl, idx) => (
+                          <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-150 shadow-sm bg-white">
+                            <img
+                              src={imgUrl}
+                              alt={`${selectedActivity.title} - Session Photo ${idx + 1}`}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-auto object-contain max-h-[500px] block mx-auto"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Call to Action Card */}
                   <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mt-12 shadow-sm">
                     <div className="space-y-1">
@@ -995,6 +1051,15 @@ export default function App() {
                         <span className="font-sans text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1 rounded-full">
                           {selectedOpportunity.category}
                         </span>
+                        {selectedOpportunity.isAvailable !== false ? (
+                          <span className="font-sans text-xs font-bold px-3 py-1.5 rounded-full border border-emerald-150 text-emerald-700 bg-emerald-50">
+                            ● Open
+                          </span>
+                        ) : (
+                          <span className="font-sans text-xs font-bold px-3 py-1.5 rounded-full border border-rose-150 text-rose-700 bg-rose-50">
+                            ● Closed
+                          </span>
+                        )}
                       </div>
                       <h1 className="font-sans font-extrabold text-2xl md:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
                         {selectedOpportunity.title}
@@ -1034,6 +1099,20 @@ export default function App() {
                           </li>
                         ))}
                       </ul>
+
+                      {selectedOpportunity.jdUrl && (
+                        <div className="pt-6 border-t border-slate-100">
+                          <a
+                            href={selectedOpportunity.jdUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-sans font-semibold py-2.5 px-5 rounded-xl text-sm transition-all shadow-sm border border-slate-200 cursor-pointer"
+                          >
+                            <ExternalLink size={16} className="text-emerald-600" />
+                            <span>View Full Job Description</span>
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -1055,14 +1134,14 @@ export default function App() {
                           </div>
                           <div className="min-w-0 flex-1">
                             <h5 className="font-sans text-xs font-bold text-slate-700">Submit Your Application To</h5>
-                            <p className="font-sans text-xs font-semibold text-slate-900 select-all truncate">{SITE_CONFIG.email}</p>
+                            <p className="font-sans text-xs font-semibold text-slate-900 select-all truncate">{SITE_CONFIG.applyEmail}</p>
                           </div>
                         </div>
 
                         <div className="flex gap-2">
                           <button
                             onClick={() => {
-                              navigator.clipboard.writeText(SITE_CONFIG.email);
+                              navigator.clipboard.writeText(SITE_CONFIG.applyEmail);
                               setOppCopied(true);
                               setTimeout(() => setOppCopied(false), 2000);
                             }}
@@ -1081,7 +1160,7 @@ export default function App() {
                             )}
                           </button>
                           <a
-                            href={`mailto:${SITE_CONFIG.email}?subject=Application: ${selectedOpportunity.title}`}
+                            href={`mailto:${SITE_CONFIG.applyEmail}?subject=Application: ${selectedOpportunity.title}`}
                             className="flex-1 flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold py-2 px-3 rounded-xl text-xs transition-all text-center"
                           >
                             <Send size={13} />
@@ -1166,7 +1245,7 @@ export default function App() {
                     <span>Filter Opportunities Grid</span>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {/* Filter Type */}
                     <div className="space-y-1.5">
                       <label htmlFor="filter-opp-type" className="block text-xs font-bold text-slate-700 uppercase">Opportunity Type</label>
@@ -1205,6 +1284,21 @@ export default function App() {
                         {opportunityLocations.map(l => <option key={l} value={l}>{l === 'All' ? 'All Locations' : l}</option>)}
                       </select>
                     </div>
+
+                    {/* Filter Status */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="filter-opp-status" className="block text-xs font-bold text-slate-700 uppercase">Status</label>
+                      <select
+                        id="filter-opp-status"
+                        value={selectedOppStatus}
+                        onChange={(e) => setSelectedOppStatus(e.target.value)}
+                        className="w-full bg-slate-50 border border-slate-200 text-xs rounded-xl p-3 outline-none focus:border-emerald-500 cursor-pointer"
+                      >
+                        <option value="All">All Statuses</option>
+                        <option value="Open">Open Only</option>
+                        <option value="Closed">Closed Only</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
@@ -1220,6 +1314,7 @@ export default function App() {
                         setSelectedOppType('All');
                         setSelectedOppCategory('All');
                         setSelectedOppLocation('All');
+                        setSelectedOppStatus('All');
                       }}
                       className="mt-2 font-sans text-xs font-semibold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-xl transition-colors cursor-pointer"
                     >
@@ -1283,10 +1378,6 @@ export default function App() {
                         <li className="flex items-start space-x-3.5">
                           <MapPin size={20} className="text-emerald-600 mt-0.5 shrink-0" />
                           <span>{SITE_CONFIG.address}</span>
-                        </li>
-                        <li className="flex items-center space-x-3.5">
-                          <Phone size={20} className="text-emerald-600 shrink-0" />
-                          <span>{SITE_CONFIG.phone}</span>
                         </li>
                         <li className="flex items-center space-x-3.5">
                           <Mail size={20} className="text-emerald-600 shrink-0" />

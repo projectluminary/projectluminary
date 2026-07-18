@@ -9,7 +9,8 @@ export const SITE_CONFIG = {
   // Brand details
   brandName: 'Project Luminary',
   tagline: 'Lighting Pathways. Empowering Futures.',
-  email: 'info@projectluminary.com',
+  email: 'info@projectluminary.org',
+  applyEmail: 'talent@projectluminary.org',
   phone: '+95 512345678',
   address: 'Youth-led initiative serving Myanmar communities and beyond',
   
@@ -18,13 +19,13 @@ export const SITE_CONFIG = {
   heroTitlePrimary: 'Helping Young People Learn,',
   heroTitleGradient: 'Grow, and Contribute Beyond Themselves.',
   heroDescription: "Founded by youths who experienced Myanmar’s educational disruption firsthand, Project Luminary creates high-quality learning opportunities that help young people access education, develop practical capabilities, think critically about the world around them, and contribute meaningfully to their communities.",
-  heroImage: 'images/logo/PL-Logo-2.png',
+  heroImage: 'images/home/home_2.png',
   
   // About preview section on Home
   aboutSummaryTitle: 'Built by Young People, for Young People',
   aboutSummaryPara1: 'Project Luminary began in 2023 when students at Parami University turned challenges they had personally experienced into opportunities for others. What started as an effort to help fellow young people navigate higher education has grown into a broader platform for learning, skills development, critical engagement, and youth-led action.',
   aboutSummaryPara2: 'Our programmes bring together practical learning and a wider sense of social responsibility. Whether participants are preparing for university, developing research and professional skills, or exploring pressing social issues, we want them to leave Project Luminary better equipped to advance their own futures—and more prepared to contribute to the future of their communities.',
-  aboutSummaryImage: 'images/logo/PL-Logo-2.png',
+  aboutSummaryImage: 'images/home/home_1.png',
 
   // About Page details
   aboutPageBadge: 'About Project Luminary',
@@ -52,9 +53,7 @@ export const SITE_CONFIG = {
   // Social media URLs
   socials: {
     linkedin: 'https://www.linkedin.com/company/project-luminary/',
-    twitter: 'https://twitter.com',
-    instagram: 'https://instagram.com',
-    github: 'https://github.com'
+    facebook: 'https://www.facebook.com/share/1Af2XCNHfa/'
   }
 };
 
@@ -102,88 +101,98 @@ export const TIMELINE_DATA: TimelineEvent[] = [
 
 export const ACTIVITIES_DATA: Activity[] = [
   {
-    id: 'act-1',
-    title: 'Title',
-    category: 'STEM',
-    date: 'July 15, 2026',
-    description: 'Description',
-    content: 'Content.',
-    image: 'images/logo/PL-Logo-2.png',
-    readTime: '5 min read'
+    id: 'pilot-programme',
+    title: 'Pilot Programme (2024)',
+    category: 'Education',
+    date: 'July 16, 2026',
+    description: 'Project Luminary successfully launched its inaugural Pilot Programme, a free, two-month online initiative designed to expand access to higher education opportunities for underserved youth from Myanmar and displaced communities.',
+    content: `The programme combined practical university application guidance with intellectually engaging discussions led by educators, professionals, and guest speakers. Participants developed essential skills for pursuing international higher education while exploring broader topics related to leadership, social issues, and critical thinking. The programme fostered an interactive learning environment that encouraged curiosity, collaboration, and lifelong learning.
+
+The pilot attracted over 100 applications, demonstrating strong demand for accessible higher education support. Following a competitive selection process, 40 participants from diverse backgrounds across Myanmar, as well as refugee communities in Bangladesh and Thailand, joined the programme.
+
+Throughout the programme, participants attended a series of structured learning sessions, completed weekly assignments and readings, and engaged directly with experienced instructors and guest speakers. The success of the pilot established a strong foundation for Project Luminary's long-term mission of creating equitable pathways to higher education and empowering the next generation of changemakers.
+
+Key Highlights:
+• 40 participants selected from over 100 applications
+• Free two-month online higher education preparation programme
+• Combined university application guidance with interdisciplinary learning
+• Participants represented diverse regions of Myanmar and refugee communities in Bangladesh and Thailand
+• Featured experienced instructors and guest speakers from academia and professional sectors
+• Built participants' confidence, critical thinking, and readiness for international higher education opportunities`,
+    image: '/images/activities/pilot-programme/willbuckingham_1.png',
+    readTime: '5 min read',
+    additionalImages: [
+      '/images/activities/pilot-programme/david_golding.png',
+      '/images/activities/pilot-programme/breakout_rooms.png',
+      '/images/activities/pilot-programme/migration_presentation.png'
+    ]
   },
   {
-    id: 'act-2',
+    id: 'lumina-academic-research-cnsortium',
     title: 'Title',
-    category: 'STEM',
-    date: 'July 15, 2026',
+    category: 'Education',
+    date: 'July 17, 2026',
     description: 'Description',
     content: 'Content.',
     image: 'images/logo/PL-Logo-2.png',
     readTime: '7 min read'
   },
   {
-    id: 'act-3',
-    title: 'Title',
-    category: 'STEM',
-    date: 'July 15, 2026',
-    description: 'Description',
-    content: 'Content.',
-    image: 'images/logo/PL-Logo-2.png',
-    readTime: '6 min read'
-  },
-  {
-    id: 'act-4',
-    title: 'Title',
-    category: 'STEM',
-    date: 'July 15, 2026',
-    description: 'Description',
-    content: 'Content.',
-    image: 'images/logo/PL-Logo-2.png',
-    readTime: '4 min read'
-  },
-  {
-    id: 'act-5',
-    title: 'Title',
-    category: 'STEM',
-    date: 'July 15, 2026',
-    description: 'Description',
-    content: 'Content.',
-    image: 'images/logo/PL-Logo-2.png',
-    readTime: '5 min read'
-  },
-  {
-    id: 'act-6',
-    title: 'Title',
-    category: 'STEM',
-    date: 'July 15, 2026',
-    description: 'Description',
-    content: 'Content.',
-    image: 'images/logo/PL-Logo-2.png',
-    readTime: '8 min read'
+    id: 'pathways-and-perspectives-pogramme',
+    title: 'Pathways & Perspectives Programme (2025–2026)',
+    category: 'Education',
+    date: 'July 18, 2026',
+    description: 'The Pathways & Perspectives Programme is Project Luminary\'s flagship educational initiative designed to empower underserved youth in Myanmar by combining higher education preparation with civic learning and critical thinking.',
+    content: `
+    Delivered over two months in a fully online format, the programme equips participants with practical knowledge and skills for pursuing international higher education while encouraging them to engage thoughtfully with contemporary social issues. Through interactive workshops, discussions with educators and professionals, and reflective learning, participants strengthen both their academic readiness and their understanding of their roles as active members of society.
+
+The programme is built on two complementary learning tracks:
+
+Pathways focuses on university applications, scholarship opportunities, personal statement writing, CV development, interview preparation, and navigating higher education systems.
+Perspectives encourages participants to explore topics such as social mobility, identity, climate, ethics, technology, and global development through guided discussions and expert-led sessions.
+
+The programme successfully brought together young people from diverse communities across Myanmar in an inclusive online learning environment that fostered curiosity, collaboration, and meaningful dialogue. Participants reported increased confidence in pursuing higher education, greater critical thinking skills, and a stronger sense of civic responsibility following the programme.
+
+Programme Highlights
+•  Two-month online higher education and civic engagement programme
+•  Connected aspiring university students from diverse communities across Myanmar
+•  Practical guidance on university applications, scholarships, CVs, personal statements, and interviews
+•  Expert-led discussions on contemporary social issues and global challenges
+•  Interactive, participant-centred learning that promotes dialogue, reflection, and collaboration
+    `,
+    image: '/images/activities/p_and_p/p_and_p_1.png',
+    readTime: '5 min read',
+    additionalImages: [
+      '/images/activities/p_and_p/p_and_p_2.png',
+      '/images/activities/p_and_p/p_and_p_3.png'
+    ]
   }
 ];
 
 export const OPPORTUNITIES_DATA: Opportunity[] = [
   {
-    id: 'opp-1',
+    id: 'research-specialist-7-26',
     title: 'Research Specialist',
     category: 'Research',
-    location: 'Yangon (onsite)',
+    location: 'Remote / Virtual',
     type: 'Project-Based',
     deadline: 'August 1, 2026',
-    description: 'Text Here',
+    description: 'Project Luminary, a youth-led social impact initiative, is hiring two remote Research Associates for a 4-month, part-time (20 hours/week) role. The associates will support a comprehensive research and strategic development process to analyze the needs of Burmese youth and evaluation models, directly shaping the organization\'s future programming, strategy, and sustainability.',
     requirements: [
-      'Line1',
-      'Line2',
-      'Line3',
-      'Line4'
-    ]
+      'Time Commitment: Ability to commit approximately 20 hours per week for a 4-month term.',
+      'Research & Analytical Skills: Capacity to read, analyze, and synthesize qualitative and quantitative data from various sources.',
+      'Language Proficiency: Sufficient English proficiency to engage with academic, professional, and research materials.',
+      'Collaboration & Communication: Ability to communicate clearly, respectfully, contribute ideas, and work both independently and collaboratively in a team.',
+      'Core Interests: A genuine interest or curiosity in research, education, youth development, social impact, or the challenges facing Burmese youth.'
+    ],
+    jdUrl: 'https://drive.google.com/file/d/12kdjLI1Iiulq0j2RX3fzKpYuXW8_npQr/view?usp=sharing',
+    isAvailable: true
   },
   {
     id: 'opp-2',
     title: 'Operation Assistant',
     category: 'Operation',
-    location: 'Remote / Virtual',
+    location: 'Yangon (onsite)',
     type: 'Internship',
     deadline: 'July 25, 2026',
     description: 'Text Here',
@@ -192,7 +201,9 @@ export const OPPORTUNITIES_DATA: Opportunity[] = [
       'Line2',
       'Line3',
       'Line4'
-    ]
+    ],
+    jdUrl: 'https://projectluminary.org',
+    isAvailable: true
   }
 ];
 
@@ -212,7 +223,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Ei Phyu Sin Win (Cathryn)',
     position: 'Operations Lead',
     bio: 'Coordinates program logistics, community relations, and day-to-day operations for Luminary initiatives.',
-    image: 'initials:EP',
+    image: 'images/meet-the-team/epsw_profile.jpg',
     socials: {
       email: 'cathryn@projectluminary.com'
     }
@@ -236,16 +247,6 @@ export const TEAM_DATA: TeamMember[] = [
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
       email: 'charles@projectluminary.com'
-    }
-  },
-  {
-    id: 'team-5',
-    name: 'Phoo Myat Nay Chi (Pam)',
-    position: 'Research Associate',
-    bio: 'Supports youth-led community research projects and coordinates the Academic Research Consortium.',
-    image: 'initials:PM',
-    socials: {
-      email: 'pam@projectluminary.com'
     }
   }
 ];

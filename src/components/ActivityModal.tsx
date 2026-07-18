@@ -78,6 +78,25 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
             </p>
           </div>
 
+          {/* Additional Gallery Images */}
+          {activity.additionalImages && activity.additionalImages.length > 0 && (
+            <div className="space-y-4 pt-6 border-t border-slate-100">
+              <h4 className="font-sans font-bold text-slate-800 text-sm tracking-wide uppercase">Programme Highlights & Session Photos</h4>
+              <div className="grid grid-cols-1 gap-6">
+                {activity.additionalImages.map((imgUrl, idx) => (
+                  <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-white">
+                    <img
+                      src={imgUrl}
+                      alt={`${activity.title} - Session Photo ${idx + 1}`}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-auto object-contain max-h-[450px] block mx-auto"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Call to Action Inside Modal */}
           <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-8">
             <div>

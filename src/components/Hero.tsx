@@ -86,13 +86,13 @@ export default function Hero({ onPrimaryClick, onSecondaryClick }: HeroProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
-            className="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-xl shadow-slate-900/5 border border-slate-100 bg-white"
+            className="relative w-full max-w-xl lg:max-w-full rounded-3xl overflow-hidden shadow-xl shadow-slate-900/5 border border-slate-100 bg-white"
           >
             <img
               src={SITE_CONFIG.heroImage}
-              alt="Project Luminary Logo"
+              alt="Project Luminary Feature"
               referrerPolicy="no-referrer"
-              className="w-full h-full object-contain p-4"
+              className="w-full h-auto object-cover block"
             />
           </motion.div>
         </div>

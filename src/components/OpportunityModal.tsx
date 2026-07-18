@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, MapPin, Calendar, Check, Mail, FileText, Send, Copy, CheckCircle2 } from 'lucide-react';
+import { X, MapPin, Calendar, Check, Mail, FileText, Send, Copy, CheckCircle2, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Opportunity } from '../types';
 import { SITE_CONFIG } from '../data';
@@ -13,7 +13,7 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(SITE_CONFIG.email);
+    navigator.clipboard.writeText(SITE_CONFIG.applyEmail);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -34,9 +34,20 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
         <div className="md:w-1/2 bg-slate-900 text-white p-6 md:p-8 flex flex-col justify-between overflow-y-auto max-h-[40vh] md:max-h-[90vh]">
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <span className="font-sans text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 px-3.5 py-1.5 rounded-full border border-emerald-900/40">
-                {opportunity.type}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 px-3.5 py-1.5 rounded-full border border-emerald-900/40">
+                  {opportunity.type}
+                </span>
+                {opportunity.isAvailable !== false ? (
+                  <span className="font-sans text-[11px] font-bold px-2.5 py-1 rounded-full border border-emerald-900/40 text-emerald-400 bg-emerald-950/40">
+                    ● Open
+                  </span>
+                ) : (
+                  <span className="font-sans text-[11px] font-bold px-2.5 py-1 rounded-full border border-rose-900/40 text-rose-400 bg-rose-950/40">
+                    ● Closed
+                  </span>
+                )}
+              </div>
               {/* Close button inside detailed sidebar (visible on mobile only) */}
               <button
                 onClick={onClose}
@@ -84,6 +95,20 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
                   </li>
                 ))}
               </ul>
+
+              {opportunity.jdUrl && (
+                <div className="pt-4">
+                  <a
+                    href={opportunity.jdUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold py-2 px-4 rounded-xl text-xs transition-all shadow-sm cursor-pointer"
+                  >
+                    <ExternalLink size={13} />
+                    <span>View Full Job Description</span>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
@@ -119,7 +144,7 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
                 </div>
                 <div>
                   <h5 className="font-sans text-xs font-bold text-slate-700">Submit Your Application To</h5>
-                  <p className="font-sans text-xs font-semibold text-slate-900 select-all">{SITE_CONFIG.email}</p>
+                  <p className="font-sans text-xs font-semibold text-slate-900 select-all">{SITE_CONFIG.applyEmail}</p>
                 </div>
               </div>
               
@@ -141,7 +166,7 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
                   )}
                 </button>
                 <a
-                  href={`mailto:${SITE_CONFIG.email}?subject=Application: ${opportunity.title}`}
+                  href={`mailto:${SITE_CONFIG.applyEmail}?subject=Application: ${opportunity.title}`}
                   className="flex-1 flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-semibold py-2 px-3 rounded-xl text-xs transition-all text-center"
                 >
                   <Send size={13} />
