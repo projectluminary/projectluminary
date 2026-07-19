@@ -262,17 +262,17 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
   },
   {
     id: 'test-2',
-    name: 'Name',
-    position: 'Position',
-    comment: 'Content',
+    name: 'Dr. Kyaw Moe Tun',
+    position: 'President of Parami University',
+    comment: 'Congratulations!!! The Project Luminary, a project designed and implemented by a group of students from Parami University, has been awarded the first winner of the MacJannet Prize for Global Citizenship! I am so proud of your achievement. This award comes with $10,000 prize to support the project.Thank you, MacJannet Prize team, for recognizing the incredible work and impact of these students.',
     image: 'images/logo/PL-Logo-2.png',
     rating: 5
   },
   {
     id: 'test-3',
-    name: 'Name',
-    position: 'Position',
-    comment: 'Content',
+    name: 'Zali Win',
+    position: 'Board of Trustees of Parami University',
+    comment: 'So proud of these three Parami University students! They came in first in a competitive international contest in which more than 400 colleges and universities were invited to nominate two projects. Their project beat out US Ivies, Oxbridge, and HEC. Project Luminary was selected for its work supporting underserved Burmese youth affected by the 2021 military coup, which severely disrupted education pathways. The initiative delivers free, structured programs that combine access to higher education support, skills development, and civic engagement, enabling students to continue learning and build pathways for the future amid ongoing instability.',
     image: 'images/logo/PL-Logo-2.png',
     rating: 5
   }
