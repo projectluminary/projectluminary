@@ -15,17 +15,30 @@ export default function ActivityCard({ activity, onReadMore }: ActivityCardProps
       className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group h-full"
     >
       {/* Feature Image */}
-      <div className="relative aspect-video overflow-hidden bg-slate-150 shrink-0">
+      <div className="relative aspect-video overflow-hidden bg-slate-900/10 shrink-0 flex items-center justify-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center blur-xl opacity-25 scale-110 pointer-events-none"
+          style={{ backgroundImage: `url(${activity.image})` }}
+        />
         <img
           src={activity.image}
           alt={activity.title}
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+          className="relative z-10 max-w-full max-h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute top-4 left-4">
-          <span className="font-sans text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-150 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+        <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center gap-2 z-20">
+          <span className="font-sans text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50/95 border border-emerald-150 px-3.5 py-1.5 rounded-full backdrop-blur-md shadow-xs">
             {activity.category}
           </span>
+          {activity.status && (
+            <span className={`font-sans text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full backdrop-blur-md border shadow-xs ${
+              activity.status.toLowerCase().includes('ongoing')
+                ? 'bg-amber-500 text-white border-amber-400'
+                : 'bg-slate-900/80 text-slate-100 border-slate-700/80'
+            }`}>
+              {activity.status}
+            </span>
+          )}
         </div>
       </div>
 

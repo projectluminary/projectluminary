@@ -8,6 +8,7 @@ export interface Activity {
   image: string;
   readTime: string;
   additionalImages?: string[];
+  status?: 'Ongoing Activity' | 'Previous Activity' | string;
 }
 
 export type OpportunityType = 'Volunteer' | 'Internship' | 'Job' | 'Event' | 'Training' | 'Partnership' | string;

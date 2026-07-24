@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SITE_CONFIG } from '../data';
 import { Logo } from './Logo';
@@ -31,7 +31,8 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
     { id: 'about', label: 'About' },
     { id: 'activities', label: 'Our Work' },
     { id: 'opportunities', label: 'Opportunities' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
+    { id: 'donate-us', label: 'Donate Us' }
   ];
 
   const handleNavClick = (pageId: string) => {
@@ -54,7 +55,7 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
         <button
           id="navbar-logo-btn"
           onClick={() => handleNavClick('home')}
-          className="flex items-center space-x-2 group focus:outline-none"
+          className="flex items-center space-x-2 group focus:outline-none cursor-pointer"
         >
           <div className="transform group-hover:scale-105 transition-transform duration-300">
             <Logo size={40} />
@@ -71,9 +72,9 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
               key={item.id}
               id={`nav-item-${item.id}`}
               onClick={() => handleNavClick(item.id)}
-              className={`relative px-4 py-2 rounded-lg font-sans text-sm font-medium transition-colors ${
+              className={`relative px-3.5 py-2 rounded-lg font-sans text-sm font-medium transition-colors cursor-pointer ${
                 (activePage === item.id || (item.id === 'activities' && activePage === 'activity-detail') || (item.id === 'opportunities' && activePage === 'opportunity-detail'))
-                  ? 'text-emerald-700 bg-emerald-50/60'
+                  ? 'text-emerald-700 bg-emerald-50/60 font-semibold'
                   : 'text-slate-600 hover:text-emerald-600 hover:bg-slate-50'
               }`}
             >
@@ -81,7 +82,7 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
               {(activePage === item.id || (item.id === 'activities' && activePage === 'activity-detail') || (item.id === 'opportunities' && activePage === 'opportunity-detail')) && (
                 <motion.div
                   layoutId="activeNavIndicator"
-                  className="absolute bottom-0 left-4 right-4 h-0.5 bg-emerald-600 rounded-full"
+                  className="absolute bottom-0 left-3.5 right-3.5 h-0.5 bg-emerald-600 rounded-full"
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
@@ -89,12 +90,20 @@ export default function Navbar({ activePage, setActivePage }: NavbarProps) {
           ))}
         </nav>
 
-        {/* Action Button Desktop */}
-        <div className="hidden md:block">
+        {/* Action Buttons Desktop */}
+        <div className="hidden md:flex items-center space-x-2">
+          <button
+            id="nav-donate-btn"
+            onClick={() => handleNavClick('donate-us')}
+            className="font-sans text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+          >
+            <Heart size={14} className="fill-emerald-600 text-emerald-600" />
+            <span>Donate Us</span>
+          </button>
           <button
             id="nav-join-btn"
             onClick={() => handleNavClick('opportunities')}
-            className="font-sans text-sm font-semibold text-white bg-slate-900 hover:bg-emerald-600 px-5 py-2.5 rounded-xl transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="font-sans text-xs font-bold text-white bg-slate-900 hover:bg-emerald-600 px-4 py-2.5 rounded-xl transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             Get Involved
           </button>

@@ -57,6 +57,79 @@
   }
 }
 
+@keyframes vertical-marquee {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes vertical-marquee-reverse {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes horizontal-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes horizontal-marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-vertical-marquee {
+  animation: vertical-marquee 40s linear infinite;
+}
+
+.animate-vertical-marquee-slow {
+  animation: vertical-marquee 50s linear infinite;
+}
+
+.animate-vertical-marquee-reverse {
+  animation: vertical-marquee-reverse 45s linear infinite;
+}
+
+.animate-horizontal-marquee {
+  animation: horizontal-marquee 45s linear infinite;
+}
+
+.animate-horizontal-marquee-slow {
+  animation: horizontal-marquee 60s linear infinite;
+}
+
+.animate-horizontal-marquee-reverse {
+  animation: horizontal-marquee-reverse 50s linear infinite;
+}
+
+.marquee-paused {
+  animation-play-state: paused !important;
+}
+
+.hover-pause-marquee:hover .animate-vertical-marquee,
+.hover-pause-marquee:hover .animate-vertical-marquee-slow,
+.hover-pause-marquee:hover .animate-vertical-marquee-reverse,
+.hover-pause-marquee:hover .animate-horizontal-marquee,
+.hover-pause-marquee:hover .animate-horizontal-marquee-slow,
+.hover-pause-marquee:hover .animate-horizontal-marquee-reverse {
+  animation-play-state: paused;
+}
+
 html {
   scroll-behavior: smooth;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";

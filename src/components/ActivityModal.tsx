@@ -21,30 +21,45 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
         className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-slate-150"
       >
         {/* Modal Header Cover */}
-        <div className="relative h-64 md:h-80 shrink-0">
+        <div className="relative h-64 md:h-80 shrink-0 bg-slate-950 overflow-hidden flex items-center justify-center">
+          <div 
+            className="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-110 pointer-events-none"
+            style={{ backgroundImage: `url(${activity.image})` }}
+          />
           <img
             src={activity.image}
             alt={activity.title}
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
+            className="relative z-10 max-w-full max-h-full object-contain"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent z-10 pointer-events-none" />
           
           {/* Close button inside image */}
           <button
             id="activity-modal-close-btn"
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md transition-colors cursor-pointer"
+            className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md transition-colors cursor-pointer z-20"
             aria-label="Close details"
           >
             <X size={18} />
           </button>
 
-          <div className="absolute bottom-6 left-6 right-6">
-            <span className="font-sans text-xs font-semibold uppercase tracking-wider text-white bg-emerald-600 px-3 py-1 rounded-full">
-              {activity.category}
-            </span>
-            <h3 className="font-sans font-bold text-2xl md:text-3xl text-white mt-2 leading-tight">
+          <div className="absolute bottom-6 left-6 right-6 space-y-2 z-20">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-sans text-xs font-semibold uppercase tracking-wider text-white bg-emerald-600 px-3 py-1 rounded-full">
+                {activity.category}
+              </span>
+              {activity.status && (
+                <span className={`font-sans text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${
+                  activity.status.toLowerCase().includes('ongoing')
+                    ? 'bg-amber-500 text-white border-amber-400'
+                    : 'bg-black/60 text-slate-100 border-white/20'
+                }`}>
+                  {activity.status}
+                </span>
+              )}
+            </div>
+            <h3 className="font-sans font-bold text-2xl md:text-3xl text-white leading-tight">
               {activity.title}
             </h3>
           </div>

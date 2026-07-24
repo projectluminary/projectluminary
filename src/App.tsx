@@ -24,7 +24,8 @@ import {
   Copy,
   CheckCircle2,
   FileText,
-  ExternalLink
+  ExternalLink,
+  Heart
 } from 'lucide-react';
 
 // Import Types
@@ -54,6 +55,8 @@ import OpportunityCard from './components/OpportunityCard';
 import Testimonials from './components/Testimonials';
 import ActivityModal from './components/ActivityModal';
 import OpportunityModal from './components/OpportunityModal';
+import ArticleRenderer from './components/ArticleRenderer';
+import DonateForm from './components/DonateForm';
 
 export default function App() {
   // Mapping between activePage state and URL path
@@ -62,7 +65,8 @@ export default function App() {
     about: '/about-us',
     activities: '/our-work',
     opportunities: '/opportunities',
-    contact: '/contact'
+    contact: '/contact',
+    'donate-us': '/donate-us'
   };
 
   const PATH_TO_PAGE: Record<string, string> = {
@@ -72,7 +76,9 @@ export default function App() {
     '/activities': 'activities',
     '/our-work': 'activities',
     '/opportunities': 'opportunities',
-    '/contact': 'contact'
+    '/contact': 'contact',
+    '/donate-us': 'donate-us',
+    '/donate': 'donate-us'
   };
 
   const getCleanPath = (): string => {
@@ -161,7 +167,8 @@ export default function App() {
         about: 'About',
         activities: 'Our Work',
         opportunities: 'Opportunities',
-        contact: 'Contact'
+        contact: 'Contact',
+        'donate-us': 'Donate Us'
       };
       currentLabel = pageTitleMap[activePage] || 'Home';
     }
@@ -439,7 +446,7 @@ export default function App() {
                   <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                     <div className="space-y-4">
                       <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100">
-                        <span className="font-sans text-xs font-bold uppercase tracking-wider">FEATURED PROGRAMMES</span>
+                        <span className="font-sans text-xs font-bold uppercase tracking-wider">ACTIVITIES</span>
                       </div>
                       <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-slate-900 tracking-tight">
                         Learning in Action
@@ -621,10 +628,6 @@ export default function App() {
                       <h2 className="font-sans font-extrabold text-3xl md:text-5xl tracking-tight text-white leading-tight">
                         Ready to make a measurable difference?
                       </h2>
-                      
-                      <p className="font-sans text-emerald-100/80 text-sm md:text-base leading-relaxed">
-                        Text here
-                      </p>
 
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
                         <button
@@ -633,6 +636,14 @@ export default function App() {
                           className="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-sans font-bold text-sm px-6 py-4 rounded-xl shadow-lg transition-all text-center cursor-pointer"
                         >
                           Become a Volunteer
+                        </button>
+                        <button
+                          id="cta-join-donate-btn"
+                          onClick={() => setActivePage('donate-us')}
+                          className="bg-emerald-900/80 hover:bg-emerald-800 text-emerald-100 border border-emerald-700/60 font-sans font-bold text-sm px-6 py-4 rounded-xl transition-all text-center cursor-pointer flex items-center justify-center gap-2"
+                        >
+                          <Heart size={16} className="fill-emerald-400 text-emerald-400" />
+                          <span>Donate Us</span>
                         </button>
                         <button
                           id="cta-join-contact-btn"
@@ -934,9 +945,20 @@ export default function App() {
                 <article className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-sm p-6 md:p-12 space-y-8">
                   {/* Category and Title */}
                   <div className="space-y-4">
-                    <span className="font-sans text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-150 px-3.5 py-1.5 rounded-full">
-                      {selectedActivity.category}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-sans text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-150 px-3.5 py-1.5 rounded-full">
+                        {selectedActivity.category}
+                      </span>
+                      {selectedActivity.status && (
+                        <span className={`font-sans text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border ${
+                          selectedActivity.status.toLowerCase().includes('ongoing')
+                            ? 'bg-amber-100 text-amber-900 border-amber-200'
+                            : 'bg-slate-100 text-slate-700 border-slate-200'
+                        }`}>
+                          {selectedActivity.status}
+                        </span>
+                      )}
+                    </div>
                     <h1 className="font-sans font-extrabold text-3xl md:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-tight">
                       {selectedActivity.title}
                     </h1>
@@ -955,23 +977,25 @@ export default function App() {
                   </div>
 
                   {/* Feature Image */}
-                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-150 shadow-sm">
+                  <div className="relative w-full rounded-2xl overflow-hidden bg-slate-900/5 border border-slate-200/80 shadow-xs flex items-center justify-center p-2 sm:p-4 md:p-6 min-h-[260px] max-h-[600px]">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center blur-2xl opacity-20 scale-110 pointer-events-none"
+                      style={{ backgroundImage: `url(${selectedActivity.image})` }}
+                    />
                     <img
                       src={selectedActivity.image}
                       alt={selectedActivity.title}
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
+                      className="relative z-10 max-w-full max-h-[520px] w-auto h-auto object-contain rounded-xl shadow-xs"
                     />
                   </div>
 
                   {/* Body Content */}
-                  <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed font-sans text-base md:text-lg">
-                    <p className="font-semibold text-slate-900 text-lg md:text-xl leading-relaxed">
+                  <div className="space-y-6 pt-2">
+                    <p className="font-sans font-semibold text-slate-900 text-lg md:text-xl leading-relaxed bg-slate-50 border-l-4 border-emerald-600 p-5 rounded-r-2xl">
                       {selectedActivity.description}
                     </p>
-                    <div className="whitespace-pre-line text-slate-600 font-sans">
-                      {selectedActivity.content}
-                    </div>
+                    <ArticleRenderer content={selectedActivity.content} />
                   </div>
 
                   {/* Additional Gallery Images */}
@@ -980,12 +1004,16 @@ export default function App() {
                       <h4 className="font-sans font-extrabold text-slate-800 text-sm tracking-wide uppercase">Programme Highlights & Session Photos</h4>
                       <div className="grid grid-cols-1 gap-8">
                         {selectedActivity.additionalImages.map((imgUrl, idx) => (
-                          <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-150 shadow-sm bg-white">
+                          <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-150 shadow-xs bg-slate-900/5 flex items-center justify-center p-2 sm:p-4 min-h-[200px]">
+                            <div 
+                              className="absolute inset-0 bg-cover bg-center blur-2xl opacity-15 scale-110 pointer-events-none"
+                              style={{ backgroundImage: `url(${imgUrl})` }}
+                            />
                             <img
                               src={imgUrl}
                               alt={`${selectedActivity.title} - Session Photo ${idx + 1}`}
                               referrerPolicy="no-referrer"
-                              className="w-full h-auto object-contain max-h-[500px] block mx-auto"
+                              className="relative z-10 max-w-full max-h-[580px] w-auto h-auto object-contain rounded-xl shadow-xs block mx-auto"
                             />
                           </div>
                         ))}
@@ -1368,7 +1396,7 @@ export default function App() {
                   </div>
 
                   {/* Right Column: Contact Details */}
-                  <div className="lg:col-span-5 flex flex-col justify-start">
+                  <div className="lg:col-span-5 flex flex-col justify-start space-y-6">
                     
                     {/* Information block */}
                     <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm space-y-6">
@@ -1386,8 +1414,68 @@ export default function App() {
                       </ul>
                     </div>
 
+                    {/* Donate Us Callout Box */}
+                    <div id="donate-us-callout-box" className="bg-gradient-to-br from-emerald-900 via-emerald-950 to-teal-950 text-white border border-emerald-800/40 rounded-3xl p-8 shadow-sm space-y-5 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
+                        <Heart size={100} className="text-emerald-300 fill-emerald-300" />
+                      </div>
+                      <div className="inline-flex items-center space-x-2 bg-emerald-800/50 text-emerald-300 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-emerald-700/50">
+                        <Heart size={13} className="text-emerald-400 fill-emerald-400" />
+                        <span>Support Our Mission</span>
+                      </div>
+                      <h3 className="font-sans font-bold text-2xl text-white tracking-tight leading-tight">
+                        Support Project Luminary
+                      </h3>
+                      <p className="font-sans text-xs text-emerald-100/80 leading-relaxed">
+                        Your contributions empower young leaders across Myanmar through accessible learning programs, youth mentorship, and grassroots civic initiatives.
+                      </p>
+                      <button
+                        id="donate-us-box-btn"
+                        onClick={() => {
+                          setActivePage('donate-us');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-sans font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md active:scale-98 cursor-pointer"
+                      >
+                        <Heart size={18} className="fill-slate-950" />
+                        <span>Donate Us</span>
+                      </button>
+                    </div>
+
                   </div>
                 </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* DONATE US PAGE VIEW */}
+          {activePage === 'donate-us' && (
+            <motion.div
+              key="donate-page"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-24 md:py-32 bg-[#f8fafc]"
+            >
+              <div className="max-w-4xl mx-auto px-6 md:px-12 space-y-12">
+                
+                {/* Header */}
+                <div className="text-center max-w-2xl mx-auto space-y-4">
+                  <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100">
+                    <Heart size={14} className="text-emerald-600 fill-emerald-600" />
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider">Support Project Luminary</span>
+                  </div>
+                  <h1 className="font-sans font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight">
+                    Invest in Myanmar&apos;s Next Generation.
+                  </h1>
+                  <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed">
+                    Every contribution directly funds student learning stipends, open research programs, community initiatives, and educational workshops.
+                  </p>
+                </div>
+
+                {/* Form Container */}
+                <DonateForm />
+
               </div>
             </motion.div>
           )}

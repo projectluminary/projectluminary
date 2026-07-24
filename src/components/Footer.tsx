@@ -72,7 +72,8 @@ export default function Footer({ setActivePage }: FooterProps) {
               { id: 'about', label: 'About' },
               { id: 'activities', label: 'Our Work' },
               { id: 'opportunities', label: 'Opportunities' },
-              { id: 'contact', label: 'Contact' }
+              { id: 'contact', label: 'Contact' },
+              { id: 'donate-us', label: 'Donate Us' }
             ].map((link) => (
               <li key={link.id}>
                 <button
