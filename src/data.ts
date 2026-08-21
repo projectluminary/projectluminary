@@ -599,41 +599,66 @@ export const TEAM_DATA: TeamMember[] = [
     id: 'team-1',
     name: 'Kaung Myat Phyo (Kelvin)',
     position: 'Project Lead, Advancement Lead',
-    bio: 'Directs overall strategic vision and partnerships to expand educational access for youth across Myanmar.',
-    image: 'initials:KM',
+    bio: 'Kaung Myat Phyo graduated from Parami University with a degree in Philosophy, Politics, and Economics (PPE) as the valedictorian of his class in 2026. At Project Luminary, he\'s in charge of organisational leadership and advancement as he directs overall strategic vision and partnerships.',
+    image: 'images/meet-the-team/kmp.jpeg',
     socials: {
-      email: 'kelvin@projectluminary.com'
+      linkedin: 'http://linkedin.com/in/kaungmyatphyo',
+      email: 'kaungmyatphyo@projectluminary.org'
     }
   },
   {
     id: 'team-2',
     name: 'Ei Phyu Sin Win (Cathryn)',
-    position: 'Operations Lead',
-    bio: 'Coordinates program logistics, community relations, and day-to-day operations for Luminary initiatives.',
-    image: 'images/meet-the-team/epsw_profile.jpg',
+    position: 'Talent Management & Finance Lead',
+    bio: 'Cathryn is a senior Data Science student at Parami University passionate about education, civic engagement, and youth development. She has experience in research, project management, and community initiatives, with a focus on creating accessible opportunities for underserved communities.',
+    image: 'images/meet-the-team/epsw.jpeg',
     socials: {
-      email: 'cathryn@projectluminary.com'
+      linkedin: 'https://www.linkedin.com/in/eiphyusinwin',
+      email: 'eiphyusinwin@projectluminary.org'
     }
   },
   {
     id: 'team-3',
     name: 'Moe Honey',
-    position: 'Administration Lead',
-    bio: 'Manages organizational records, financial planning, and internal communications across our volunteer network.',
-    image: 'initials:MH',
+    position: 'Administration/ Communication Lead',
+    bio: 'Moe is a senior student majoring in Philosophy, Politics, and Economics (PPE), with a keen interest in advancing community development through education and storytelling. Her work is driven by a commitment to expanding opportunities for marginalized communities to access knowledge, develop critical perspectives, and pursue collective action. She believes that equitable access to education is fundamental to building more inclusive, empowered, and resilient communities.',
+    image: 'images/meet-the-team/mh.jpg',
     socials: {
-      email: 'moehoney@projectluminary.com'
+      linkedin: 'http://www.linkedin.com/in/moe-honey-199302245',
+      email: 'moehoney@projectluminary.org'
     }
   },
   {
     id: 'team-4',
     name: 'Htet Khant Linn (Charles)',
     position: 'Tech Lead',
-    bio: 'Architects and maintains digital infrastructure, community tools, and learning resource databases.',
-    image: 'images/meet-the-team/hkl_professional_corporate_portrait_compact.jpg',
+    bio: 'Dedicated Data Analyst and Statistics & Data Science student with a strong track record of transforming complex datasets into actionable insights.',
+    image: 'images/meet-the-team/hkl.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
-      email: 'charles@projectluminary.com'
+      email: 'htetkhantlinn@projectluminary.org'
+    }
+  },
+  {
+    id: 'team-5',
+    name: 'Myat',
+    position: 'Research Associate',
+    bio: 'Myat holds B.A. degree in Liberal Arts with a background in qualitative research, and leading community initiatives focusing on gender equity, women leadership, youth development and education.',
+    image: 'images/meet-the-team/mmk.jpg',
+    socials: {
+      linkedin: '',
+      email: 'myatmoekywe.pl@proton.me'
+    }
+  },
+  {
+    id: 'team-6',
+    name: 'Phoo Myat Nay Chi (Pam)',
+    position: 'Research Associate',
+    bio: 'Conducts research, explores youth needs, and supports research initiatives for Luminary projects.',
+    image: 'images/meet-the-team/pmnc.jpg',
+    socials: {
+      linkedin: '',
+      email: 'phoomyatnaychi.pl@proton.me'
     }
   }
 ];
