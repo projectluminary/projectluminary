@@ -663,6 +663,86 @@ export const TEAM_DATA: TeamMember[] = [
   }
 ];
 
+export const ADVISORS_DATA: TeamMember[] = [
+  {
+    id: 'advisor-1',
+    name: 'Dr. Dan Wessner',
+    position: 'Professor, Division of Social Science and Humanities, Parami University',
+    bio: 'Dr. Dan Wessner values interdisciplinary and intercultural learning. He has taught a range of Political,International Relations, History, Law, and Community Development courses in the United States, China, and Viet Nam. Having worked extensively in VietNam since 1990, Dr. Wessner and Vietnamese educators have collaborated on curricula that draw on the Asian context to integrate subjects of sustainability, resilience, inclusivity, equity, and English language acquisition. He has earned degrees in International Studies (University of Denver, Ph.D.), Law (University of Virginia, J.D.), Theology (Princeton Seminary, M.Div.), and History and Humanities (Stanford University, B.A.).',
+    image: 'images/pl-advisors/DanWessner.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-2',
+    name: 'Dr. Dale Mineshima-Lowe',
+    position: 'Professor, Division of Social Science and Humanities, Parami University',
+    bio: 'Dr. Dale Mineshima-Lowe teaches on politics, governance, and the environment. She completed her postgraduate studies in the United Kingdom (Ph.D., University of Durham), and her undergraduate studies in California, USA (BSc, Santa Clara University). Her research spans democratic transitions and governance issues, and her current research examines the developing area of citizens and data activism – how civic organizations are using digital technologies to engage citizens in combating corruption and environmental issues. She also holds teaching credentials - UK Postgraduate Certificate in Education (Adult/Further Education), Senior Fellow - Advance Higher Education (UK), and certified member of the Association for Learning Technology (ALT, UK). Dale is currently a visiting lecturer on Climate Change & Environmental Hazards (Birkbeck, University of London); an Associated Researcher with the European Democracy Institute (Bard College Berlin); and Managing Editor for the Center of International Relations - a think tank based in Washington, D.C.',
+    image: 'images/pl-advisors/DaleMineshimaLowe.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-3',
+    name: 'Dr. David Golding',
+    position: 'Chair, Division of Social Science and Humanities, Parami University',
+    bio: 'Dr. David Golding obtained his Ph.D. in Education and Social Justice from Lancaster University. He recently completed an honorary postdoctoral fellowship at Memorial University of Newfoundland, Canada. David’s research looks at coloniality, development, international education, governmentality, and neoliberalism. It has appeared in Compare: A Journal of Comparative and International Education, Postcolonial Studies, Perspectives on Science, and elsewhere. He has also reviewed manuscripts for journals such as Critical Studies in Education, Television and New Media, and Journal for Critical Education Policy Studies. Previously, David taught at public and private universities in Sri Lanka, and has also worked as a human rights observer in Mexico and Guatemala.',
+    image: 'images/pl-advisors/DavidGolding.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-4',
+    name: 'Zahnur Rofiah',
+    position: 'Lecturer, Language and Learning Center, Parami University',
+    bio: 'Zahnur Rofiah (Zee) teaches English Composition and Social Sciences Research Skills at Parami University and earned her master’s in Education and International Development from the Institute of Education, University College London. She has 20 years of experience working in the education sector in Indonesia, Myanmar, and Sudan as a teacher, an academic coordinator, and an education consultant. Currently, she is based in East Java, Indonesia focusing on teaching, managing education supports for refugee students, and assisting research in education in fragile contexts. She is also an associated researcher at Berlin Democracy Institute, Germany.',
+    image: 'images/pl-advisors/ZahnurRofiah.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-5',
+    name: 'Min Paing',
+    position: 'Founder and CEO of Thate Pan Hub Enterprises',
+    bio: 'Min Paing is the Founder and CEO of Thate Pan Hub Enterprises, a EdTech-focused social enterprise passionately committed to delivering accessible and high-quality education in Myanmar. A full-scholarship graduate of Stony Brook University, State University of New York, he holds a bachelor’s degree in Mechanical Engineering. His international experience includes the Burma Youth Leadership Program at Indiana University Bloomington, Nanotech France 2019, and HPAIR Science and Technology 2020. Through Thate Pan Hub Enterprises, he has also participated in international education forums including the UN Transforming Education Summit 2022 in New York and the Global CS Education Conference 2022. He brings to Project Luminary experience across education, entrepreneurship, youth development, technology, and startup leadership.',
+    image: 'images/pl-advisors/MinPaing.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-6',
+    name: 'Lex Rieffel',
+    position: 'Washington DC-based Economist, Writer, and Teacher',
+    bio: 'Lex Rieffel is a Washington DC-based economist, writer, and teacher with a long career of service. After graduating from college in 1963 (Princeton University, New Jersey), he served two years as an officer in the U.S. Navy (Saigon, Vietnam, and San Francisco). He then did two years of volunteer service in the U.S. Peace Corps (India). After completing a 2-year M.A. program in International Development Studies (Fletcher School, Tufts University, Medford MA), he worked for 18 months with the International Paper Company (New York City). From 1971-1975, he was employed by the U.S. Agency for International Development (USAID; Jakarta, Indonesia, and Washington DC). From 1975 to 1994, he was an international economist with the U.S. Treasury Department. His last employment was as head of the Multilateral Policy Department at the Institute of International Finance (1994-2001; Washington DC). He joined the Brookings Institution (Washington DC) in 2002 and completed a number of policy studies in his 18-year affiliation, mostly as a pro-bono Nonresident Senior Fellow. He taught graduate seminars during ten semesters between 1993 and 2013 for three universities in Washington DC.',
+    image: 'images/pl-advisors/LexRieffel.png',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-7',
+    name: 'Romina de Jong',
+    position: 'Professor, Parami University',
+    bio: 'TBD',
+    image: 'images/pl-advisors/Romina.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  }
+];
+
 export const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: 'test-1',

@@ -38,6 +38,7 @@ import {
   ACTIVITIES_DATA, 
   OPPORTUNITIES_DATA, 
   TEAM_DATA, 
+  ADVISORS_DATA,
   STATS_DATA,
   SITE_CONFIG,
   CORE_VALUES_DATA,
@@ -822,6 +823,112 @@ export default function App() {
                             {member.socials.github && (
                               <a href={member.socials.github} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
                                 <GithubIcon />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Advisors Section */}
+                <div id="about-advisors-section" className="space-y-12 pt-10 border-t border-slate-200/70">
+                  <div className="text-center max-w-3xl mx-auto space-y-3">
+                    <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3.5 py-1 rounded-full border border-emerald-100 mb-1">
+                      <span className="font-sans text-xs font-bold uppercase tracking-wider">Guidance & Stewardship</span>
+                    </div>
+                    <h2 className="font-sans font-bold text-3xl text-slate-900 tracking-tight">Meet Our Board of Advisors</h2>
+                    <p className="font-sans text-slate-500 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
+                      Our Board of Advisors brings together trusted individuals with experience across education, research, technology, fundraising, entrepreneurship, and institutional development. Their role is to provide perspective, guidance, and connections when needed, helping Project Luminary make more thoughtful decisions as we continue to grow and strengthen our work.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto gap-8">
+                    {ADVISORS_DATA.map((advisor) => {
+                      const isInitials = advisor.image.startsWith('initials:');
+                      const explicitInitials = isInitials ? advisor.image.split(':')[1] : '';
+                      const nameParts = advisor.name
+                        .replace(/^(Dr\.|Prof\.|Mr\.|Ms\.|Mrs\.)\s+/i, '')
+                        .trim()
+                        .split(/\s+/);
+                      const fallbackInitials = explicitInitials || (nameParts.length >= 2 ? `${nameParts[0][0]}${nameParts[nameParts.length - 1][0]}` : nameParts[0].slice(0, 2)).toUpperCase();
+                      
+                      const imageSrc = advisor.image.startsWith('http') || advisor.image.startsWith('/') 
+                        ? advisor.image 
+                        : `/${advisor.image}`;
+
+                      return (
+                        <div 
+                          key={advisor.id} 
+                          id={`advisor-card-${advisor.id}`} 
+                          className="bg-white border border-slate-100 rounded-3xl p-8 text-center flex flex-col justify-between space-y-5 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all group"
+                        >
+                          <div className="space-y-4">
+                            {isInitials ? (
+                              <div className="w-28 h-28 rounded-full mx-auto flex items-center justify-center bg-gradient-to-br from-emerald-700 to-teal-900 text-white font-sans font-bold text-2xl border-4 border-emerald-50/60 shadow-sm uppercase group-hover:scale-105 transition-transform">
+                                {fallbackInitials}
+                              </div>
+                            ) : (
+                              <div className="w-28 h-28 rounded-full mx-auto relative group-hover:scale-105 transition-transform">
+                                <img
+                                  src={imageSrc}
+                                  alt={advisor.name}
+                                  referrerPolicy="no-referrer"
+                                  className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                    const fallback = e.currentTarget.parentElement?.querySelector('.advisor-avatar-fallback') as HTMLElement;
+                                    if (fallback) fallback.style.display = 'flex';
+                                  }}
+                                />
+                                <div 
+                                  className="advisor-avatar-fallback hidden w-28 h-28 rounded-full mx-auto items-center justify-center bg-gradient-to-br from-emerald-700 to-teal-900 text-white font-sans font-bold text-2xl border-4 border-emerald-50/60 shadow-sm uppercase"
+                                >
+                                  {fallbackInitials}
+                                </div>
+                              </div>
+                            )}
+                            <div className="space-y-1.5">
+                              <h4 className="font-sans font-bold text-xl text-slate-900 leading-snug">{advisor.name}</h4>
+                              <p className="font-sans font-semibold text-xs text-emerald-700 bg-emerald-50/80 border border-emerald-150 px-3 py-1 rounded-full inline-block uppercase tracking-wider leading-normal">
+                                {advisor.position}
+                              </p>
+                            </div>
+                            <p className="font-sans text-slate-600 text-sm leading-relaxed pt-1">{advisor.bio}</p>
+                          </div>
+                          
+                          {/* Social Links */}
+                          <div className="flex items-center justify-center space-x-4 pt-4 border-t border-slate-100 text-slate-400">
+                            {advisor.socials.linkedin && (
+                              <a 
+                                href={advisor.socials.linkedin} 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="p-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+                                aria-label={`${advisor.name} LinkedIn Profile`}
+                              >
+                                <LinkedinIcon />
+                              </a>
+                            )}
+                            {advisor.socials.email && (
+                              <a 
+                                href={`mailto:${advisor.socials.email}`} 
+                                className="p-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+                                aria-label={`Email ${advisor.name}`}
+                              >
+                                <Mail size={18} />
+                              </a>
+                            )}
+                            {advisor.socials.twitter && (
+                              <a 
+                                href={advisor.socials.twitter} 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="p-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+                                aria-label={`${advisor.name} Twitter`}
+                              >
+                                <TwitterIcon />
                               </a>
                             )}
                           </div>
