@@ -740,6 +740,27 @@ export const ADVISORS_DATA: TeamMember[] = [
       linkedin: '',
       email: ''
     }
+  },{
+    id: 'advisor-8',
+    name: 'Mia Sasaki',
+    position: '',
+    bio: 'TBD',
+    image: 'initials:MS',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
+  },
+  {
+    id: 'advisor-9',
+    name: 'Anny Lin',
+    position: '',
+    bio: 'Driven by her personal experiences as a first-generation high school and university graduate, Anny is committed to expanding and improving higher education opportunities for marginalized youth and non-traditional learners globally. Her experiences include coordinating international education coalitions, advocating for global education funding, academic advising, and pre-college program implementation. She holds a Bachelor of Arts in International Affairs with a concentration in International Development from George Washington University and is currently pursuing a Master of Science in International Educational Development at the University of Pennsylvania, with interests in immigrant and refugee student access to and experiences in higher education.',
+    image: 'images/pl-advisors/AnnyLin.jpg',
+    socials: {
+      linkedin: '',
+      email: ''
+    }
   }
 ];
 
