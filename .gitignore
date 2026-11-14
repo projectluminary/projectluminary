@@ -6,3 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
+PROJECT_HANDOVER.md
+codex-session-01a1dac3-9e71-7ae3-a709-fbeb277096ea.md
