@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
+import { submitWeb3Form } from '../lib/web3forms';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -40,50 +41,27 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (validate()) {
       setIsSubmitting(true);
       setSubmitError(null);
       
       const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
       
-      if (accessKey) {
-        try {
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              access_key: accessKey,
-              name: formData.name,
-              email: formData.email,
-              subject: formData.subject,
-              message: formData.message,
-              from_name: 'Project Luminary'
-            })
-          });
-
-          const result = await response.json();
-          
-          if (response.ok && result.success) {
-            setIsSuccess(true);
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            setErrors({});
-          } else {
-            setSubmitError(result.message || 'Something went wrong. Please try again.');
-          }
-        } catch (err) {
-          setSubmitError('Unable to connect to Web3Forms. Please check your internet connection and try again.');
-        } finally {
-          setIsSubmitting(false);
-        }
-      } else {
-        // Fallback simulation mode when Web3Forms key is not configured in preview environment
-        await new Promise(resolve => setTimeout(resolve, 800));
+      try {
+        await submitWeb3Form(accessKey, {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: 'Project Luminary'
+        });
         setIsSuccess(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
         setErrors({});
+      } catch (err) {
+        setSubmitError(err instanceof Error ? err.message : 'Submission failed. Please try again.');
+      } finally {
         setIsSubmitting(false);
       }
     }
@@ -103,6 +81,7 @@ export default function ContactForm() {
   if (isSuccess) {
     return (
       <motion.div
+        role="status"
         id="contact-form-success"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -127,7 +106,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form id="contact-us-form" onSubmit={handleSubmit} className="bg-white border border-slate-100 rounded-3xl p-8 md:p-10 shadow-sm space-y-6">
+    <form id="contact-us-form" onSubmit={handleSubmit} aria-busy={isSubmitting} className="bg-white border border-slate-100 rounded-3xl p-8 md:p-10 shadow-sm space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name Field */}
         <div className="space-y-2">
@@ -238,7 +217,7 @@ export default function ContactForm() {
       </div>
 
       {submitError && (
-        <div className="p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+        <div role="alert" className="p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs font-semibold flex items-center gap-2 animate-fade-in">
           <AlertCircle size={16} />
           <span>{submitError}</span>
         </div>

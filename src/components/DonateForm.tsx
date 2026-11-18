@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Heart, DollarSign } from 'lucide-react';
 import { motion } from 'motion/react';
+import { submitWeb3Form } from '../lib/web3forms';
 
 const PRESET_AMOUNTS = [25, 50, 100, 250, 500, 1000];
 
@@ -58,6 +59,7 @@ export default function DonateForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (validate()) {
       setIsSubmitting(true);
       setSubmitError(null);
@@ -66,54 +68,19 @@ export default function DonateForm() {
       const finalAmount = getEffectiveAmount();
       const fullName = `${formData.firstName.trim()} ${formData.lastName.trim()}`;
 
-      if (accessKey) {
-        try {
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              access_key: accessKey,
-              subject: `Donation Request ($${finalAmount}) - ${fullName}`,
-              from_name: 'Project Luminary - Donation',
-              name: fullName,
-              first_name: formData.firstName,
-              last_name: formData.lastName,
-              email: formData.email,
-              phone: formData.phone,
-              address: formData.address,
-              donation_amount: `$${finalAmount}`,
-              message: `New Donation Intent Received:\n\nDonor Name: ${fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nDonation Amount: $${finalAmount}`
-            })
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.success) {
-            setIsSuccess(true);
-            setFormData({
-              firstName: '',
-              lastName: '',
-              email: '',
-              phone: '',
-              address: '',
-              presetAmount: 50,
-              customAmount: ''
-            });
-            setErrors({});
-          } else {
-            setSubmitError(result.message || 'Something went wrong. Please try again.');
-          }
-        } catch (err) {
-          setSubmitError('Unable to connect to Web3Forms. Please check your internet connection and try again.');
-        } finally {
-          setIsSubmitting(false);
-        }
-      } else {
-        // Fallback simulation mode when Web3Forms key is not configured in preview environment
-        await new Promise(resolve => setTimeout(resolve, 800));
+      try {
+        await submitWeb3Form(accessKey, {
+          subject: `Donation Request ($${finalAmount}) - ${fullName}`,
+          from_name: 'Project Luminary - Donation',
+          name: fullName,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          donation_amount: `$${finalAmount}`,
+          message: `New Donation Intent Received:\n\nDonor Name: ${fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nDonation Amount: $${finalAmount}`
+        });
         setIsSuccess(true);
         setFormData({
           firstName: '',
@@ -125,6 +92,9 @@ export default function DonateForm() {
           customAmount: ''
         });
         setErrors({});
+      } catch (err) {
+        setSubmitError(err instanceof Error ? err.message : 'Submission failed. Please try again.');
+      } finally {
         setIsSubmitting(false);
       }
     }
@@ -147,6 +117,7 @@ export default function DonateForm() {
   if (isSuccess) {
     return (
       <motion.div
+        role="status"
         id="donate-form-success"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -176,7 +147,7 @@ export default function DonateForm() {
   }
 
   return (
-    <form id="donate-us-form" onSubmit={handleSubmit} className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm space-y-8">
+    <form id="donate-us-form" onSubmit={handleSubmit} aria-busy={isSubmitting} className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm space-y-8">
       
       {/* Donation Amount Selection */}
       <div className="space-y-4">
@@ -385,7 +356,7 @@ export default function DonateForm() {
       </div>
 
       {submitError && (
-        <div className="p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+        <div role="alert" className="p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs font-semibold flex items-center gap-2 animate-fade-in">
           <AlertCircle size={16} />
           <span>{submitError}</span>
         </div>
