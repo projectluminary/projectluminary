@@ -1,0 +1,1432 @@
+{
+  "stage": "stage2",
+  "conditions": "Chrome; 390x844 DPR2; 3 cold runs; external origins blocked; slow: 1.6Mbps/150ms/4x CPU, 15s after DOMContentLoaded",
+  "js": [
+    {
+      "file": "index-CS3ApzAu.js",
+      "bytes": 571907,
+      "gzipBytes": 168524
+    }
+  ],
+  "measurements": [
+    {
+      "route": "/",
+      "slow": false,
+      "run": 1,
+      "lcp": 984,
+      "cls": 0,
+      "longTasks": [
+        88
+      ],
+      "fcp": 268,
+      "elapsed": 1299.6000000014901,
+      "imageRequests": 6,
+      "imageBytes": 2288080,
+      "resourceBytes": 2716974,
+      "imagesComplete": 6,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/home/home_2-1486.webp",
+          "bytes": 486150
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/logo/PL-Logo-2-729.webp",
+          "bytes": 55900
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "slow": false,
+      "run": 2,
+      "lcp": 924,
+      "cls": 0,
+      "longTasks": [
+        78
+      ],
+      "fcp": 192,
+      "elapsed": 1281.8999999985099,
+      "imageRequests": 6,
+      "imageBytes": 2288080,
+      "resourceBytes": 2716974,
+      "imagesComplete": 6,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/home/home_2-1486.webp",
+          "bytes": 486150
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/logo/PL-Logo-2-729.webp",
+          "bytes": 55900
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "slow": false,
+      "run": 3,
+      "lcp": 932,
+      "cls": 0,
+      "longTasks": [
+        72
+      ],
+      "fcp": 196,
+      "elapsed": 1290.6000000014901,
+      "imageRequests": 6,
+      "imageBytes": 2288080,
+      "resourceBytes": 2716974,
+      "imagesComplete": 6,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/home/home_2-1486.webp",
+          "bytes": 486150
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/logo/PL-Logo-2-729.webp",
+          "bytes": 55900
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/about-us",
+      "slow": false,
+      "run": 1,
+      "lcp": 172,
+      "cls": 0,
+      "longTasks": [
+        63
+      ],
+      "fcp": 172,
+      "elapsed": 1278.8999999985099,
+      "imageRequests": 14,
+      "imageBytes": 342010,
+      "resourceBytes": 770904,
+      "imagesComplete": 14,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/meet-the-team/kmp-288.webp",
+          "bytes": 31380
+        },
+        {
+          "url": "/images/optimized/meet-the-team/epsw-288.webp",
+          "bytes": 45758
+        },
+        {
+          "url": "/images/optimized/meet-the-team/mh-288.webp",
+          "bytes": 34644
+        },
+        {
+          "url": "/images/optimized/meet-the-team/hkl-288.webp",
+          "bytes": 8706
+        },
+        {
+          "url": "/images/optimized/meet-the-team/mmk-288.webp",
+          "bytes": 34820
+        },
+        {
+          "url": "/images/optimized/meet-the-team/pmnc-288.webp",
+          "bytes": 12890
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DanWessner-504.webp",
+          "bytes": 23422
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DaleMineshimaLowe-336.webp",
+          "bytes": 17474
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DavidGolding-336.webp",
+          "bytes": 34228
+        },
+        {
+          "url": "/images/optimized/pl-advisors/ZahnurRofiah-336.webp",
+          "bytes": 21920
+        },
+        {
+          "url": "/images/optimized/pl-advisors/MinPaing-395.webp",
+          "bytes": 11950
+        },
+        {
+          "url": "/images/optimized/pl-advisors/LexRieffel-336.webp",
+          "bytes": 16348
+        },
+        {
+          "url": "/images/optimized/pl-advisors/Romina-336.webp",
+          "bytes": 37556
+        },
+        {
+          "url": "/images/optimized/pl-advisors/AnnyLin-336.webp",
+          "bytes": 10914
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/about-us",
+      "slow": false,
+      "run": 2,
+      "lcp": 172,
+      "cls": 0,
+      "longTasks": [
+        65
+      ],
+      "fcp": 172,
+      "elapsed": 1279.5,
+      "imageRequests": 14,
+      "imageBytes": 342010,
+      "resourceBytes": 770904,
+      "imagesComplete": 14,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/meet-the-team/kmp-288.webp",
+          "bytes": 31380
+        },
+        {
+          "url": "/images/optimized/meet-the-team/epsw-288.webp",
+          "bytes": 45758
+        },
+        {
+          "url": "/images/optimized/meet-the-team/mh-288.webp",
+          "bytes": 34644
+        },
+        {
+          "url": "/images/optimized/meet-the-team/hkl-288.webp",
+          "bytes": 8706
+        },
+        {
+          "url": "/images/optimized/meet-the-team/mmk-288.webp",
+          "bytes": 34820
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DanWessner-504.webp",
+          "bytes": 23422
+        },
+        {
+          "url": "/images/optimized/meet-the-team/pmnc-288.webp",
+          "bytes": 12890
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DaleMineshimaLowe-336.webp",
+          "bytes": 17474
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DavidGolding-336.webp",
+          "bytes": 34228
+        },
+        {
+          "url": "/images/optimized/pl-advisors/ZahnurRofiah-336.webp",
+          "bytes": 21920
+        },
+        {
+          "url": "/images/optimized/pl-advisors/MinPaing-395.webp",
+          "bytes": 11950
+        },
+        {
+          "url": "/images/optimized/pl-advisors/LexRieffel-336.webp",
+          "bytes": 16348
+        },
+        {
+          "url": "/images/optimized/pl-advisors/Romina-336.webp",
+          "bytes": 37556
+        },
+        {
+          "url": "/images/optimized/pl-advisors/AnnyLin-336.webp",
+          "bytes": 10914
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/about-us",
+      "slow": false,
+      "run": 3,
+      "lcp": 168,
+      "cls": 0,
+      "longTasks": [
+        62
+      ],
+      "fcp": 168,
+      "elapsed": 1280.3999999985099,
+      "imageRequests": 14,
+      "imageBytes": 342010,
+      "resourceBytes": 770904,
+      "imagesComplete": 14,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/meet-the-team/kmp-288.webp",
+          "bytes": 31380
+        },
+        {
+          "url": "/images/optimized/meet-the-team/epsw-288.webp",
+          "bytes": 45758
+        },
+        {
+          "url": "/images/optimized/meet-the-team/hkl-288.webp",
+          "bytes": 8706
+        },
+        {
+          "url": "/images/optimized/meet-the-team/mh-288.webp",
+          "bytes": 34644
+        },
+        {
+          "url": "/images/optimized/meet-the-team/mmk-288.webp",
+          "bytes": 34820
+        },
+        {
+          "url": "/images/optimized/meet-the-team/pmnc-288.webp",
+          "bytes": 12890
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DanWessner-504.webp",
+          "bytes": 23422
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DaleMineshimaLowe-336.webp",
+          "bytes": 17474
+        },
+        {
+          "url": "/images/optimized/pl-advisors/DavidGolding-336.webp",
+          "bytes": 34228
+        },
+        {
+          "url": "/images/optimized/pl-advisors/ZahnurRofiah-336.webp",
+          "bytes": 21920
+        },
+        {
+          "url": "/images/optimized/pl-advisors/MinPaing-395.webp",
+          "bytes": 11950
+        },
+        {
+          "url": "/images/optimized/pl-advisors/LexRieffel-336.webp",
+          "bytes": 16348
+        },
+        {
+          "url": "/images/optimized/pl-advisors/Romina-336.webp",
+          "bytes": 37556
+        },
+        {
+          "url": "/images/optimized/pl-advisors/AnnyLin-336.webp",
+          "bytes": 10914
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work",
+      "slow": false,
+      "run": 1,
+      "lcp": 144,
+      "cls": 0,
+      "longTasks": [],
+      "fcp": 144,
+      "elapsed": 1287.3999999985099,
+      "imageRequests": 4,
+      "imageBytes": 1746030,
+      "resourceBytes": 2174924,
+      "imagesComplete": 4,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work",
+      "slow": false,
+      "run": 2,
+      "lcp": 148,
+      "cls": 0,
+      "longTasks": [],
+      "fcp": 148,
+      "elapsed": 1293.3000000044703,
+      "imageRequests": 4,
+      "imageBytes": 1746030,
+      "resourceBytes": 2174924,
+      "imagesComplete": 4,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work",
+      "slow": false,
+      "run": 3,
+      "lcp": 148,
+      "cls": 0,
+      "longTasks": [],
+      "fcp": 148,
+      "elapsed": 1291.5,
+      "imageRequests": 4,
+      "imageBytes": 1746030,
+      "resourceBytes": 2174924,
+      "imagesComplete": 4,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work/pilot-programme",
+      "slow": false,
+      "run": 1,
+      "lcp": 208,
+      "cls": 0,
+      "longTasks": [
+        58
+      ],
+      "fcp": 208,
+      "elapsed": 1298.1000000014901,
+      "imageRequests": 5,
+      "imageBytes": 1951746,
+      "resourceBytes": 2380640,
+      "imagesComplete": 5,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_2-1366.webp",
+          "bytes": 529116
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_3-1366.webp",
+          "bytes": 633986
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_4-1366.webp",
+          "bytes": 280598
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_5-1366.webp",
+          "bytes": 216300
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work/pilot-programme",
+      "slow": false,
+      "run": 2,
+      "lcp": 152,
+      "cls": 0,
+      "longTasks": [
+        55
+      ],
+      "fcp": 152,
+      "elapsed": 1293.3000000044703,
+      "imageRequests": 5,
+      "imageBytes": 1951746,
+      "resourceBytes": 2380640,
+      "imagesComplete": 5,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_2-1366.webp",
+          "bytes": 529116
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_3-1366.webp",
+          "bytes": 633986
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_4-1366.webp",
+          "bytes": 280598
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_5-1366.webp",
+          "bytes": 216300
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work/pilot-programme",
+      "slow": false,
+      "run": 3,
+      "lcp": 168,
+      "cls": 0,
+      "longTasks": [
+        54
+      ],
+      "fcp": 168,
+      "elapsed": 1279.5999999940395,
+      "imageRequests": 5,
+      "imageBytes": 1951746,
+      "resourceBytes": 2380640,
+      "imagesComplete": 5,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_2-1366.webp",
+          "bytes": 529116
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_3-1366.webp",
+          "bytes": 633986
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_4-1366.webp",
+          "bytes": 280598
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_5-1366.webp",
+          "bytes": 216300
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work/pathways-and-perspectives-pogramme",
+      "slow": false,
+      "run": 1,
+      "lcp": 176,
+      "cls": 0,
+      "longTasks": [
+        72
+      ],
+      "fcp": 176,
+      "elapsed": 1283,
+      "imageRequests": 7,
+      "imageBytes": 3450664,
+      "resourceBytes": 3879558,
+      "imagesComplete": 7,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_2-1080.webp",
+          "bytes": 555226
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_3-1080.webp",
+          "bytes": 603724
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_4-1080.webp",
+          "bytes": 608724
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_6-1366.webp",
+          "bytes": 594602
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_5-1366.webp",
+          "bytes": 271872
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_7-1366.webp",
+          "bytes": 188216
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work/pathways-and-perspectives-pogramme",
+      "slow": false,
+      "run": 2,
+      "lcp": 168,
+      "cls": 0,
+      "longTasks": [
+        65
+      ],
+      "fcp": 168,
+      "elapsed": 1287.5999999940395,
+      "imageRequests": 7,
+      "imageBytes": 3450664,
+      "resourceBytes": 3879558,
+      "imagesComplete": 7,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_2-1080.webp",
+          "bytes": 555226
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_3-1080.webp",
+          "bytes": 603724
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_4-1080.webp",
+          "bytes": 608724
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_5-1366.webp",
+          "bytes": 271872
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_6-1366.webp",
+          "bytes": 594602
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_7-1366.webp",
+          "bytes": 188216
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/our-work/pathways-and-perspectives-pogramme",
+      "slow": false,
+      "run": 3,
+      "lcp": 164,
+      "cls": 0,
+      "longTasks": [
+        66
+      ],
+      "fcp": 164,
+      "elapsed": 1289,
+      "imageRequests": 7,
+      "imageBytes": 3450664,
+      "resourceBytes": 3879558,
+      "imagesComplete": 7,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_2-1080.webp",
+          "bytes": 555226
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_3-1080.webp",
+          "bytes": 603724
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_4-1080.webp",
+          "bytes": 608724
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_5-1366.webp",
+          "bytes": 271872
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_6-1366.webp",
+          "bytes": 594602
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_7-1366.webp",
+          "bytes": 188216
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slow": false,
+      "run": 1,
+      "lcp": 132,
+      "cls": 0,
+      "longTasks": [],
+      "fcp": 132,
+      "elapsed": 1295.2000000029802,
+      "imageRequests": 0,
+      "imageBytes": 0,
+      "resourceBytes": 428894,
+      "imagesComplete": 0,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slow": false,
+      "run": 2,
+      "lcp": 132,
+      "cls": 0,
+      "longTasks": [],
+      "fcp": 132,
+      "elapsed": 1294,
+      "imageRequests": 0,
+      "imageBytes": 0,
+      "resourceBytes": 428894,
+      "imagesComplete": 0,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slow": false,
+      "run": 3,
+      "lcp": 136,
+      "cls": 0,
+      "longTasks": [],
+      "fcp": 136,
+      "elapsed": 1280.7000000029802,
+      "imageRequests": 0,
+      "imageBytes": 0,
+      "resourceBytes": 428894,
+      "imagesComplete": 0,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "slow": true,
+      "run": 1,
+      "lcp": 3016,
+      "cls": 0,
+      "longTasks": [
+        109,
+        303,
+        399
+      ],
+      "fcp": 2168,
+      "elapsed": 16473.79999999702,
+      "imageRequests": 6,
+      "imageBytes": 2288080,
+      "resourceBytes": 2716974,
+      "imagesComplete": 6,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/home/home_2-1486.webp",
+          "bytes": 486150
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/logo/PL-Logo-2-729.webp",
+          "bytes": 55900
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "slow": true,
+      "run": 2,
+      "lcp": 3100,
+      "cls": 0,
+      "longTasks": [
+        138,
+        278,
+        533,
+        63,
+        50
+      ],
+      "fcp": 2332,
+      "elapsed": 16500.20000000298,
+      "imageRequests": 6,
+      "imageBytes": 2288080,
+      "resourceBytes": 2716974,
+      "imagesComplete": 6,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/home/home_2-1486.webp",
+          "bytes": 486150
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/logo/PL-Logo-2-729.webp",
+          "bytes": 55900
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "slow": true,
+      "run": 3,
+      "lcp": 3052,
+      "cls": 0,
+      "longTasks": [
+        122,
+        288,
+        499
+      ],
+      "fcp": 2284,
+      "elapsed": 16506.59999999404,
+      "imageRequests": 6,
+      "imageBytes": 2288080,
+      "resourceBytes": 2716974,
+      "imagesComplete": 6,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/images/optimized/home/home_2-1486.webp",
+          "bytes": 486150
+        },
+        {
+          "url": "/images/optimized/home/home_1-1486.webp",
+          "bytes": 376726
+        },
+        {
+          "url": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+          "bytes": 291746
+        },
+        {
+          "url": "/images/optimized/activities/larc/larc_1-1366.webp",
+          "bytes": 449258
+        },
+        {
+          "url": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+          "bytes": 628300
+        },
+        {
+          "url": "/images/optimized/logo/PL-Logo-2-729.webp",
+          "bytes": 55900
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slow": true,
+      "run": 1,
+      "lcp": 1932,
+      "cls": 0,
+      "longTasks": [
+        162,
+        152,
+        254
+      ],
+      "fcp": 1932,
+      "elapsed": 16505.39999999851,
+      "imageRequests": 0,
+      "imageBytes": 0,
+      "resourceBytes": 428894,
+      "imagesComplete": 0,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slow": true,
+      "run": 2,
+      "lcp": 1924,
+      "cls": 0,
+      "longTasks": [
+        110,
+        178,
+        296,
+        51
+      ],
+      "fcp": 1924,
+      "elapsed": 16462.5,
+      "imageRequests": 0,
+      "imageBytes": 0,
+      "resourceBytes": 428894,
+      "imagesComplete": 0,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "slow": true,
+      "run": 3,
+      "lcp": 1840,
+      "cls": 0,
+      "longTasks": [
+        152,
+        97,
+        232
+      ],
+      "fcp": 1840,
+      "elapsed": 16492.20000000298,
+      "imageRequests": 0,
+      "imageBytes": 0,
+      "resourceBytes": 428894,
+      "imagesComplete": 0,
+      "resources": [
+        {
+          "url": "/assets/index-CS3ApzAu.js",
+          "bytes": 168524
+        },
+        {
+          "url": "/assets/index-DCkk4VFm.css",
+          "bytes": 11086
+        },
+        {
+          "url": "/_vercel/insights/script.js",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.ico",
+          "bytes": 0
+        },
+        {
+          "url": "/favicon.png",
+          "bytes": 249284
+        }
+      ]
+    }
+  ]
+}

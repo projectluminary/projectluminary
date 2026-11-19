@@ -1,6 +1,7 @@
 import { X, Calendar, Clock, BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Activity } from '../types';
+import ResponsiveImage from './ResponsiveImage';
 
 interface ActivityModalProps {
   activity: Activity;
@@ -22,14 +23,12 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
       >
         {/* Modal Header Cover */}
         <div className="relative h-64 md:h-80 shrink-0 bg-slate-950 overflow-hidden flex items-center justify-center">
-          <div 
-            className="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-110 pointer-events-none"
-            style={{ backgroundImage: `url(${activity.image})` }}
-          />
-          <img
+          <ResponsiveImage
             src={activity.image}
             alt={activity.title}
-            referrerPolicy="no-referrer"
+            loading="eager"
+            sizes="(min-width: 768px) 672px, calc(100vw - 32px)"
+            backgroundClassName="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-110 pointer-events-none"
             className="relative z-10 max-w-full max-h-full object-contain"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent z-10 pointer-events-none" />
@@ -100,10 +99,10 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
               <div className="grid grid-cols-1 gap-6">
                 {activity.additionalImages.map((imgUrl, idx) => (
                   <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-white">
-                    <img
+                    <ResponsiveImage
                       src={imgUrl}
                       alt={`${activity.title} - Session Photo ${idx + 1}`}
-                      referrerPolicy="no-referrer"
+                      sizes="(min-width: 768px) 608px, calc(100vw - 80px)"
                       className="w-full h-auto object-contain max-h-[450px] block mx-auto"
                     />
                   </div>

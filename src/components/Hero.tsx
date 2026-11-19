@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Leaf, ShieldAlert, Sparkles, Globe } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SITE_CONFIG } from '../data';
+import ResponsiveImage from './ResponsiveImage';
 
 interface HeroProps {
   onPrimaryClick: () => void;
@@ -88,10 +89,12 @@ export default function Hero({ onPrimaryClick, onSecondaryClick }: HeroProps) {
             transition={{ duration: 0.7 }}
             className="relative w-full max-w-xl lg:max-w-full rounded-3xl overflow-hidden shadow-xl shadow-slate-900/5 border border-slate-100 bg-white"
           >
-            <img
+            <ResponsiveImage
               src={SITE_CONFIG.heroImage}
               alt="Project Luminary Feature"
-              referrerPolicy="no-referrer"
+              loading="eager"
+              fetchPriority="high"
+              sizes="(min-width: 1280px) 480px, (min-width: 1024px) calc(41.667vw - 68px), (min-width: 624px) 576px, calc(100vw - 48px)"
               className="w-full h-auto object-cover block"
             />
           </motion.div>

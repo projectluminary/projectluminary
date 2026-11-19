@@ -1,14 +1,18 @@
 import React from 'react';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Activity } from '../types';
+import ResponsiveImage from './ResponsiveImage';
+import { getCardImageSizes } from '../lib/images';
 
 interface ActivityCardProps {
   key?: string;
   activity: Activity;
   onReadMore: (activity: Activity) => void;
+  columns?: 2 | 3;
+  priority?: boolean;
 }
 
-export default function ActivityCard({ activity, onReadMore }: ActivityCardProps) {
+export default function ActivityCard({ activity, onReadMore, columns = 3, priority = false }: ActivityCardProps) {
   return (
     <article
       id={`activity-card-${activity.id}`}
@@ -16,14 +20,12 @@ export default function ActivityCard({ activity, onReadMore }: ActivityCardProps
     >
       {/* Feature Image */}
       <div className="relative aspect-video overflow-hidden bg-slate-900/10 shrink-0 flex items-center justify-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center blur-xl opacity-25 scale-110 pointer-events-none"
-          style={{ backgroundImage: `url(${activity.image})` }}
-        />
-        <img
+        <ResponsiveImage
           src={activity.image}
           alt={activity.title}
-          referrerPolicy="no-referrer"
+          loading={priority ? 'eager' : 'lazy'}
+          sizes={getCardImageSizes(activity.image, columns)}
+          backgroundClassName="absolute inset-0 bg-cover bg-center blur-xl opacity-25 scale-110 pointer-events-none"
           className="relative z-10 max-w-full max-h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center gap-2 z-20">

@@ -1,0 +1,986 @@
+{
+  "/images/activities/larc/larc_1.png": {
+    "src": "/images/optimized/activities/larc/larc_1-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 935115,
+    "originalSha256": "6801b9cd4c9901707895f98e2bc80db1f1bee7cabdfbba9cd5660cf048db7f66",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/larc/larc_1-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 88216
+      },
+      {
+        "src": "/images/optimized/activities/larc/larc_1-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 270692
+      },
+      {
+        "src": "/images/optimized/activities/larc/larc_1-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 449258
+      }
+    ]
+  },
+  "/images/activities/larc/larc_2.png": {
+    "src": "/images/optimized/activities/larc/larc_2-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 772963,
+    "originalSha256": "6d3b807416191e44a16ae9762dc15b2e9f32bdf7caa61fa873a00175aa26df02",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/larc/larc_2-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 81096
+      },
+      {
+        "src": "/images/optimized/activities/larc/larc_2-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 243242
+      },
+      {
+        "src": "/images/optimized/activities/larc/larc_2-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 394494
+      }
+    ]
+  },
+  "/images/activities/larc/larc_3.png": {
+    "src": "/images/optimized/activities/larc/larc_3-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 430709,
+    "originalSha256": "04dc497bd4e0d26d569d4323da04714d07adedf7859c1d17ce52347510b318fa",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/larc/larc_3-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 45174
+      },
+      {
+        "src": "/images/optimized/activities/larc/larc_3-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 139990
+      },
+      {
+        "src": "/images/optimized/activities/larc/larc_3-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 211030
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_1.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+    "width": 1080,
+    "height": 1080,
+    "originalWidth": 1080,
+    "originalHeight": 1080,
+    "originalBytes": 926567,
+    "originalSha256": "366459ffcd05272d91ed4afb1b2ebf37253e7b86fa2715d67049cbee635e1ee2",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_1-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 183078
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_1-960.webp",
+        "width": 960,
+        "height": 960,
+        "bytes": 571056
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_1-1080.webp",
+        "width": 1080,
+        "height": 1080,
+        "bytes": 628300
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_2.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_2-1080.webp",
+    "width": 1080,
+    "height": 1080,
+    "originalWidth": 1080,
+    "originalHeight": 1080,
+    "originalBytes": 835598,
+    "originalSha256": "0bf479f367620ed721431bb638edd321a5b9aa5bdfcc65d429977a2a9bb9c05f",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_2-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 179588
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_2-960.webp",
+        "width": 960,
+        "height": 960,
+        "bytes": 531612
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_2-1080.webp",
+        "width": 1080,
+        "height": 1080,
+        "bytes": 555226
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_3.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_3-1080.webp",
+    "width": 1080,
+    "height": 1080,
+    "originalWidth": 1080,
+    "originalHeight": 1080,
+    "originalBytes": 903843,
+    "originalSha256": "51f987a93cd2e1973b91e5f2fd8e470fb66e9fcfbf5c8fb860aec7d59d2a5608",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_3-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 139060
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_3-960.webp",
+        "width": 960,
+        "height": 960,
+        "bytes": 552498
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_3-1080.webp",
+        "width": 1080,
+        "height": 1080,
+        "bytes": 603724
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_4.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_4-1080.webp",
+    "width": 1080,
+    "height": 1080,
+    "originalWidth": 1080,
+    "originalHeight": 1080,
+    "originalBytes": 911457,
+    "originalSha256": "6135da60335ba8b1c728b835dd7c703b4a133ee0e9e2d9dae9eb6f71a0f32646",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_4-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 146042
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_4-960.webp",
+        "width": 960,
+        "height": 960,
+        "bytes": 570018
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_4-1080.webp",
+        "width": 1080,
+        "height": 1080,
+        "bytes": 608724
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_5.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_5-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 593483,
+    "originalSha256": "043e7281384336ee28caef912454811e003a7a4c5ec2ccecd1b127543faac4f1",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_5-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 51712
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_5-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 161014
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_5-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 271872
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_6.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_6-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 1374250,
+    "originalSha256": "e16ca8dc17714921c69dee6a3132b841456fabb1533e8274e2f2e2bfb6e4e110",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_6-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 112286
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_6-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 350992
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_6-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 594602
+      }
+    ]
+  },
+  "/images/activities/p_and_p/pp_7.png": {
+    "src": "/images/optimized/activities/p_and_p/pp_7-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 407408,
+    "originalSha256": "aaea737aab1b424b6f76f3f34b1a525c7cc7d275a3ea27151c5e32d120ac217a",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_7-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 40536
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_7-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 116812
+      },
+      {
+        "src": "/images/optimized/activities/p_and_p/pp_7-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 188216
+      }
+    ]
+  },
+  "/images/activities/pilot-programme/pilot_1.png": {
+    "src": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+    "width": 940,
+    "height": 788,
+    "originalWidth": 940,
+    "originalHeight": 788,
+    "originalBytes": 472126,
+    "originalSha256": "05f7dbfa10056d725968c399f4eaa3ab255c7cb755f781e9f7ef49ecc2cf9749",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_1-480.webp",
+        "width": 480,
+        "height": 402,
+        "bytes": 105024
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_1-940.webp",
+        "width": 940,
+        "height": 788,
+        "bytes": 291746
+      }
+    ]
+  },
+  "/images/activities/pilot-programme/pilot_2.png": {
+    "src": "/images/optimized/activities/pilot-programme/pilot_2-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 1073103,
+    "originalSha256": "8f05655da9c479924741c553a2ec875d093db0db0126e3209134a44c72af0f43",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_2-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 107010
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_2-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 333356
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_2-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 529116
+      }
+    ]
+  },
+  "/images/activities/pilot-programme/pilot_3.png": {
+    "src": "/images/optimized/activities/pilot-programme/pilot_3-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 1749192,
+    "originalSha256": "d8933263c391089e022ddea804f90e24d19f2dcbd41c125f72cca8dc7fcd1e9b",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_3-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 123354
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_3-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 385714
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_3-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 633986
+      }
+    ]
+  },
+  "/images/activities/pilot-programme/pilot_4.png": {
+    "src": "/images/optimized/activities/pilot-programme/pilot_4-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 508284,
+    "originalSha256": "0ba60ee3122f6945af55310dbc99592488d01a0d2972a37085f0dce320837a0f",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_4-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 69358
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_4-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 201454
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_4-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 280598
+      }
+    ]
+  },
+  "/images/activities/pilot-programme/pilot_5.png": {
+    "src": "/images/optimized/activities/pilot-programme/pilot_5-1366.webp",
+    "width": 1366,
+    "height": 768,
+    "originalWidth": 1366,
+    "originalHeight": 768,
+    "originalBytes": 405682,
+    "originalSha256": "7775b27ad003e51358165b437287f7c6d23f73f04363dc5db0d7a92f9cba75b3",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_5-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 49630
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_5-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 146538
+      },
+      {
+        "src": "/images/optimized/activities/pilot-programme/pilot_5-1366.webp",
+        "width": 1366,
+        "height": 768,
+        "bytes": 216300
+      }
+    ]
+  },
+  "/images/home/home_1.png": {
+    "src": "/images/optimized/home/home_1-1486.webp",
+    "width": 1486,
+    "height": 845,
+    "originalWidth": 1486,
+    "originalHeight": 845,
+    "originalBytes": 630258,
+    "originalSha256": "4dbdcbde767f5b7f79496e16d3da2c08cdc5850793aa070cfed6fab6b67b69c7",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/home/home_1-480.webp",
+        "width": 480,
+        "height": 273,
+        "bytes": 60440
+      },
+      {
+        "src": "/images/optimized/home/home_1-960.webp",
+        "width": 960,
+        "height": 546,
+        "bytes": 190452
+      },
+      {
+        "src": "/images/optimized/home/home_1-1486.webp",
+        "width": 1486,
+        "height": 845,
+        "bytes": 376726
+      }
+    ]
+  },
+  "/images/home/home_2.png": {
+    "src": "/images/optimized/home/home_2-1486.webp",
+    "width": 1486,
+    "height": 845,
+    "originalWidth": 1486,
+    "originalHeight": 845,
+    "originalBytes": 693796,
+    "originalSha256": "d66729d536991ab831e59caf21eb6d9b612a1de9453f96789e095264b82d0412",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/home/home_2-480.webp",
+        "width": 480,
+        "height": 273,
+        "bytes": 76722
+      },
+      {
+        "src": "/images/optimized/home/home_2-960.webp",
+        "width": 960,
+        "height": 546,
+        "bytes": 243840
+      },
+      {
+        "src": "/images/optimized/home/home_2-1486.webp",
+        "width": 1486,
+        "height": 845,
+        "bytes": 486150
+      }
+    ]
+  },
+  "/images/logo/PL-Logo-2.png": {
+    "src": "/images/optimized/logo/PL-Logo-2-729.webp",
+    "width": 729,
+    "height": 729,
+    "originalWidth": 729,
+    "originalHeight": 729,
+    "originalBytes": 155529,
+    "originalSha256": "0e0228397d9479cba7c52a150610456ad161749b55e038a950802a8b8e47d231",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/logo/PL-Logo-2-96.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1544
+      },
+      {
+        "src": "/images/optimized/logo/PL-Logo-2-192.webp",
+        "width": 192,
+        "height": 192,
+        "bytes": 5988
+      },
+      {
+        "src": "/images/optimized/logo/PL-Logo-2-729.webp",
+        "width": 729,
+        "height": 729,
+        "bytes": 55900
+      }
+    ]
+  },
+  "/images/logo/PL-Logo.png": {
+    "src": "/images/optimized/logo/PL-Logo-1080.webp",
+    "width": 1080,
+    "height": 1080,
+    "originalWidth": 1080,
+    "originalHeight": 1080,
+    "originalBytes": 139133,
+    "originalSha256": "617f86c7e55ea2752b25970d3455d76e6833b2253f6adf8e7385b861a2037eeb",
+    "lossless": true,
+    "variants": [
+      {
+        "src": "/images/optimized/logo/PL-Logo-96.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 872
+      },
+      {
+        "src": "/images/optimized/logo/PL-Logo-192.webp",
+        "width": 192,
+        "height": 192,
+        "bytes": 2800
+      },
+      {
+        "src": "/images/optimized/logo/PL-Logo-1080.webp",
+        "width": 1080,
+        "height": 1080,
+        "bytes": 50274
+      }
+    ]
+  },
+  "/images/meet-the-team/epsw.jpeg": {
+    "src": "/images/optimized/meet-the-team/epsw-288.webp",
+    "width": 288,
+    "height": 384,
+    "originalWidth": 3024,
+    "originalHeight": 4032,
+    "originalBytes": 3843315,
+    "originalSha256": "0473e4c0fe8bc6133ff64c69a91d450826aab44c1271de3c25ca90f25687aef9",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/meet-the-team/epsw-96.webp",
+        "width": 96,
+        "height": 128,
+        "bytes": 7098
+      },
+      {
+        "src": "/images/optimized/meet-the-team/epsw-192.webp",
+        "width": 192,
+        "height": 256,
+        "bytes": 22934
+      },
+      {
+        "src": "/images/optimized/meet-the-team/epsw-288.webp",
+        "width": 288,
+        "height": 384,
+        "bytes": 45758
+      }
+    ]
+  },
+  "/images/meet-the-team/hkl.jpg": {
+    "src": "/images/optimized/meet-the-team/hkl-288.webp",
+    "width": 288,
+    "height": 288,
+    "originalWidth": 1280,
+    "originalHeight": 1280,
+    "originalBytes": 89905,
+    "originalSha256": "296fb8936ab198b37d9f03a8eff5322d324ede1522c9c1163ee8d7f186b3f403",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/meet-the-team/hkl-96.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2470
+      },
+      {
+        "src": "/images/optimized/meet-the-team/hkl-192.webp",
+        "width": 192,
+        "height": 192,
+        "bytes": 5370
+      },
+      {
+        "src": "/images/optimized/meet-the-team/hkl-288.webp",
+        "width": 288,
+        "height": 288,
+        "bytes": 8706
+      }
+    ]
+  },
+  "/images/meet-the-team/kmp.jpeg": {
+    "src": "/images/optimized/meet-the-team/kmp-288.webp",
+    "width": 288,
+    "height": 288,
+    "originalWidth": 721,
+    "originalHeight": 721,
+    "originalBytes": 142632,
+    "originalSha256": "5a097771e174cc4174a670f209b1bc121303950fd043847d15a03a48e53f56bc",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/meet-the-team/kmp-96.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 4414
+      },
+      {
+        "src": "/images/optimized/meet-the-team/kmp-192.webp",
+        "width": 192,
+        "height": 192,
+        "bytes": 15714
+      },
+      {
+        "src": "/images/optimized/meet-the-team/kmp-288.webp",
+        "width": 288,
+        "height": 288,
+        "bytes": 31380
+      }
+    ]
+  },
+  "/images/meet-the-team/mh.jpg": {
+    "src": "/images/optimized/meet-the-team/mh-288.webp",
+    "width": 288,
+    "height": 288,
+    "originalWidth": 549,
+    "originalHeight": 549,
+    "originalBytes": 103079,
+    "originalSha256": "2019c61e39b619a1333f54617f25f33e61485776c48cfdf570ee29a43544cb9b",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/meet-the-team/mh-96.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 4872
+      },
+      {
+        "src": "/images/optimized/meet-the-team/mh-192.webp",
+        "width": 192,
+        "height": 192,
+        "bytes": 17204
+      },
+      {
+        "src": "/images/optimized/meet-the-team/mh-288.webp",
+        "width": 288,
+        "height": 288,
+        "bytes": 34644
+      }
+    ]
+  },
+  "/images/meet-the-team/mmk.jpg": {
+    "src": "/images/optimized/meet-the-team/mmk-288.webp",
+    "width": 288,
+    "height": 381,
+    "originalWidth": 968,
+    "originalHeight": 1280,
+    "originalBytes": 152172,
+    "originalSha256": "223ec345e39c9091083e66e517f283cd509bc9fdfeedfcf93579b4ede0d6bd5d",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/meet-the-team/mmk-96.webp",
+        "width": 96,
+        "height": 127,
+        "bytes": 5638
+      },
+      {
+        "src": "/images/optimized/meet-the-team/mmk-192.webp",
+        "width": 192,
+        "height": 254,
+        "bytes": 17382
+      },
+      {
+        "src": "/images/optimized/meet-the-team/mmk-288.webp",
+        "width": 288,
+        "height": 381,
+        "bytes": 34820
+      }
+    ]
+  },
+  "/images/meet-the-team/pmnc.jpg": {
+    "src": "/images/optimized/meet-the-team/pmnc-288.webp",
+    "width": 288,
+    "height": 329,
+    "originalWidth": 896,
+    "originalHeight": 1024,
+    "originalBytes": 66934,
+    "originalSha256": "33ea40f292c0f532d4070b827b97c0fc800b6887234c14c18e8197909be267b3",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/meet-the-team/pmnc-96.webp",
+        "width": 96,
+        "height": 110,
+        "bytes": 2876
+      },
+      {
+        "src": "/images/optimized/meet-the-team/pmnc-192.webp",
+        "width": 192,
+        "height": 219,
+        "bytes": 7142
+      },
+      {
+        "src": "/images/optimized/meet-the-team/pmnc-288.webp",
+        "width": 288,
+        "height": 329,
+        "bytes": 12890
+      }
+    ]
+  },
+  "/images/pl-advisors/AnnyLin.jpg": {
+    "src": "/images/optimized/pl-advisors/AnnyLin-336.webp",
+    "width": 336,
+    "height": 336,
+    "originalWidth": 500,
+    "originalHeight": 500,
+    "originalBytes": 32326,
+    "originalSha256": "bb2bfa0b58319a60cf0c16c789415f0acb24fba78fda64df7eaf44fd637c4104",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/AnnyLin-112.webp",
+        "width": 112,
+        "height": 112,
+        "bytes": 2410
+      },
+      {
+        "src": "/images/optimized/pl-advisors/AnnyLin-224.webp",
+        "width": 224,
+        "height": 224,
+        "bytes": 6314
+      },
+      {
+        "src": "/images/optimized/pl-advisors/AnnyLin-336.webp",
+        "width": 336,
+        "height": 336,
+        "bytes": 10914
+      }
+    ]
+  },
+  "/images/pl-advisors/DaleMineshimaLowe.jpg": {
+    "src": "/images/optimized/pl-advisors/DaleMineshimaLowe-336.webp",
+    "width": 336,
+    "height": 344,
+    "originalWidth": 514,
+    "originalHeight": 526,
+    "originalBytes": 44292,
+    "originalSha256": "2e73fa9000354646a374278c2296c38f81a8334c62d17164cf00946adbfca500",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/DaleMineshimaLowe-112.webp",
+        "width": 112,
+        "height": 115,
+        "bytes": 2718
+      },
+      {
+        "src": "/images/optimized/pl-advisors/DaleMineshimaLowe-224.webp",
+        "width": 224,
+        "height": 229,
+        "bytes": 8186
+      },
+      {
+        "src": "/images/optimized/pl-advisors/DaleMineshimaLowe-336.webp",
+        "width": 336,
+        "height": 344,
+        "bytes": 17474
+      }
+    ]
+  },
+  "/images/pl-advisors/DanWessner.jpg": {
+    "src": "/images/optimized/pl-advisors/DanWessner-504.webp",
+    "width": 504,
+    "height": 336,
+    "originalWidth": 6000,
+    "originalHeight": 4000,
+    "originalBytes": 10868816,
+    "originalSha256": "d52ebacc2140145796653665d06df00cbdd45d59cff6411f64c3dbf4c33f8411",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/DanWessner-168.webp",
+        "width": 168,
+        "height": 112,
+        "bytes": 4626
+      },
+      {
+        "src": "/images/optimized/pl-advisors/DanWessner-336.webp",
+        "width": 336,
+        "height": 224,
+        "bytes": 13448
+      },
+      {
+        "src": "/images/optimized/pl-advisors/DanWessner-504.webp",
+        "width": 504,
+        "height": 336,
+        "bytes": 23422
+      }
+    ]
+  },
+  "/images/pl-advisors/DavidGolding.jpg": {
+    "src": "/images/optimized/pl-advisors/DavidGolding-336.webp",
+    "width": 336,
+    "height": 343,
+    "originalWidth": 560,
+    "originalHeight": 572,
+    "originalBytes": 94824,
+    "originalSha256": "cadc018d3c5348a547d4c2b1a288534ff33311a7ac22b8ee85c28b134f01a427",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/DavidGolding-112.webp",
+        "width": 112,
+        "height": 114,
+        "bytes": 4860
+      },
+      {
+        "src": "/images/optimized/pl-advisors/DavidGolding-224.webp",
+        "width": 224,
+        "height": 229,
+        "bytes": 17198
+      },
+      {
+        "src": "/images/optimized/pl-advisors/DavidGolding-336.webp",
+        "width": 336,
+        "height": 343,
+        "bytes": 34228
+      }
+    ]
+  },
+  "/images/pl-advisors/LexRieffel.png": {
+    "src": "/images/optimized/pl-advisors/LexRieffel-336.webp",
+    "width": 336,
+    "height": 336,
+    "originalWidth": 508,
+    "originalHeight": 508,
+    "originalBytes": 24188,
+    "originalSha256": "364599a53c78452165c79601cef363077d805d72dd86b36249594ad168aa0193",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/LexRieffel-112.webp",
+        "width": 112,
+        "height": 112,
+        "bytes": 3188
+      },
+      {
+        "src": "/images/optimized/pl-advisors/LexRieffel-224.webp",
+        "width": 224,
+        "height": 224,
+        "bytes": 8756
+      },
+      {
+        "src": "/images/optimized/pl-advisors/LexRieffel-336.webp",
+        "width": 336,
+        "height": 336,
+        "bytes": 16348
+      }
+    ]
+  },
+  "/images/pl-advisors/MinPaing.jpg": {
+    "src": "/images/optimized/pl-advisors/MinPaing-395.webp",
+    "width": 395,
+    "height": 336,
+    "originalWidth": 3213,
+    "originalHeight": 2731,
+    "originalBytes": 1441600,
+    "originalSha256": "9cd92720158393d3994c6fdab5205dd2962b04765bc08a0abf5314fb578edbdd",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/MinPaing-132.webp",
+        "width": 132,
+        "height": 112,
+        "bytes": 3332
+      },
+      {
+        "src": "/images/optimized/pl-advisors/MinPaing-264.webp",
+        "width": 264,
+        "height": 224,
+        "bytes": 7256
+      },
+      {
+        "src": "/images/optimized/pl-advisors/MinPaing-395.webp",
+        "width": 395,
+        "height": 336,
+        "bytes": 11950
+      }
+    ]
+  },
+  "/images/pl-advisors/Romina.jpg": {
+    "src": "/images/optimized/pl-advisors/Romina-336.webp",
+    "width": 336,
+    "height": 453,
+    "originalWidth": 395,
+    "originalHeight": 533,
+    "originalBytes": 58360,
+    "originalSha256": "3f4c0dee776af6c901a972be38b92c5f6c358ed7d301c81a0d778d3a328f932a",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/Romina-112.webp",
+        "width": 112,
+        "height": 151,
+        "bytes": 6906
+      },
+      {
+        "src": "/images/optimized/pl-advisors/Romina-224.webp",
+        "width": 224,
+        "height": 302,
+        "bytes": 20484
+      },
+      {
+        "src": "/images/optimized/pl-advisors/Romina-336.webp",
+        "width": 336,
+        "height": 453,
+        "bytes": 37556
+      }
+    ]
+  },
+  "/images/pl-advisors/ZahnurRofiah.jpg": {
+    "src": "/images/optimized/pl-advisors/ZahnurRofiah-336.webp",
+    "width": 336,
+    "height": 343,
+    "originalWidth": 560,
+    "originalHeight": 572,
+    "originalBytes": 62096,
+    "originalSha256": "2f5d2fccf8cdbaf3ac152098c78a5ea6cee95a9bba97d12b020b6b33690f9775",
+    "lossless": false,
+    "variants": [
+      {
+        "src": "/images/optimized/pl-advisors/ZahnurRofiah-112.webp",
+        "width": 112,
+        "height": 114,
+        "bytes": 4682
+      },
+      {
+        "src": "/images/optimized/pl-advisors/ZahnurRofiah-224.webp",
+        "width": 224,
+        "height": 229,
+        "bytes": 12086
+      },
+      {
+        "src": "/images/optimized/pl-advisors/ZahnurRofiah-336.webp",
+        "width": 336,
+        "height": 343,
+        "bytes": 21920
+      }
+    ]
+  }
+}

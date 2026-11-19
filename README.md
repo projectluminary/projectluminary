@@ -115,3 +115,28 @@ References: [Vite environment variables](https://vite.dev/guide/env-and-mode),
   interactive filters/pagination, and browser-native validation remain unverified.
   No live forms, newsletter requests, deployments, or DNS changes were performed.
 
+## Performance optimization (Phase 4)
+
+The approved performance work uses an explicit typed Lucide icon map, generated
+WebP derivatives, responsive image candidates, intrinsic image dimensions, and
+lazy loading of secondary media. Critical hero/detail images remain eager.
+Activity blur layers reuse the foreground's selected source after it loads.
+Favicons are valid PNG/ICO assets rendered from the existing `Logo` component.
+Original photographs, screenshots, and legacy assets are retained; invalid old
+favicons are preserved under `public/images/original-favicons/`.
+
+See [the consolidated performance report](docs/performance/REPORT.md) for baseline,
+stage measurements, validation, and limits, and [image guidelines](docs/IMAGE_GUIDELINES.md)
+for future content. `docs/performance/image-optimization.json` records every
+source hash and generated derivative. The normal build uses checked-in assets;
+it requires no new packages or encoder.
+
+Run `node scripts/check-performance.mjs` alongside lint, build, and the existing
+mocked form regression checks. Optional browser smoke and measurement scripts
+use an already available Playwright installation via `PLAYWRIGHT_MODULE`; they
+do not install it or change project dependencies. Browser requests to external
+origins are blocked during validation.
+
+Routing, article content, design tokens, font/Motion architecture, and deployment
+configuration are unchanged. Route-specific code splitting remains deferred.
+

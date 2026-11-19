@@ -3,6 +3,7 @@ import { Quote, Star, Play, Pause, LayoutGrid, ChevronLeft, ChevronRight, Sparkl
 import { TESTIMONIALS_DATA } from '../data';
 import { Testimonial } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
+import ResponsiveImage from './ResponsiveImage';
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,10 +96,10 @@ export default function Testimonials() {
       </div>
 
       <div className="flex items-center space-x-3.5 pt-5 border-t border-slate-100 mt-5 relative z-10">
-        <img
+        <ResponsiveImage
           src={testimonial.image}
           alt={testimonial.name}
-          referrerPolicy="no-referrer"
+          sizes="44px"
           className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/20 shadow-xs shrink-0"
         />
         <div className="min-w-0">
@@ -287,10 +288,10 @@ export default function Testimonials() {
 
                   {/* Author Info */}
                   <div className="flex items-center space-x-4 pt-4 border-t border-slate-100">
-                    <img
+                    <ResponsiveImage
                       src={currentTestimonial.image}
                       alt={currentTestimonial.name}
-                      referrerPolicy="no-referrer"
+                      sizes="48px"
                       className="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/30 shadow-xs shrink-0"
                     />
                     <div>

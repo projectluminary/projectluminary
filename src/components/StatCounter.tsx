@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as Icons from 'lucide-react';
+import { getIcon } from '../lib/icons';
 
 interface StatCounterProps {
   key?: string;
@@ -15,7 +15,7 @@ export default function StatCounter({ label, value, suffix, iconName }: StatCoun
   const [hasAnimated, setHasAnimated] = useState(false);
 
   // Dynamic Lucide Icon Resolution
-  const LucideIcon = (Icons as any)[iconName] || Icons.HelpCircle;
+  const LucideIcon = getIcon(iconName);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

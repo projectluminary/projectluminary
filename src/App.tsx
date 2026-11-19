@@ -31,7 +31,7 @@ import {
 // Import Types
 import { Activity, Opportunity, OpportunityType } from './types';
 
-import * as Icons from 'lucide-react';
+import { ICONS as Icons, getIcon } from './lib/icons';
 
 // Import Data
 import { 
@@ -58,6 +58,8 @@ import ActivityModal from './components/ActivityModal';
 import OpportunityModal from './components/OpportunityModal';
 import ArticleRenderer from './components/ArticleRenderer';
 import DonateForm from './components/DonateForm';
+import ResponsiveImage from './components/ResponsiveImage';
+import { getAvatarSizes } from './lib/images';
 
 export default function App() {
   // Mapping between activePage state and URL path
@@ -355,10 +357,10 @@ export default function App() {
                     </button>
                   </div>
                   <div className="relative rounded-3xl overflow-hidden border border-slate-100 shadow-lg bg-white">
-                    <img
+                    <ResponsiveImage
                       src={SITE_CONFIG.aboutSummaryImage}
                       alt="Project Luminary Community Work"
-                      referrerPolicy="no-referrer"
+                      sizes="(min-width: 1280px) 560px, (min-width: 1024px) calc(50vw - 80px), calc(100vw - 48px)"
                       className="w-full h-auto object-cover block"
                     />
                   </div>
@@ -721,7 +723,7 @@ export default function App() {
 
                   <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                     {CORE_VALUES_DATA.map((val, i) => {
-                      const ValIcon = (Icons as any)[val.iconName] || Icons.HelpCircle;
+                      const ValIcon = getIcon(val.iconName);
                       return (
                         <div key={i} className="bg-white border border-slate-100 rounded-2xl p-6 text-center space-y-3 shadow-sm hover:border-emerald-100 transition-colors">
                           <div className="bg-emerald-50 text-emerald-600 p-3 rounded-xl mx-auto w-fit">
@@ -789,10 +791,10 @@ export default function App() {
                                 {initials}
                               </div>
                             ) : (
-                              <img
+                              <ResponsiveImage
                                 src={member.image}
                                 alt={member.name}
-                                referrerPolicy="no-referrer"
+                                sizes={getAvatarSizes(member.image, 96)}
                                 className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
                               />
                             )}
@@ -871,10 +873,10 @@ export default function App() {
                               </div>
                             ) : (
                               <div className="w-28 h-28 rounded-full mx-auto relative group-hover:scale-105 transition-transform">
-                                <img
+                                <ResponsiveImage
                                   src={imageSrc}
                                   alt={advisor.name}
-                                  referrerPolicy="no-referrer"
+                                  sizes={getAvatarSizes(imageSrc, 112)}
                                   className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
                                   onError={(e) => {
                                     e.currentTarget.style.display = 'none';
@@ -995,11 +997,13 @@ export default function App() {
                 ) : (
                   <div className="space-y-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {filteredActivities.slice(0, visibleActivitiesCount).map((act) => (
+                      {filteredActivities.slice(0, visibleActivitiesCount).map((act, index) => (
                         <ActivityCard
                           key={act.id}
                           activity={act}
                           onReadMore={handleReadActivity}
+                          columns={2}
+                          priority={index < 2}
                         />
                       ))}
                     </div>
@@ -1085,14 +1089,13 @@ export default function App() {
 
                   {/* Feature Image */}
                   <div className="relative w-full rounded-2xl overflow-hidden bg-slate-900/5 border border-slate-200/80 shadow-xs flex items-center justify-center p-2 sm:p-4 md:p-6 min-h-[260px] max-h-[600px]">
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center blur-2xl opacity-20 scale-110 pointer-events-none"
-                      style={{ backgroundImage: `url(${selectedActivity.image})` }}
-                    />
-                    <img
+                    <ResponsiveImage
                       src={selectedActivity.image}
                       alt={selectedActivity.title}
-                      referrerPolicy="no-referrer"
+                      loading="eager"
+                      maxDisplayHeight={520}
+                      sizes="(min-width: 896px) 656px, (min-width: 768px) calc(100vw - 240px), (min-width: 640px) calc(100vw - 132px), calc(100vw - 116px)"
+                      backgroundClassName="absolute inset-0 bg-cover bg-center blur-2xl opacity-20 scale-110 pointer-events-none"
                       className="relative z-10 max-w-full max-h-[520px] w-auto h-auto object-contain rounded-xl shadow-xs"
                     />
                   </div>
@@ -1112,14 +1115,12 @@ export default function App() {
                       <div className="grid grid-cols-1 gap-8">
                         {selectedActivity.additionalImages.map((imgUrl, idx) => (
                           <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-150 shadow-xs bg-slate-900/5 flex items-center justify-center p-2 sm:p-4 min-h-[200px]">
-                            <div 
-                              className="absolute inset-0 bg-cover bg-center blur-2xl opacity-15 scale-110 pointer-events-none"
-                              style={{ backgroundImage: `url(${imgUrl})` }}
-                            />
-                            <img
+                            <ResponsiveImage
                               src={imgUrl}
                               alt={`${selectedActivity.title} - Session Photo ${idx + 1}`}
-                              referrerPolicy="no-referrer"
+                              sizes="(min-width: 896px) 672px, (min-width: 768px) calc(100vw - 224px), (min-width: 640px) calc(100vw - 132px), calc(100vw - 116px)"
+                              maxDisplayHeight={580}
+                              backgroundClassName="absolute inset-0 bg-cover bg-center blur-2xl opacity-15 scale-110 pointer-events-none"
                               className="relative z-10 max-w-full max-h-[580px] w-auto h-auto object-contain rounded-xl shadow-xs block mx-auto"
                             />
                           </div>

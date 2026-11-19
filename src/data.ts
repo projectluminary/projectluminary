@@ -19,13 +19,13 @@ export const SITE_CONFIG = {
   heroTitlePrimary: 'Helping Young People Learn,',
   heroTitleGradient: 'Grow, and Contribute Beyond Themselves.',
   heroDescription: "Founded by youths who experienced Myanmar’s educational disruption firsthand, Project Luminary creates high-quality learning opportunities that help young people access education, develop practical capabilities, think critically about the world around them, and contribute meaningfully to their communities.",
-  heroImage: 'images/home/home_2.png',
+  heroImage: '/images/optimized/home/home_2-1486.webp',
   
   // About preview section on Home
   aboutSummaryTitle: 'Built by Young People, for Young People',
   aboutSummaryPara1: 'Project Luminary began in 2023 when students at Parami University turned challenges they had personally experienced into opportunities for others. What started as an effort to help fellow young people navigate higher education has grown into a broader platform for learning, skills development, critical engagement, and youth-led action.',
   aboutSummaryPara2: 'Our programmes bring together practical learning and a wider sense of social responsibility. Whether participants are preparing for university, developing research and professional skills, or exploring pressing social issues, we want them to leave Project Luminary better equipped to advance their own futures—and more prepared to contribute to the future of their communities.',
-  aboutSummaryImage: 'images/home/home_1.png',
+  aboutSummaryImage: '/images/optimized/home/home_1-1486.webp',
 
   // About Page details
   aboutPageBadge: 'About Project Luminary',
@@ -169,14 +169,14 @@ The accompanying public report provides a fuller account of the Pilot Programme�
 ## Acknowledgements
 
 Project Luminary extends its gratitude to Parami University’s Community Strengthening Initiative, the instructors, guest speakers, advisers, volunteers, community contacts, and every Luminary who contributed time, trust, and intellectual energy to this first programme.`,
-    image: '/images/activities/pilot-programme/pilot_1.png',
+    image: '/images/optimized/activities/pilot-programme/pilot_1-940.webp',
     readTime: '5 min read',
     status: 'Previous Activity',
     additionalImages: [
-      '/images/activities/pilot-programme/pilot_2.png',
-      '/images/activities/pilot-programme/pilot_3.png',
-      '/images/activities/pilot-programme/pilot_4.png',
-      '/images/activities/pilot-programme/pilot_5.png'
+      '/images/optimized/activities/pilot-programme/pilot_2-1366.webp',
+      '/images/optimized/activities/pilot-programme/pilot_3-1366.webp',
+      '/images/optimized/activities/pilot-programme/pilot_4-1366.webp',
+      '/images/optimized/activities/pilot-programme/pilot_5-1366.webp'
     ]
   },
   {
@@ -258,12 +258,12 @@ The most important lesson was that meaningful research capacity cannot be built 
 ## Acknowledgements
 
 Project Luminary thanks the private donor whose support made LARC possible, the instructors and advisers who shared their expertise, the organisations that explored opportunities for participants, and the twenty young researchers who brought curiosity, resilience and commitment to the programme.`,
-    image: '/images/activities/larc/larc_1.png',
+    image: '/images/optimized/activities/larc/larc_1-1366.webp',
     readTime: '8 min read',
     status: 'Previous Activity',
     additionalImages: [
-      '/images/activities/larc/larc_2.png',
-      '/images/activities/larc/larc_3.png'
+      '/images/optimized/activities/larc/larc_2-1366.webp',
+      '/images/optimized/activities/larc/larc_3-1366.webp'
     ]
   },
   {
@@ -407,16 +407,16 @@ At its best, Pathways & Perspectives makes a simple but demanding proposition: e
 ## About Project Luminary
 
 Project Luminary is a student-led civic engagement initiative that expands access to purposeful learning for young people from Myanmar. Its programmes connect personal development with critical social engagement, bringing together practical skills, academic inquiry and a commitment to learning that serves communities as well as individuals.`,
-    image: '/images/activities/p_and_p/pp_1.png',
+    image: '/images/optimized/activities/p_and_p/pp_1-1080.webp',
     readTime: '8 min read',
     status: 'Previous Activity',
     additionalImages: [
-      '/images/activities/p_and_p/pp_2.png',
-      '/images/activities/p_and_p/pp_3.png',
-      '/images/activities/p_and_p/pp_4.png',
-      '/images/activities/p_and_p/pp_5.png',
-      '/images/activities/p_and_p/pp_6.png',
-      '/images/activities/p_and_p/pp_7.png'
+      '/images/optimized/activities/p_and_p/pp_2-1080.webp',
+      '/images/optimized/activities/p_and_p/pp_3-1080.webp',
+      '/images/optimized/activities/p_and_p/pp_4-1080.webp',
+      '/images/optimized/activities/p_and_p/pp_5-1366.webp',
+      '/images/optimized/activities/p_and_p/pp_6-1366.webp',
+      '/images/optimized/activities/p_and_p/pp_7-1366.webp'
     ]
   },
   {
@@ -509,7 +509,7 @@ This is not an invitation to endorse a finished plan. It is an invitation to par
 ## Ongoing initiative
 
 The Foundation Initiative is currently underway. Its research, consultations and strategic-development activities will continue to evolve. Findings will emerge in stages, and selected updates will be shared as the work progresses. The initiative remains open to refinement as new evidence and perspectives emerge.`,
-    image: '/images/home/home_1.png',
+    image: '/images/optimized/home/home_1-1486.webp',
     readTime: '7 min read',
     status: 'Ongoing Activity'
   },
@@ -567,7 +567,7 @@ This conference paper is led by **Kaung Myat Phyo**, Founder and Project Lead of
 Project Luminary's participation in ICBMS5 has been supported through the guidance and mentorship of **Dr. Dan Wassner**, Member of the Board of Advisors of Project Luminary, whose academic mentorship and encouragement continue to strengthen the initiative's commitment to rigorous scholarship and meaningful civic engagement.
 
 Project Luminary believes that education should do more than help learners remember information. It should cultivate curiosity, empower critical inquiry, and inspire young people to become active contributors to their communities. Our participation at ICBMS5 is one step in that continuing journey.`,
-    image: '/images/logo/PL-Logo.png',
+    image: '/images/optimized/logo/PL-Logo-1080.webp',
     readTime: '5 min read',
     status: 'Ongoing Activity'
   }
@@ -600,7 +600,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Kaung Myat Phyo (Kelvin)',
     position: 'Project Lead, Advancement Lead',
     bio: 'Kaung Myat Phyo graduated from Parami University with a degree in Philosophy, Politics, and Economics (PPE) as the valedictorian of his class in 2026. At Project Luminary, he\'s in charge of organisational leadership and advancement as he directs overall strategic vision and partnerships.',
-    image: 'images/meet-the-team/kmp.jpeg',
+    image: '/images/optimized/meet-the-team/kmp-288.webp',
     socials: {
       linkedin: 'http://linkedin.com/in/kaungmyatphyo',
       email: 'kaungmyatphyo@projectluminary.org'
@@ -611,7 +611,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Ei Phyu Sin Win (Cathryn)',
     position: 'Talent Management & Finance Lead',
     bio: 'Cathryn is a senior Data Science student at Parami University passionate about education, civic engagement, and youth development. She has experience in research, project management, and community initiatives, with a focus on creating accessible opportunities for underserved communities.',
-    image: 'images/meet-the-team/epsw.jpeg',
+    image: '/images/optimized/meet-the-team/epsw-288.webp',
     socials: {
       linkedin: 'https://www.linkedin.com/in/eiphyusinwin',
       email: 'eiphyusinwin@projectluminary.org'
@@ -622,7 +622,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Moe Honey',
     position: 'Administration/ Communication Lead',
     bio: 'Moe is a senior student majoring in Philosophy, Politics, and Economics (PPE), with a keen interest in advancing community development through education and storytelling. Her work is driven by a commitment to expanding opportunities for marginalized communities to access knowledge, develop critical perspectives, and pursue collective action. She believes that equitable access to education is fundamental to building more inclusive, empowered, and resilient communities.',
-    image: 'images/meet-the-team/mh.jpg',
+    image: '/images/optimized/meet-the-team/mh-288.webp',
     socials: {
       linkedin: 'http://www.linkedin.com/in/moe-honey-199302245',
       email: 'moehoney@projectluminary.org'
@@ -633,7 +633,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Htet Khant Linn (Charles)',
     position: 'Tech Lead',
     bio: 'Dedicated Data Analyst and Statistics & Data Science student with a strong track record of transforming complex datasets into actionable insights.',
-    image: 'images/meet-the-team/hkl.jpg',
+    image: '/images/optimized/meet-the-team/hkl-288.webp',
     socials: {
       linkedin: 'https://www.linkedin.com/in/htet-khant-linn/',
       email: 'htetkhantlinn@projectluminary.org'
@@ -644,7 +644,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Myat',
     position: 'Research Associate',
     bio: 'Myat holds B.A. degree in Liberal Arts with a background in qualitative research, and leading community initiatives focusing on gender equity, women leadership, youth development and education.',
-    image: 'images/meet-the-team/mmk.jpg',
+    image: '/images/optimized/meet-the-team/mmk-288.webp',
     socials: {
       linkedin: '',
       email: 'myatmoekywe.pl@proton.me'
@@ -655,7 +655,7 @@ export const TEAM_DATA: TeamMember[] = [
     name: 'Phoo Myat Nay Chi (Pam)',
     position: 'Research Associate',
     bio: 'Conducts research, explores youth needs, and supports research initiatives for Luminary projects.',
-    image: 'images/meet-the-team/pmnc.jpg',
+    image: '/images/optimized/meet-the-team/pmnc-288.webp',
     socials: {
       linkedin: '',
       email: 'phoomyatnaychi.pl@proton.me'
@@ -669,7 +669,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Dr. Dan Wessner',
     position: 'Professor, Division of Social Science and Humanities, Parami University',
     bio: 'Dr. Dan Wessner values interdisciplinary and intercultural learning. He has taught a range of Political,International Relations, History, Law, and Community Development courses in the United States, China, and Viet Nam. Having worked extensively in VietNam since 1990, Dr. Wessner and Vietnamese educators have collaborated on curricula that draw on the Asian context to integrate subjects of sustainability, resilience, inclusivity, equity, and English language acquisition. He has earned degrees in International Studies (University of Denver, Ph.D.), Law (University of Virginia, J.D.), Theology (Princeton Seminary, M.Div.), and History and Humanities (Stanford University, B.A.).',
-    image: 'images/pl-advisors/DanWessner.jpg',
+    image: '/images/optimized/pl-advisors/DanWessner-504.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -680,7 +680,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Dr. Dale Mineshima-Lowe',
     position: 'Professor, Division of Social Science and Humanities, Parami University',
     bio: 'Dr. Dale Mineshima-Lowe teaches on politics, governance, and the environment. She completed her postgraduate studies in the United Kingdom (Ph.D., University of Durham), and her undergraduate studies in California, USA (BSc, Santa Clara University). Her research spans democratic transitions and governance issues, and her current research examines the developing area of citizens and data activism – how civic organizations are using digital technologies to engage citizens in combating corruption and environmental issues. She also holds teaching credentials - UK Postgraduate Certificate in Education (Adult/Further Education), Senior Fellow - Advance Higher Education (UK), and certified member of the Association for Learning Technology (ALT, UK). Dale is currently a visiting lecturer on Climate Change & Environmental Hazards (Birkbeck, University of London); an Associated Researcher with the European Democracy Institute (Bard College Berlin); and Managing Editor for the Center of International Relations - a think tank based in Washington, D.C.',
-    image: 'images/pl-advisors/DaleMineshimaLowe.jpg',
+    image: '/images/optimized/pl-advisors/DaleMineshimaLowe-336.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -691,7 +691,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Dr. David Golding',
     position: 'Chair, Division of Social Science and Humanities, Parami University',
     bio: 'Dr. David Golding obtained his Ph.D. in Education and Social Justice from Lancaster University. He recently completed an honorary postdoctoral fellowship at Memorial University of Newfoundland, Canada. David’s research looks at coloniality, development, international education, governmentality, and neoliberalism. It has appeared in Compare: A Journal of Comparative and International Education, Postcolonial Studies, Perspectives on Science, and elsewhere. He has also reviewed manuscripts for journals such as Critical Studies in Education, Television and New Media, and Journal for Critical Education Policy Studies. Previously, David taught at public and private universities in Sri Lanka, and has also worked as a human rights observer in Mexico and Guatemala.',
-    image: 'images/pl-advisors/DavidGolding.jpg',
+    image: '/images/optimized/pl-advisors/DavidGolding-336.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -702,7 +702,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Zahnur Rofiah',
     position: 'Lecturer, Language and Learning Center, Parami University',
     bio: 'Zahnur Rofiah (Zee) teaches English Composition and Social Sciences Research Skills at Parami University and earned her master’s in Education and International Development from the Institute of Education, University College London. She has 20 years of experience working in the education sector in Indonesia, Myanmar, and Sudan as a teacher, an academic coordinator, and an education consultant. Currently, she is based in East Java, Indonesia focusing on teaching, managing education supports for refugee students, and assisting research in education in fragile contexts. She is also an associated researcher at Berlin Democracy Institute, Germany.',
-    image: 'images/pl-advisors/ZahnurRofiah.jpg',
+    image: '/images/optimized/pl-advisors/ZahnurRofiah-336.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -713,7 +713,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Min Paing',
     position: 'Founder and CEO of Thate Pan Hub Enterprises',
     bio: 'Min Paing is the Founder and CEO of Thate Pan Hub Enterprises, a EdTech-focused social enterprise passionately committed to delivering accessible and high-quality education in Myanmar. A full-scholarship graduate of Stony Brook University, State University of New York, he holds a bachelor’s degree in Mechanical Engineering. His international experience includes the Burma Youth Leadership Program at Indiana University Bloomington, Nanotech France 2019, and HPAIR Science and Technology 2020. Through Thate Pan Hub Enterprises, he has also participated in international education forums including the UN Transforming Education Summit 2022 in New York and the Global CS Education Conference 2022. He brings to Project Luminary experience across education, entrepreneurship, youth development, technology, and startup leadership.',
-    image: 'images/pl-advisors/MinPaing.jpg',
+    image: '/images/optimized/pl-advisors/MinPaing-395.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -724,7 +724,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Lex Rieffel',
     position: 'Washington DC-based Economist, Writer, and Teacher',
     bio: 'Lex Rieffel is a Washington DC-based economist, writer, and teacher with a long career of service. After graduating from college in 1963 (Princeton University, New Jersey), he served two years as an officer in the U.S. Navy (Saigon, Vietnam, and San Francisco). He then did two years of volunteer service in the U.S. Peace Corps (India). After completing a 2-year M.A. program in International Development Studies (Fletcher School, Tufts University, Medford MA), he worked for 18 months with the International Paper Company (New York City). From 1971-1975, he was employed by the U.S. Agency for International Development (USAID; Jakarta, Indonesia, and Washington DC). From 1975 to 1994, he was an international economist with the U.S. Treasury Department. His last employment was as head of the Multilateral Policy Department at the Institute of International Finance (1994-2001; Washington DC). He joined the Brookings Institution (Washington DC) in 2002 and completed a number of policy studies in his 18-year affiliation, mostly as a pro-bono Nonresident Senior Fellow. He taught graduate seminars during ten semesters between 1993 and 2013 for three universities in Washington DC.',
-    image: 'images/pl-advisors/LexRieffel.png',
+    image: '/images/optimized/pl-advisors/LexRieffel-336.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -735,7 +735,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Romina de Jong',
     position: 'Professor, Parami University',
     bio: 'TBD',
-    image: 'images/pl-advisors/Romina.jpg',
+    image: '/images/optimized/pl-advisors/Romina-336.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -756,7 +756,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     name: 'Anny Lin',
     position: '',
     bio: 'Driven by her personal experiences as a first-generation high school and university graduate, Anny is committed to expanding and improving higher education opportunities for marginalized youth and non-traditional learners globally. Her experiences include coordinating international education coalitions, advocating for global education funding, academic advising, and pre-college program implementation. She holds a Bachelor of Arts in International Affairs with a concentration in International Development from George Washington University and is currently pursuing a Master of Science in International Educational Development at the University of Pennsylvania, with interests in immigrant and refugee student access to and experiences in higher education.',
-    image: 'images/pl-advisors/AnnyLin.jpg',
+    image: '/images/optimized/pl-advisors/AnnyLin-336.webp',
     socials: {
       linkedin: '',
       email: ''
@@ -770,7 +770,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Kaung Myat Phyo (Kelvin)',
     position: 'Project Lead & Advancement Lead',
     comment: 'We see this award not only as a recognition of Project Luminary, but also as a tribute to the wider community of grassroots initiatives and Burmese youth who continue to learn, lead, and imagine better futures despite extraordinary challenges.',
-    image: 'images/logo/PL-Logo-2.png',
+    image: '/images/optimized/logo/PL-Logo-2-729.webp',
     rating: 5
   },
   {
@@ -778,7 +778,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Dr. Kyaw Moe Tun',
     position: 'President of Parami University',
     comment: 'Congratulations!!! The Project Luminary, a project designed and implemented by a group of students from Parami University, has been awarded the first winner of the MacJannet Prize for Global Citizenship! I am so proud of your achievement. This award comes with $10,000 prize to support the project.Thank you, MacJannet Prize team, for recognizing the incredible work and impact of these students.',
-    image: 'images/logo/PL-Logo-2.png',
+    image: '/images/optimized/logo/PL-Logo-2-729.webp',
     rating: 5
   },
   {
@@ -786,7 +786,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Zali Win',
     position: 'Board of Trustees of Parami University',
     comment: 'So proud of these three Parami University students! They came in first in a competitive international contest in which more than 400 colleges and universities were invited to nominate two projects. Their project beat out US Ivies, Oxbridge, and HEC. Project Luminary was selected for its work supporting underserved Burmese youth affected by the 2021 military coup, which severely disrupted education pathways. The initiative delivers free, structured programs that combine access to higher education support, skills development, and civic engagement, enabling students to continue learning and build pathways for the future amid ongoing instability.',
-    image: 'images/logo/PL-Logo-2.png',
+    image: '/images/optimized/logo/PL-Logo-2-729.webp',
     rating: 5
   }
 ];
