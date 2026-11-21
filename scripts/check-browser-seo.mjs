@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { loadTypeScript } from './load-typescript.mjs';
 const { SEO_PAGES, SEO_ALIASES, absoluteUrl, metaEntries, structuredData } = loadTypeScript('src/seo.ts');
 const require = createRequire(import.meta.url);
@@ -31,6 +32,7 @@ try {
   for (const expected of SEO_PAGES) {
     const response = await context.request.get(origin + expected.path);
     assert.equal(response.status(), 200);
+    assert.equal((await context.request.head(origin + expected.path)).status(), 200);
     const html = await response.text();
     const parsed = await page.evaluate(html => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -51,6 +53,8 @@ try {
   for (const [alias, target] of Object.entries(SEO_ALIASES)) {
     const expected = SEO_PAGES.find(item => item.path === target);
     const response = await context.request.get(origin + alias);
+    assert.equal(response.status(), 200, alias);
+    assert.equal((await context.request.head(origin + alias)).status(), 200, alias);
     assert.ok((await response.text()).includes(`href="${absoluteUrl(target)}"`));
     await page.goto(origin + alias);
     await verify(expected);
@@ -105,14 +109,62 @@ try {
     assert.ok(!response.headers()['content-type'].includes('text/html'));
     assert.deepEqual(await response.body(), fs.readFileSync(path.join('dist', asset)));
   }
-  // Preserve existing unknown-route behavior until the separate 404 proposal is approved.
-  for (const unknown of ['/seo-test-unknown', '/our-work/seo-test-unknown', '/opportunities/seo-test-unknown']) {
+  // Inspect actual HTTP status and raw HTML, including HEAD and missing assets.
+  const unknowns = ['/seo-test-unknown', '/our-work/seo-test-unknown', '/opportunities/seo-test-unknown', '/activities/seo-test-unknown', '/our-work/pilot-programme/extra', '/About-Us', '/not%20found', '/assets/missing.js', '/images/missing.webp', '/seo/missing.html', '/seo', '/seo-test-unknown?query=404'];
+  for (const unknown of unknowns) {
     const response = await context.request.get(origin + unknown);
-    assert.equal(response.status(), 200);
+    assert.equal(response.status(), 404, unknown);
+    assert.equal((await context.request.head(origin + unknown)).status(), 404);
+    const html = await response.text();
+    assert.ok(html.includes('Page not found'));
+    for (const unwanted of ['rel="canonical"', 'application/ld+json', 'property="og:', 'type="module"']) assert.ok(!html.includes(unwanted), `${unknown}: ${unwanted}`);
+    assert.ok(html.includes('content="noindex, follow"'));
     await page.goto(origin + unknown);
-    await page.locator('main h1').first().waitFor();
-    assert.equal(new URL(page.url()).pathname, unknown.startsWith('/our-work/') ? '/our-work' : unknown.startsWith('/opportunities/') ? '/opportunities' : '/');
+    await page.getByRole('heading', { name: 'Page not found', exact: true }).waitFor();
+    assert.equal(new URL(page.url()).pathname, new URL(origin + unknown).pathname);
+    console.log(`PASS HTTP GET/HEAD 404 without homepage metadata: ${unknown}`);
   }
+  for (const route of [...SEO_PAGES.map(item => item.path), ...Object.keys(SEO_ALIASES)].filter(route => route !== '/')) {
+    const response = await context.request.get(origin + route + '/?check=slash', { maxRedirects: 0 });
+    assert.equal(response.status(), 308);
+    assert.equal(response.headers().location, route + '?check=slash');
+    assert.equal((await context.request.get(origin + route + '/?check=slash')).status(), 200);
+  }
+  // SPA-only transitions have no new HTTP response; verify state and SEO cleanup.
+  await page.goto(origin + '/our-work/pilot-programme');
+  await verify(SEO_PAGES.find(item => item.path === '/our-work/pilot-programme'));
+  await page.evaluate(() => { history.pushState({}, '', '/client-unknown'); dispatchEvent(new PopStateEvent('popstate')); });
+  await page.getByRole('heading', { name: 'Page not found', exact: true }).waitFor();
+  assert.equal(await page.title(), 'Page not found | Project Luminary');
+  assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, follow');
+  assert.equal(await page.locator('link[rel="canonical"],script[type="application/ld+json"],meta[property^="og:"]').count(), 0);
+  await page.goBack();
+  await verify(SEO_PAGES.find(item => item.path === '/our-work/pilot-programme'));
+  await page.goForward();
+  await page.getByRole('heading', { name: 'Page not found', exact: true }).waitFor();
+  assert.equal(new URL(page.url()).pathname, '/client-unknown');
+  await page.getByRole('link', { name: 'Back to homepage' }).click();
+  await verify(SEO_PAGES[0]);
+  await page.goto(origin + '/#/unknown-hash-route');
+  await page.getByRole('heading', { name: 'Page not found', exact: true }).waitFor();
+  assert.equal(new URL(page.url()).pathname, '/unknown-hash-route');
+  assert.equal(await page.locator('link[rel="canonical"],script[type="application/ld+json"]').count(), 0);
+  const output = path.join(os.tmpdir(), 'luminary-404');
+  fs.mkdirSync(output, { recursive: true });
+  const noJs = await browser.newContext({ javaScriptEnabled: false });
+  await noJs.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  const staticPage = await noJs.newPage();
+  for (const width of [390, 768, 1440]) {
+    await staticPage.setViewportSize({ width, height: 900 });
+    assert.equal((await staticPage.goto(origin + '/no-javascript-404')).status(), 404);
+    await staticPage.getByRole('heading', { name: 'Page not found', exact: true }).waitFor();
+    assert.ok(await staticPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    assert.equal(await staticPage.locator('section > div').evaluate(element => getComputedStyle(element).backgroundColor), 'rgb(255, 255, 255)');
+    await staticPage.screenshot({ path: path.join(output, `404-${width}.png`) });
+    await staticPage.getByRole('link', { name: 'Back to homepage' }).click();
+    assert.equal(new URL(staticPage.url()).pathname, '/');
+  }
+  await noJs.close();
   assert.deepEqual(errors, []);
   console.log('PASS: all alias initial canonicals, hash migration, client navigation, Back/Forward at three widths, stale-tag cleanup, sitemap XML parsing, and social image decoding. External requests blocked.');
   await context.close();

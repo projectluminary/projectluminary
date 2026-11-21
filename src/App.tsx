@@ -63,6 +63,7 @@ import { getAvatarSizes } from './lib/images';
 import { getProfileInitials, isOpportunityOpen } from './lib/content';
 import { useClipboard } from './lib/useClipboard';
 import { getSeoPage, updateSeoHead } from './seo';
+import NotFoundPage from './components/NotFoundPage';
 
 export default function App() {
   // Mapping between activePage state and URL path
@@ -90,12 +91,12 @@ export default function App() {
   const getCleanPath = (): string => {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#/')) {
-      const parsed = hash.substring(1);
+      const parsed = hash.substring(1).replace(/\/+$/, '') || '/';
       if (parsed === '/home') return '/';
       if (parsed === '/activities') return '/our-work';
       return parsed;
     }
-    const path = window.location.pathname || '/';
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
     if (path === '/home') return '/';
     if (path === '/activities') return '/our-work';
     return path;
@@ -106,19 +107,19 @@ export default function App() {
     if (path.startsWith('/activities/')) {
       const id = path.substring('/activities/'.length);
       const hasActivity = ACTIVITIES_DATA.some(a => a.id === id);
-      return hasActivity ? 'activity-detail' : 'activities';
+      return hasActivity ? 'activity-detail' : 'not-found';
     }
     if (path.startsWith('/our-work/')) {
       const id = path.substring('/our-work/'.length);
       const hasActivity = ACTIVITIES_DATA.some(a => a.id === id);
-      return hasActivity ? 'activity-detail' : 'activities';
+      return hasActivity ? 'activity-detail' : 'not-found';
     }
     if (path.startsWith('/opportunities/')) {
       const id = path.substring('/opportunities/'.length);
       const hasOpp = OPPORTUNITIES_DATA.some(o => o.id === id);
-      return hasOpp ? 'opportunity-detail' : 'opportunities';
+      return hasOpp ? 'opportunity-detail' : 'not-found';
     }
-    return PATH_TO_PAGE[path] || 'home';
+    return PATH_TO_PAGE[path] || 'not-found';
   };
 
   const getInitialActivity = (): Activity | null => {
@@ -162,6 +163,10 @@ export default function App() {
   // Automatically scroll to top on page navigation and update browser title & URL pathname
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+    if (activePage === 'not-found') {
+      updateSeoHead();
+      return; // Retain the failing URL; never relabel it as the homepage.
+    }
     
     // Sync state with URL pathname
     let targetPath = '/';
@@ -206,7 +211,7 @@ export default function App() {
           setSelectedActivity(act);
           setActivePage('activity-detail');
         } else {
-          setActivePage('activities');
+          setActivePage('not-found');
           setSelectedActivity(null);
         }
       } else if (path.startsWith('/our-work/')) {
@@ -216,7 +221,7 @@ export default function App() {
           setSelectedActivity(act);
           setActivePage('activity-detail');
         } else {
-          setActivePage('activities');
+          setActivePage('not-found');
           setSelectedActivity(null);
         }
       } else if (path.startsWith('/opportunities/')) {
@@ -226,11 +231,11 @@ export default function App() {
           setSelectedOpportunity(opp);
           setActivePage('opportunity-detail');
         } else {
-          setActivePage('opportunities');
+          setActivePage('not-found');
           setSelectedOpportunity(null);
         }
       } else {
-        const matchedPage = PATH_TO_PAGE[path] || 'home';
+        const matchedPage = PATH_TO_PAGE[path] || 'not-found';
         setActivePage(matchedPage);
         setSelectedActivity(null);
         setSelectedOpportunity(null);
@@ -1584,6 +1589,7 @@ export default function App() {
             </motion.div>
           )}
 
+          {activePage === 'not-found' && <NotFoundPage key="not-found-page" />}
         </AnimatePresence>
       </main>
 

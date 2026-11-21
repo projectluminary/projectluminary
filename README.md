@@ -74,12 +74,13 @@ Neither lockfile was ignored. A complete npm lockfile now replaces that state.
 5. Verify Web3Forms recipient activation, allowed domains (if restrictions are
    enabled), quota, and inbox/spam delivery. A live test needs explicit approval.
 
-`vercel.json` already rewrites SPA paths to `/index.html`; `vite.config.ts` retains
-`base: '/'`. Keep both for root-hosted History API direct loads and refreshes.
+`vercel.json` rewrites known public routes to their generated HTML files;
+`vite.config.ts` retains `base: '/'`. The generic SPA catch-all has been removed
+so genuinely unknown requests use the generated `404.html` with HTTP 404.
 Canonical routes: `/`, `/about-us`, `/our-work`, `/our-work/:id`, `/opportunities`,
 `/opportunities/:id`, `/contact`, `/donate-us`. Existing `/home`, `/activities`,
 `/activities/:id`, `/donate`, and `#/...` links remain supported, including historical IDs.
-Unknown URLs retain existing fallback behavior.
+Unknown URLs retain their address and display a branded not-found page.
 
 The **GitHub Pages workflow remains enabled and has not been removed**. It still
 runs on pushes to `main` and manual dispatch; only installation now uses `npm ci`.
@@ -192,8 +193,9 @@ The sitemap provides URL discovery alongside the current button-based navigation
 ### Vercel routing and release requirements
 
 The approved repository `vercel.json` now contains the exact route-specific
-rewrites: 11 non-home canonical pages and eight aliases, followed by the original
+rewrites: 11 non-home canonical pages and eight aliases. There is no generic
 SPA fallback. The homepage remains the normal `/index.html` filesystem entry.
+`trailingSlash: false` normalizes slash variants with a redirect, preserving queries.
 No domain redirect, runtime function, framework, or hosting dashboard setting is
 changed. Static files take precedence over Vercel rewrites, keeping assets,
 sitemap, and robots accessible. The preview server reads the active repository
@@ -224,10 +226,9 @@ Read-only production checks on 21 November 2026 found:
   title, no description/canonical/social metadata, and an empty React root.
 - `/robots.txt` and an unknown path also returned that shell with HTTP 200.
   Generated robots/sitemap assets resolve this file gap after deployment.
-  Unknown-path fallback is deliberately preserved. A real HTTP 404 solution
-  requires a separately approved routing change; recommend explicit known-route
-  handling plus a branded 404 response, including unknown detail IDs. Client
-  metadata alone cannot correct a server HTTP 200 or establish non-indexability.
+  These describe the deployed baseline; the approved final corrections now
+  replace unknown-path fallback in the repository with HTTP 404 handling.
+  Client metadata alone cannot change a response's HTTP status.
 - Finalization checks also found the deployed `/sitemap.xml` and sampled
   `/images/optimized/home/home_2-1486.webp` returning that HTML shell rather than
   XML/an image. The existing `/images/logo/PL-Logo.png` returns `image/png`.
@@ -235,16 +236,35 @@ Read-only production checks on 21 November 2026 found:
   availability of the new generated assets must be checked after an approved
   deployment, rather than inferred from an HTTP 200 alone.
 
-Proposed 404 follow-up (not implemented): retain generated exact canonical/alias
-rewrites and normal static-file handling, remove only the generic SPA catch-all,
-and add an approved branded static `404.html` for unknown paths/unknown detail
-IDs. Pair that with a targeted React not-found state so client-side unknown-path
-navigation does not silently become home. Preserve root hash migration, direct
-loads, queries, known-route refreshes, and Back/Forward. Before approval, review
-trailing-slash/encoded URL behavior and all historical links; test both HTTP 404
-status and client presentation, including missing asset URLs. No new dependency
-or router replacement should be necessary. Current unknown-route behavior is
-unchanged by this finalization.
+### HTTP 404 final corrections
+
+The build renders `src/components/NotFoundPage.tsx` into `dist/404.html` using
+existing React tooling, the shared Logo, design tokens, and the built stylesheet.
+This static document has a working homepage link with JavaScript disabled and
+does not download the application bundle. It contains only a not-found title,
+description, and `noindex, follow`; no homepage canonical, social metadata, or
+JSON-LD is inherited. It is excluded from the sitemap.
+
+With no catch-all rewrite, unmatched requests fall through to Vercel's native
+[custom static 404 handling](https://vercel.com/docs/routing/custom-404-pages).
+The normal filesystem handling still serves real assets and generated documents.
+No server function or dependency was added. Vercel's custom HTML page does not
+apply to `/api` platform errors; those still need a non-200 platform response.
+Directory listing must remain disabled for directory URLs without an index.
+
+The app also renders the shared not-found component for invalid detail IDs and
+unknown History API/hash routes, retains the failing address, clears stale
+canonical/social/JSON-LD tags, and sets `noindex, follow`. Known hash routes and
+aliases keep working. Client-only navigation (including a root `#/unknown`
+fragment) makes no new HTTP request and cannot change the original document's
+status. A direct load or refresh of the resulting unknown path returns HTTP 404.
+
+Vite preview mirrors active known-route mappings, static files, slash redirects,
+and explicit 404 status responses; its default SPA fallback is suppressed for
+unknown requests. Regression checks inspect GET and HEAD status, raw metadata,
+missing assets, unknown IDs, queries, no-JavaScript rendering, and browser history.
+Production edge status/custom page behavior must still be checked after an
+approved deployment. No dashboard settings were modified.
 
 Existing landscape WebPs are reused without cropping; their original proportions
 and legibility are retained. Logo previews use the existing 1080px PNG and a

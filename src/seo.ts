@@ -127,6 +127,11 @@ export function metaEntries(page: SeoPage): { attribute: 'name' | 'property'; ke
 
 export const SEO_START = '<!-- luminary-seo:start -->';
 export const SEO_END = '<!-- luminary-seo:end -->';
+export const NOT_FOUND_TITLE = 'Page not found | Project Luminary';
+export const NOT_FOUND_DESCRIPTION = 'We couldn’t find a page at this address. Check the URL or return to the Project Luminary homepage.';
+export function renderNotFoundHead(): string {
+  return `${SEO_START}\n<title>${NOT_FOUND_TITLE}</title>\n<meta name="description" content="${NOT_FOUND_DESCRIPTION}" data-luminary-seo />\n<meta name="robots" content="noindex, follow" data-luminary-seo />\n${SEO_END}`;
+}
 const escapeHtml = (value: string) => value.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 export const jsonLdText = (page: SeoPage) => JSON.stringify(structuredData(page)).replace(/</g, '\\u003c');
 export function renderSeoHead(page: SeoPage): string {
@@ -139,9 +144,17 @@ export function renderSeoHead(page: SeoPage): string {
 
 // Called by the existing navigation effect, after deriving the canonical route.
 // Replace owned tags and stale equivalent tags rather than accumulating metadata.
-export function updateSeoHead(page: SeoPage): void {
-  document.title = page.title;
+export function updateSeoHead(page?: SeoPage): void {
+  document.title = page?.title || NOT_FOUND_TITLE;
   document.head.querySelectorAll('[data-luminary-seo], link[rel="canonical"], meta[name="description"], meta[name="robots"], meta[name^="twitter:"], meta[property^="og:"], meta[property^="article:"]').forEach(tag => tag.remove());
+  if (!page) {
+    for (const [name, content] of [['description', NOT_FOUND_DESCRIPTION], ['robots', 'noindex, follow']]) {
+      const element = document.createElement('meta');
+      element.name = name; element.content = content; element.dataset.luminarySeo = '';
+      document.head.appendChild(element);
+    }
+    return;
+  }
   const canonical = document.createElement('link');
   canonical.rel = 'canonical'; canonical.href = absoluteUrl(page.path); canonical.dataset.luminarySeo = '';
   document.head.appendChild(canonical);

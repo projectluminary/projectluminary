@@ -58,14 +58,21 @@ assert.deepEqual(JSON.parse(read('seo/vercel-rewrites.proposed.json')), { rewrit
 const active = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
 assert.deepEqual(active.rewrites, seoRewrites());
 validateSeoRewrites();
-assert.deepEqual(active.rewrites.at(-1), { source: '/(.*)', destination: '/index.html' });
-assert.equal(active.rewrites.length, SEO_PAGES.length - 1 + Object.keys(SEO_ALIASES).length + 1);
+assert.ok(!active.rewrites.some(mapping => mapping.source.includes('*')));
+assert.equal(active.trailingSlash, false);
+assert.equal(active.rewrites.length, SEO_PAGES.length - 1 + Object.keys(SEO_ALIASES).length);
 for (const mapping of active.rewrites) assert.ok(fs.existsSync(path.join('dist', mapping.destination)));
 // Exact-page rules cannot shadow static assets; Vercel checks files before rewrites.
 for (const file of ['/sitemap.xml', '/robots.txt', '/favicon.png', '/assets/example.js', '/images/example.webp']) {
   assert.ok(!active.rewrites.some(mapping => mapping.source === file));
 }
-console.log('PASS: active Vercel mappings, generated HTML targets, legacy aliases, asset exclusions, and preserved SPA fallback.');
+const notFound = read('404.html');
+assert.ok(notFound.includes('<h1 id="not-found-title"'));
+assert.ok(notFound.includes('href="/"'));
+assert.ok(notFound.includes('content="noindex, follow"'));
+for (const unwanted of ['rel="canonical"', 'application/ld+json', 'property="og:', 'name="twitter:', 'type="module"']) assert.ok(!notFound.includes(unwanted), unwanted);
+assert.ok(!sitemap.includes('/404'));
+console.log('PASS: exact Vercel mappings without catch-all, generated HTML targets, legacy aliases, asset exclusions, and static noindex 404 without homepage SEO or application JavaScript.');
 const escaped = renderSeoHead({ ...SEO_PAGES[0], title: '</title><script>alert("test")</script>', description: '"<&' });
 assert.ok(!escaped.includes('</title><script>'));
 assert.ok(escaped.includes('\\u003c/title>'));
