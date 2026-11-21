@@ -91,7 +91,7 @@ export default function Hero({ onPrimaryClick, onSecondaryClick }: HeroProps) {
           >
             <ResponsiveImage
               src={SITE_CONFIG.heroImage}
-              alt="Project Luminary Feature"
+              alt="Project Luminary participants in an online programme session"
               loading="eager"
               fetchPriority="high"
               sizes="(min-width: 1280px) 480px, (min-width: 1024px) calc(41.667vw - 68px), (min-width: 624px) 576px, calc(100vw - 48px)"

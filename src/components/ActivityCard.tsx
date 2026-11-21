@@ -22,7 +22,7 @@ export default function ActivityCard({ activity, onReadMore, columns = 3, priori
       <div className="relative aspect-video overflow-hidden bg-slate-900/10 shrink-0 flex items-center justify-center">
         <ResponsiveImage
           src={activity.image}
-          alt={activity.title}
+          alt={activity.image.includes('/logo/') ? 'Project Luminary logo' : activity.title}
           loading={priority ? 'eager' : 'lazy'}
           sizes={getCardImageSizes(activity.image, columns)}
           backgroundClassName="absolute inset-0 bg-cover bg-center blur-xl opacity-25 scale-110 pointer-events-none"

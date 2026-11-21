@@ -1,6 +1,82 @@
 {
   "rewrites": [
     {
+      "source": "/about-us",
+      "destination": "/seo/about-us.html"
+    },
+    {
+      "source": "/our-work",
+      "destination": "/seo/our-work.html"
+    },
+    {
+      "source": "/opportunities",
+      "destination": "/seo/opportunities.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/seo/contact.html"
+    },
+    {
+      "source": "/donate-us",
+      "destination": "/seo/donate-us.html"
+    },
+    {
+      "source": "/our-work/pilot-programme",
+      "destination": "/seo/our-work/pilot-programme.html"
+    },
+    {
+      "source": "/our-work/lumina-academic-research-cnsortium",
+      "destination": "/seo/our-work/lumina-academic-research-cnsortium.html"
+    },
+    {
+      "source": "/our-work/pathways-and-perspectives-pogramme",
+      "destination": "/seo/our-work/pathways-and-perspectives-pogramme.html"
+    },
+    {
+      "source": "/our-work/the-foundation-initiative",
+      "destination": "/seo/our-work/the-foundation-initiative.html"
+    },
+    {
+      "source": "/our-work/project-luminary-at-icbms5",
+      "destination": "/seo/our-work/project-luminary-at-icbms5.html"
+    },
+    {
+      "source": "/opportunities/research-associate-7-26",
+      "destination": "/seo/opportunities/research-associate-7-26.html"
+    },
+    {
+      "source": "/home",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/activities",
+      "destination": "/seo/our-work.html"
+    },
+    {
+      "source": "/donate",
+      "destination": "/seo/donate-us.html"
+    },
+    {
+      "source": "/activities/pilot-programme",
+      "destination": "/seo/our-work/pilot-programme.html"
+    },
+    {
+      "source": "/activities/lumina-academic-research-cnsortium",
+      "destination": "/seo/our-work/lumina-academic-research-cnsortium.html"
+    },
+    {
+      "source": "/activities/pathways-and-perspectives-pogramme",
+      "destination": "/seo/our-work/pathways-and-perspectives-pogramme.html"
+    },
+    {
+      "source": "/activities/the-foundation-initiative",
+      "destination": "/seo/our-work/the-foundation-initiative.html"
+    },
+    {
+      "source": "/activities/project-luminary-at-icbms5",
+      "destination": "/seo/our-work/project-luminary-at-icbms5.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

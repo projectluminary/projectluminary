@@ -27,7 +27,7 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
         <div className="relative h-64 md:h-80 shrink-0 bg-slate-950 overflow-hidden flex items-center justify-center">
           <ResponsiveImage
             src={activity.image}
-            alt={activity.title}
+            alt={activity.image.includes('/logo/') ? 'Project Luminary logo' : activity.title}
             loading="eager"
             sizes="(min-width: 768px) 672px, calc(100vw - 32px)"
             backgroundClassName="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-110 pointer-events-none"

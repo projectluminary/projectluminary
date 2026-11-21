@@ -62,6 +62,7 @@ import ResponsiveImage from './components/ResponsiveImage';
 import { getAvatarSizes } from './lib/images';
 import { getProfileInitials, isOpportunityOpen } from './lib/content';
 import { useClipboard } from './lib/useClipboard';
+import { getSeoPage, updateSeoHead } from './seo';
 
 export default function App() {
   // Mapping between activePage state and URL path
@@ -162,29 +163,6 @@ export default function App() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     
-    let currentLabel = 'Home';
-    if (activePage === 'activity-detail' && selectedActivity) {
-      currentLabel = selectedActivity.title;
-    } else if (activePage === 'opportunity-detail' && selectedOpportunity) {
-      currentLabel = selectedOpportunity.title;
-    } else {
-      const pageTitleMap: Record<string, string> = {
-        home: 'Home',
-        about: 'About',
-        activities: 'Our Work',
-        opportunities: 'Opportunities',
-        contact: 'Contact',
-        'donate-us': 'Donate Us'
-      };
-      currentLabel = pageTitleMap[activePage] || 'Home';
-    }
-    
-    if (activePage === 'home') {
-      document.title = 'Project Luminary';
-    } else {
-      document.title = `${currentLabel} | Project Luminary`;
-    }
-
     // Sync state with URL pathname
     let targetPath = '/';
     if (activePage === 'activity-detail' && selectedActivity) {
@@ -194,6 +172,9 @@ export default function App() {
     } else {
       targetPath = PAGE_TO_PATH[activePage] || '/';
     }
+
+    const seoPage = getSeoPage(targetPath);
+    if (seoPage) updateSeoHead(seoPage);
 
     if (window.location.pathname !== targetPath) {
       window.history.pushState({}, '', targetPath);
@@ -362,7 +343,7 @@ export default function App() {
                   <div className="relative rounded-3xl overflow-hidden border border-slate-100 shadow-lg bg-white">
                     <ResponsiveImage
                       src={SITE_CONFIG.aboutSummaryImage}
-                      alt="Project Luminary Community Work"
+                      alt="Online Project Luminary session with participants and a Focus Freewriting slide"
                       sizes="(min-width: 1280px) 560px, (min-width: 1024px) calc(50vw - 80px), calc(100vw - 48px)"
                       className="w-full h-auto object-cover block"
                     />
@@ -1100,7 +1081,7 @@ export default function App() {
                   <div className="relative w-full rounded-2xl overflow-hidden bg-slate-900/5 border border-slate-200/80 shadow-xs flex items-center justify-center p-2 sm:p-4 md:p-6 min-h-[260px] max-h-[600px]">
                     <ResponsiveImage
                       src={selectedActivity.image}
-                      alt={selectedActivity.title}
+                      alt={selectedActivity.image.includes('/logo/') ? 'Project Luminary logo' : selectedActivity.title}
                       loading="eager"
                       maxDisplayHeight={520}
                       sizes="(min-width: 896px) 656px, (min-width: 768px) calc(100vw - 240px), (min-width: 640px) calc(100vw - 132px), calc(100vw - 116px)"

@@ -35,7 +35,7 @@ success with JSON `success: true` shows success and clears inputs. Network error
 20-second timeouts, malformed responses, and service rejection retain input and
 show an error. A timeout can occur after acceptance; retrying may duplicate a message.
 Service acceptance does not prove inbox delivery. Donations record intent only;
-there is no payment processing. The footer newsletter remains a local UI stub.
+there is no payment processing. Newsletter subscriptions are explicitly unavailable.
 
 ## Validation and dependency maintenance
 
@@ -161,4 +161,139 @@ availability checks. Optional `scripts/check-browser-content.mjs` uses an existi
 Playwright installation (`PLAYWRIGHT_MODULE`) against the local dev server to
 exercise open/closed fixtures, clipboard outcomes, empty states, profile fallbacks,
 and modal rendering. Fixtures stay in the browser and never update `src/data.ts`.
+
+## SEO and social sharing (Phase 6)
+
+`src/seo.ts` is the shared metadata registry for six main pages, five published
+activity articles, and the closed opportunity archive. Activity/opportunity
+records come from `src/data.ts`; preserve historical IDs. Descriptions use existing
+content and exclude pending profile information and unverified contact/impact
+claims. Closed opportunities remain indexable archives, with closed status in
+metadata and no `JobPosting` schema. Their application availability is unchanged.
+
+Every canonical page has a unique title/description, canonical URL, Open Graph
+and Twitter/X metadata, image alt text/dimensions, and one JSON-LD graph. The graph
+uses Organization, WebSite, WebPage (AboutPage/ContactPage where appropriate),
+Article for activity details, and BreadcrumbList for non-home pages. It omits
+unverified addresses, phone numbers, affiliations, ratings, and author identities.
+Article publication dates reuse displayed article dates; programme dates and
+modification dates are not inferred. `index, follow` preserves the previously
+unrestricted indexing policy; the generated robots file allows public assets.
+
+`seo-build.ts` adds a Vite build plugin without new dependencies. It generates
+route-specific HTML heads in `dist/seo/`, `dist/sitemap.xml` (12 canonical URLs,
+no aliases or invented `lastmod`), and `dist/robots.txt`. All files share the same
+application bundle and CSS. The existing navigation effect replaces metadata
+on client navigation and removes stale article/OG/Twitter/canonical tags.
+This is **static metadata generation**, not full content prerendering: the body
+still mounts React, and crawlers need JavaScript to read the complete page body.
+The sitemap provides URL discovery alongside the current button-based navigation.
+
+### Vercel routing and release requirements
+
+The approved repository `vercel.json` now contains the exact route-specific
+rewrites: 11 non-home canonical pages and eight aliases, followed by the original
+SPA fallback. The homepage remains the normal `/index.html` filesystem entry.
+No domain redirect, runtime function, framework, or hosting dashboard setting is
+changed. Static files take precedence over Vercel rewrites, keeping assets,
+sitemap, and robots accessible. The preview server reads the active repository
+mappings; local checks are not proof of Vercel edge or dashboard configuration.
+
+The build fails if the configured rewrites differ from the metadata registry.
+After adding/removing a record, preview updated rules with
+`node scripts/sync-seo-rewrites.mjs`, review them, then apply deliberately with
+`node scripts/sync-seo-rewrites.mjs --write` and rebuild. Other Vercel configuration
+fields are preserved by that command. Every successful build also emits the
+reproducible `dist/seo/vercel-rewrites.proposed.json` snapshot for review; a normal
+build never writes repository configuration. Validate sitemap and metadata after
+every intentional content/route update.
+
+Read-only production checks on 21 November 2026 found:
+
+- Vercel redirects `https://projectluminary.org` to `https://www.projectluminary.org`
+  with HTTP 308. Metadata targets the explicitly requested apex origin. Before
+  release, the project owner must approve and apply the dashboard correction:
+  remove the apex-to-www redirect, attach the production deployment to apex, then
+  set www to redirect permanently to apex, preserving paths and query strings.
+  Confirm certificates and both domain assignments. Do not add a reverse
+  repository redirect while the old dashboard redirect exists: that can loop.
+  This direction was rechecked during finalization and remains opposite to the
+  intended canonical domain. No domain, DNS, dashboard, or deployment setting has
+  been changed here; the owner-applied correction remains pending approval.
+- A detail route returned the generic 592-byte SPA shell with only the brand
+  title, no description/canonical/social metadata, and an empty React root.
+- `/robots.txt` and an unknown path also returned that shell with HTTP 200.
+  Generated robots/sitemap assets resolve this file gap after deployment.
+  Unknown-path fallback is deliberately preserved. A real HTTP 404 solution
+  requires a separately approved routing change; recommend explicit known-route
+  handling plus a branded 404 response, including unknown detail IDs. Client
+  metadata alone cannot correct a server HTTP 200 or establish non-indexability.
+- Finalization checks also found the deployed `/sitemap.xml` and sampled
+  `/images/optimized/home/home_2-1486.webp` returning that HTML shell rather than
+  XML/an image. The existing `/images/logo/PL-Logo.png` returns `image/png`.
+  Local build endpoints pass correct content-type and decoding checks; production
+  availability of the new generated assets must be checked after an approved
+  deployment, rather than inferred from an HTTP 200 alone.
+
+Proposed 404 follow-up (not implemented): retain generated exact canonical/alias
+rewrites and normal static-file handling, remove only the generic SPA catch-all,
+and add an approved branded static `404.html` for unknown paths/unknown detail
+IDs. Pair that with a targeted React not-found state so client-side unknown-path
+navigation does not silently become home. Preserve root hash migration, direct
+loads, queries, known-route refreshes, and Back/Forward. Before approval, review
+trailing-slash/encoded URL behavior and all historical links; test both HTTP 404
+status and client presentation, including missing asset URLs. No new dependency
+or router replacement should be necessary. Current unknown-route behavior is
+unchanged by this finalization.
+
+Existing landscape WebPs are reused without cropping; their original proportions
+and legibility are retained. Logo previews use the existing 1080px PNG and a
+Twitter summary card; landscape previews use summary_large_image. These tags
+do not create browser image downloads or change responsive content-image loading.
+No new share artwork was created. Optional future card proposal: 1200×630 PNG,
+brand light background, existing logo, organization name and approved tagline,
+with generous margins and no new claims. Approve the design before creation;
+social platforms may crop the current non-1.91:1 images differently.
+
+### SEO validation and production follow-up
+
+Run after `npm run build`:
+
+```sh
+node scripts/check-seo.mjs
+node scripts/check-content.mjs
+node scripts/check-forms.mjs
+node scripts/check-performance.mjs
+```
+
+Optional browser checks use an already available Playwright module, with
+`PLAYWRIGHT_MODULE` set to its path; no installation is required by these scripts:
+
+```sh
+node scripts/check-browser-seo.mjs
+node scripts/check-browser.mjs
+```
+
+Run those against `npm run preview` on port 4173. Content/forms browser checks
+use the dev server on port 3000 with the process-only dummy key
+`VITE_WEB3FORMS_ACCESS_KEY=performance-mock-key`; all external requests are blocked
+or intercepted. The SEO checks cover generated HTML, canonical aliases, JSON-LD
+syntax/graph fields, sitemap XML parsing, image decoding, refresh, navigation,
+stale-tag cleanup, and Back/Forward at 390/768/1440px. They do not certify Google
+rich-result eligibility or a platform's cached card presentation.
+
+After an approved release, verify HTTP status/content types and initial HTML for
+every canonical/alias URL at the public origin, plus public image availability
+to Facebook, LinkedIn, Telegram, and Twitterbot user agents. Check dashboard
+headers for X-Robots-Tag, domain redirects, deployment protection, and Preview
+indexing policy. Use Facebook Sharing Debugger, LinkedIn Post Inspector, and the
+available platform preview tools to refresh cached cards. Use Schema.org Validator
+and Google's Rich Results Test/URL Inspection on the deployed pages; no rich
+results or indexing is guaranteed. In Search Console verify the domain property
+using the owner's chosen method and submit the canonical `/sitemap.xml`. No
+verification token is invented or committed by this task.
+
+References: [Google JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics),
+[Open Graph protocol](https://ogp.me/), [Schema.org Article](https://schema.org/Article),
+[Vercel rewrite configuration](https://vercel.com/docs/project-configuration/vercel-json#rewrites).
 
