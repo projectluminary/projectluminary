@@ -1,6 +1,6 @@
 {
   "name": "Project Luminary Portal",
-  "description": "A highly polished, modern, and responsive website for Project Luminary, showcasing community activities, environmental projects, volunteer opportunities, and impact stats.",
+  "description": "To create high-quality learning opportunities that help young people from Myanmar access education, develop practical capabilities, think critically about the world around them, and contribute meaningfully to their communities.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Facebook, ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '../data';
 import { Logo } from './Logo';
@@ -8,18 +8,6 @@ interface FooterProps {
 }
 
 export default function Footer({ setActivePage }: FooterProps) {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 4000);
-    }
-  };
-
   const handleQuickLink = (pageId: string) => {
     setActivePage(pageId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -46,6 +34,7 @@ export default function Footer({ setActivePage }: FooterProps) {
               rel="noreferrer"
               className="p-2 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-lg text-slate-400 transition-all cursor-pointer"
               id="footer-social-linkedin"
+              aria-label={`${SITE_CONFIG.brandName} on LinkedIn`}
             >
               <Linkedin size={18} />
             </a>
@@ -56,6 +45,7 @@ export default function Footer({ setActivePage }: FooterProps) {
                 rel="noreferrer"
                 className="p-2 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-lg text-slate-400 transition-all cursor-pointer"
                 id="footer-social-facebook"
+                aria-label={`${SITE_CONFIG.brandName} on Facebook`}
               >
                 <Facebook size={18} />
               </a>
@@ -108,33 +98,33 @@ export default function Footer({ setActivePage }: FooterProps) {
         <div className="space-y-4">
           <h3 className="font-sans font-semibold text-white text-base mb-5 tracking-wide">Stay Updated</h3>
           <p className="text-slate-400 text-sm leading-relaxed">
-            Subscribe to our bi-weekly newsletter to receive direct updates on environmental reports, local cleanups, and policy campaigns.
+            {SITE_CONFIG.missionDescription}
           </p>
-          <form onSubmit={handleSubscribe} className="space-y-2">
+          <form onSubmit={event => event.preventDefault()} className="space-y-2" aria-describedby="newsletter-status">
             <div className="relative">
               <input
                 id="footer-email-input"
                 type="email"
                 placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                disabled
+                aria-label="Newsletter email address"
+                aria-describedby="newsletter-status"
                 className="w-full bg-slate-800 border border-slate-700 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all pr-12"
                 required
               />
               <button
                 id="footer-email-submit"
                 type="submit"
+                disabled
                 className="absolute right-1.5 top-1.5 bottom-1.5 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-lg transition-all flex items-center justify-center cursor-pointer"
-                aria-label="Subscribe"
+                aria-label="Newsletter subscriptions unavailable"
               >
                 <ArrowRight size={16} />
               </button>
             </div>
-            {subscribed && (
-              <p className="text-xs text-emerald-400 animate-fade-in font-medium">
-                Awesome! You have been subscribed successfully.
-              </p>
-            )}
+            <p id="newsletter-status" role="status" className="text-xs text-slate-400 font-medium">
+              Newsletter subscriptions are currently unavailable.
+            </p>
           </form>
         </div>
       </div>

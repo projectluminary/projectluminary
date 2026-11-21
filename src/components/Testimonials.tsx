@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Quote, Star, Play, Pause, LayoutGrid, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
-import { TESTIMONIALS_DATA } from '../data';
+import { TESTIMONIALS_DATA, SITE_CONFIG } from '../data';
 import { Testimonial } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import ResponsiveImage from './ResponsiveImage';
@@ -98,7 +98,7 @@ export default function Testimonials() {
       <div className="flex items-center space-x-3.5 pt-5 border-t border-slate-100 mt-5 relative z-10">
         <ResponsiveImage
           src={testimonial.image}
-          alt={testimonial.name}
+          alt={`${SITE_CONFIG.brandName} logo`}
           sizes="44px"
           className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/20 shadow-xs shrink-0"
         />
@@ -290,7 +290,7 @@ export default function Testimonials() {
                   <div className="flex items-center space-x-4 pt-4 border-t border-slate-100">
                     <ResponsiveImage
                       src={currentTestimonial.image}
-                      alt={currentTestimonial.name}
+                      alt={`${SITE_CONFIG.brandName} logo`}
                       sizes="48px"
                       className="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/30 shadow-xs shrink-0"
                     />
@@ -353,7 +353,11 @@ export default function Testimonials() {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {filteredList.map(testimonial => renderGridCard(testimonial))}
+              {filteredList.length ? filteredList.map(testimonial => renderGridCard(testimonial)) : (
+                <p role="status" className="md:col-span-2 lg:col-span-3 bg-white border border-slate-100 rounded-3xl p-8 text-center text-slate-500">
+                  No testimonials are available in this category. Select All to view the available stories.
+                </p>
+              )}
             </motion.div>
           </AnimatePresence>
         )}

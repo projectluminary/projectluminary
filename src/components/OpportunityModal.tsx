@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { X, MapPin, Calendar, Check, Mail, FileText, Send, Copy, CheckCircle2, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Opportunity } from '../types';
 import { SITE_CONFIG } from '../data';
+import { isOpportunityOpen } from '../lib/content';
+import { useClipboard } from '../lib/useClipboard';
 
 interface OpportunityModalProps {
   opportunity: Opportunity;
@@ -10,13 +12,7 @@ interface OpportunityModalProps {
 }
 
 export default function OpportunityModal({ opportunity, onClose }: OpportunityModalProps) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(SITE_CONFIG.applyEmail);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { status: copyStatus, copy: copyEmail } = useClipboard(SITE_CONFIG.applyEmail);
 
   return (
     <div
@@ -51,6 +47,7 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
               {/* Close button inside detailed sidebar (visible on mobile only) */}
               <button
                 onClick={onClose}
+                aria-label="Close details"
                 className="md:hidden text-slate-400 hover:text-white p-2 rounded-full focus:outline-none"
               >
                 <X size={20} />
@@ -122,13 +119,14 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
           {/* Close button (desktop only) */}
           <button
             id="opportunity-modal-close-desktop"
+            aria-label="Close details"
             onClick={onClose}
             className="hidden md:block absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full focus:outline-none cursor-pointer"
           >
             <X size={20} />
           </button>
 
-          <div className="space-y-6 pt-2">
+          {isOpportunityOpen(opportunity) ? <div className="space-y-6 pt-2">
             <div className="space-y-1">
               <h4 className="font-sans font-bold text-xl text-slate-900 tracking-tight">How to Apply</h4>
               <p className="font-sans text-xs text-slate-400 font-medium leading-relaxed">
@@ -150,10 +148,11 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
               
               <div className="flex gap-2">
                 <button
-                  onClick={handleCopyEmail}
+                  onClick={copyEmail}
+                  disabled={copyStatus === 'copying'}
                   className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 text-slate-600 font-sans font-medium py-2 px-3 rounded-xl text-xs transition-all cursor-pointer"
                 >
-                  {copied ? (
+                  {copyStatus === 'copied' ? (
                     <>
                       <CheckCircle2 size={13} className="text-emerald-500" />
                       <span>Email Copied!</span>
@@ -161,7 +160,7 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
                   ) : (
                     <>
                       <Copy size={13} />
-                      <span>Copy Email</span>
+                      <span>{copyStatus === 'copying' ? 'Copying...' : 'Copy Email'}</span>
                     </>
                   )}
                 </button>
@@ -173,6 +172,7 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
                   <span>Send Email</span>
                 </a>
               </div>
+              {copyStatus === 'error' && <p role="alert" className="text-xs text-red-600">Unable to copy the email address. Please select and copy it manually.</p>}
             </div>
 
             {/* Application Requirements */}
@@ -212,7 +212,10 @@ export default function OpportunityModal({ opportunity, onClose }: OpportunityMo
             <p className="font-sans text-[10px] text-slate-400 leading-relaxed pt-2">
               Our teams review applications on a rolling basis. You can expect to hear back from our HR or Program Coordinator team within 5-7 business days of submission.
             </p>
-          </div>
+          </div> : <div className="space-y-6 pt-2">
+            <h4 className="font-sans font-bold text-xl text-slate-900 tracking-tight">Applications Closed</h4>
+            <p className="font-sans text-sm text-slate-500 leading-relaxed">This opportunity is closed and is not accepting applications.</p>
+          </div>}
         </div>
       </motion.div>
     </div>

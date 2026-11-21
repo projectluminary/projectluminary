@@ -140,3 +140,25 @@ origins are blocked during validation.
 Routing, article content, design tokens, font/Motion architecture, and deployment
 configuration are unchanged. Route-specific code splitting remains deferred.
 
+## Content corrections (Phase 5A)
+
+Newsletter signup is unavailable until a service is approved. Closed opportunity
+records remain visible, with application controls shown only when their existing
+availability flag permits applications. Missing profile fields are preserved in
+data while empty badges/social sections are omitted. Team portrait failures now
+use the same initials approach as advisors, retaining responsive WebP images.
+
+Article reading time is computed at 225 words per minute, rounded up with a
+one-minute minimum, excluding Markdown syntax and link destinations. Report
+labels and confirmed non-quoted spelling/grammar have been corrected; report
+URLs, dates, statistics, attributed quotations, and pending organizational facts
+remain unchanged. See [pending content](docs/CONTENT_PENDING.md) for required
+organizational confirmations. The Phase 4 report is a historical performance
+snapshot rather than a claim about the current bundle after later changes.
+
+Run `node scripts/check-content.mjs` for article, report-link, reading-time, and
+availability checks. Optional `scripts/check-browser-content.mjs` uses an existing
+Playwright installation (`PLAYWRIGHT_MODULE`) against the local dev server to
+exercise open/closed fixtures, clipboard outcomes, empty states, profile fallbacks,
+and modal rendering. Fixtures stay in the browser and never update `src/data.ts`.
+

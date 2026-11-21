@@ -3,9 +3,10 @@ import { ExternalLink, FileText, Quote, Sparkles, CheckCircle2 } from 'lucide-re
 
 interface ArticleRendererProps {
   content: string;
+  compact?: boolean;
 }
 
-export default function ArticleRenderer({ content }: ArticleRendererProps) {
+export default function ArticleRenderer({ content, compact = false }: ArticleRendererProps) {
   // Split content into paragraphs or blocks
   const blocks = content.split(/\n\n+/);
 
@@ -102,35 +103,35 @@ export default function ArticleRenderer({ content }: ArticleRendererProps) {
 
         // 5. Check for Download PDF Link [Title](URL) or https://
         if (trimmed.includes('https://drive.google.com') || trimmed.startsWith('[Download')) {
-          const match = trimmed.match(/\[(.*?)\]\((.*?)\)/);
-          const linkUrl = match ? match[2] : 'https://drive.google.com/file/d/1Z6CD41Iehd0Xm45XShoqg9dMafs6Msna/view?usp=sharing';
-          const linkText = match ? match[1] : 'Download the Pilot Programme Public Report (PDF)';
+          const match = trimmed.match(/^\[([^\]]+)\]\((https:\/\/drive\.google\.com\/[^\s)]+)\)$/);
+          if (match) {
+            const [, linkText, linkUrl] = match;
+            return (
+              <div key={idx} className={`my-8 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50/40 border border-emerald-200/80 rounded-3xl p-6 md:p-8 flex flex-col ${compact ? '' : 'md:flex-row md:items-center'} justify-between gap-6 shadow-xs`}>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <FileText size={24} />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-sans font-extrabold text-lg text-slate-900">Official Programme Public Report</h4>
+                    <p className="font-sans text-xs md:text-sm text-slate-600 leading-snug">
+                      Access the complete document covering rationale, curriculum design, learning approach, outcomes, and lessons learned.
+                    </p>
+                  </div>
+                </div>
 
-          return (
-            <div key={idx} className="my-8 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50/40 border border-emerald-200/80 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xs">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-                  <FileText size={24} />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="font-sans font-extrabold text-lg text-slate-900">Official Programme Public Report</h4>
-                  <p className="font-sans text-xs md:text-sm text-slate-600 leading-snug">
-                    Access the complete document covering rationale, curriculum design, learning approach, outcomes, and lessons learned.
-                  </p>
-                </div>
+                <a
+                  href={linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-sans text-sm font-bold px-6 py-3.5 rounded-2xl transition-all shadow-md shrink-0 cursor-pointer hover:shadow-lg"
+                >
+                  <span>{linkText}</span>
+                  <ExternalLink size={16} />
+                </a>
               </div>
-
-              <a
-                href={linkUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-sans text-sm font-bold px-6 py-3.5 rounded-2xl transition-all shadow-md shrink-0 cursor-pointer hover:shadow-lg"
-              >
-                <span>{linkText}</span>
-                <ExternalLink size={16} />
-              </a>
-            </div>
-          );
+            );
+          }
         }
 
         // 6. Check for Bullet List (lines starting with - or •)

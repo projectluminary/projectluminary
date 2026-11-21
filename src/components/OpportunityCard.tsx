@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Calendar, Briefcase, ChevronRight } from 'lucide-react';
 import { Opportunity } from '../types';
+import { isOpportunityOpen } from '../lib/content';
 
 interface OpportunityCardProps {
   key?: string;
@@ -43,7 +44,7 @@ export default function OpportunityCard({ opportunity, onApply }: OpportunityCar
           <span className="font-sans text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1 rounded-full">
             {opportunity.category}
           </span>
-          {opportunity.isAvailable !== false ? (
+          {isOpportunityOpen(opportunity) ? (
             <span className="font-sans text-[11px] font-bold px-2.5 py-1 rounded-full border border-emerald-100 text-emerald-700 bg-emerald-50">
               ● Open
             </span>
@@ -67,7 +68,7 @@ export default function OpportunityCard({ opportunity, onApply }: OpportunityCar
           </div>
           <div className="flex items-center gap-2">
             <Calendar size={15} className="text-emerald-600 shrink-0" />
-            <span>Apply by: {opportunity.deadline}</span>
+            <span>{isOpportunityOpen(opportunity) ? 'Apply by' : 'Application deadline'}: {opportunity.deadline}</span>
           </div>
         </div>
 
@@ -84,7 +85,7 @@ export default function OpportunityCard({ opportunity, onApply }: OpportunityCar
           onClick={() => onApply(opportunity)}
           className="flex items-center justify-center gap-1.5 font-sans font-semibold text-emerald-700 hover:text-emerald-800 text-sm group cursor-pointer"
         >
-          <span>View Details &amp; Apply</span>
+          <span>{isOpportunityOpen(opportunity) ? 'View Details & Apply' : 'View Details'}</span>
           <ChevronRight size={16} className="transform group-hover:translate-x-0.5 transition-transform text-emerald-600" />
         </button>
       </div>

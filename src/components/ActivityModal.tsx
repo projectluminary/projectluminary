@@ -2,6 +2,8 @@ import { X, Calendar, Clock, BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Activity } from '../types';
 import ResponsiveImage from './ResponsiveImage';
+import ArticleRenderer from './ArticleRenderer';
+import { SITE_CONFIG } from '../data';
 
 interface ActivityModalProps {
   activity: Activity;
@@ -87,9 +89,7 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
             <p className="font-semibold text-slate-850">
               {activity.description}
             </p>
-            <p className="whitespace-pre-line text-slate-500">
-              {activity.content}
-            </p>
+            <ArticleRenderer content={activity.content} compact />
           </div>
 
           {/* Additional Gallery Images */}
@@ -115,7 +115,7 @@ export default function ActivityModal({ activity, onClose }: ActivityModalProps)
           <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-8">
             <div>
               <div className="font-sans font-bold text-sm text-slate-900">Want to help with this?</div>
-              <div className="font-sans text-xs text-slate-500 font-medium">We host restoring initiatives every month.</div>
+              <div className="font-sans text-xs text-slate-500 font-medium">{SITE_CONFIG.missionDescription}</div>
             </div>
             <button
               id="activity-modal-action-btn"

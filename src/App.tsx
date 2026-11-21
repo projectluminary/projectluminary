@@ -60,6 +60,8 @@ import ArticleRenderer from './components/ArticleRenderer';
 import DonateForm from './components/DonateForm';
 import ResponsiveImage from './components/ResponsiveImage';
 import { getAvatarSizes } from './lib/images';
+import { getProfileInitials, isOpportunityOpen } from './lib/content';
+import { useClipboard } from './lib/useClipboard';
 
 export default function App() {
   // Mapping between activePage state and URL path
@@ -143,7 +145,8 @@ export default function App() {
   const [activePage, setActivePage] = useState<string>(getInitialPage);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(getInitialActivity);
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(getInitialOpportunity);
-  const [oppCopied, setOppCopied] = useState(false);
+  const { status: copyStatus, copy: copyEmail } = useClipboard(SITE_CONFIG.applyEmail);
+  const hasOpenOpportunities = OPPORTUNITIES_DATA.some(isOpportunityOpen);
 
   // Activities Filter and Load More State
   const [activeActivityCategory, setActiveActivityCategory] = useState<string>('All');
@@ -491,13 +494,14 @@ export default function App() {
                       <p className="font-sans text-slate-500 text-sm md:text-base max-w-2xl leading-relaxed">
                         Join a growing youth-led organisation working to better understand and respond to the changing needs of young people from Myanmar.
                       </p>
+                      {!hasOpenOpportunities && <p role="status" className="text-sm text-slate-500">No opportunities are currently open.</p>}
                     </div>
                     <button
                       id="view-all-opportunities-btn"
                       onClick={() => setActivePage('opportunities')}
                       className="font-sans text-sm font-semibold text-slate-800 hover:text-emerald-700 bg-white hover:bg-slate-50 border border-slate-200 px-5 py-3 rounded-xl transition-all shadow-sm shrink-0 self-start md:self-auto cursor-pointer"
                     >
-                      View All Openings
+                      View All Opportunities
                     </button>
                   </div>
 
@@ -638,7 +642,7 @@ export default function App() {
                           onClick={() => setActivePage('opportunities')}
                           className="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-sans font-bold text-sm px-6 py-4 rounded-xl shadow-lg transition-all text-center cursor-pointer"
                         >
-                          Become a Volunteer
+                          Explore Opportunities
                         </button>
                         <button
                           id="cta-join-donate-btn"
@@ -774,7 +778,7 @@ export default function App() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                     {TEAM_DATA.map((member) => {
                       const isInitials = member.image.startsWith('initials:');
-                      const initials = isInitials ? member.image.split(':')[1] : '';
+                      const initials = getProfileInitials(member.name, member.image);
                       
                       // Map custom premium gradients based on initials
                       let bgGradient = 'from-emerald-600 to-teal-700';
@@ -791,16 +795,26 @@ export default function App() {
                                 {initials}
                               </div>
                             ) : (
-                              <ResponsiveImage
-                                src={member.image}
-                                alt={member.name}
-                                sizes={getAvatarSizes(member.image, 96)}
-                                className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
-                              />
+                              <div className="w-24 h-24 rounded-full mx-auto relative">
+                                <ResponsiveImage
+                                  src={member.image}
+                                  alt={member.name}
+                                  sizes={getAvatarSizes(member.image, 96)}
+                                  className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-emerald-50 shadow-sm"
+                                  onError={event => {
+                                    event.currentTarget.style.display = 'none';
+                                    const fallback = event.currentTarget.parentElement?.querySelector('.team-avatar-fallback') as HTMLElement;
+                                    if (fallback) fallback.style.display = 'flex';
+                                  }}
+                                />
+                                <div role="img" aria-label={member.name} className={`team-avatar-fallback hidden w-24 h-24 rounded-full mx-auto items-center justify-center bg-gradient-to-br ${bgGradient} text-white font-sans font-bold text-xl border-4 border-emerald-50 shadow-sm uppercase`}>
+                                  {initials}
+                                </div>
+                              </div>
                             )}
                             <div className="space-y-1">
                               <h4 className="font-sans font-bold text-base text-slate-900 min-h-[48px] flex items-center justify-center leading-tight">{member.name}</h4>
-                              <p className="font-sans font-semibold text-[11px] text-emerald-600 uppercase tracking-wider min-h-[32px] flex items-center justify-center leading-normal">{member.position}</p>
+                              {member.position.trim() && <p className="font-sans font-semibold text-[11px] text-emerald-600 uppercase tracking-wider min-h-[32px] flex items-center justify-center leading-normal">{member.position}</p>}
                             </div>
                             <p className="font-sans text-slate-500 text-xs leading-relaxed">{member.bio}</p>
                           </div>
@@ -808,22 +822,22 @@ export default function App() {
                           {/* Social Links */}
                           <div className="flex items-center justify-center space-x-3 pt-4 border-t border-slate-50 text-slate-400">
                             {member.socials.linkedin && (
-                              <a href={member.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
+                              <a href={member.socials.linkedin} target="_blank" rel="noreferrer" aria-label={`${member.name} LinkedIn profile`} className="hover:text-emerald-600 transition-colors">
                                 <LinkedinIcon />
                               </a>
                             )}
                             {member.socials.email && (
-                              <a href={`mailto:${member.socials.email}`} className="hover:text-emerald-600 transition-colors">
+                              <a href={`mailto:${member.socials.email}`} aria-label={`Email ${member.name}`} className="hover:text-emerald-600 transition-colors">
                                 <Mail size={16} />
                               </a>
                             )}
                             {member.socials.instagram && (
-                              <a href={member.socials.instagram} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
+                              <a href={member.socials.instagram} target="_blank" rel="noreferrer" aria-label={`${member.name} Instagram profile`} className="hover:text-emerald-600 transition-colors">
                                 <InstagramIcon />
                               </a>
                             )}
                             {member.socials.github && (
-                              <a href={member.socials.github} target="_blank" rel="noreferrer" className="hover:text-emerald-600 transition-colors">
+                              <a href={member.socials.github} target="_blank" rel="noreferrer" aria-label={`${member.name} GitHub profile`} className="hover:text-emerald-600 transition-colors">
                                 <GithubIcon />
                               </a>
                             )}
@@ -849,12 +863,7 @@ export default function App() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto gap-8">
                     {ADVISORS_DATA.map((advisor) => {
                       const isInitials = advisor.image.startsWith('initials:');
-                      const explicitInitials = isInitials ? advisor.image.split(':')[1] : '';
-                      const nameParts = advisor.name
-                        .replace(/^(Dr\.|Prof\.|Mr\.|Ms\.|Mrs\.)\s+/i, '')
-                        .trim()
-                        .split(/\s+/);
-                      const fallbackInitials = explicitInitials || (nameParts.length >= 2 ? `${nameParts[0][0]}${nameParts[nameParts.length - 1][0]}` : nameParts[0].slice(0, 2)).toUpperCase();
+                      const fallbackInitials = getProfileInitials(advisor.name, advisor.image);
                       
                       const imageSrc = advisor.image.startsWith('http') || advisor.image.startsWith('/') 
                         ? advisor.image 
@@ -893,15 +902,15 @@ export default function App() {
                             )}
                             <div className="space-y-1.5">
                               <h4 className="font-sans font-bold text-xl text-slate-900 leading-snug">{advisor.name}</h4>
-                              <p className="font-sans font-semibold text-xs text-emerald-700 bg-emerald-50/80 border border-emerald-150 px-3 py-1 rounded-full inline-block uppercase tracking-wider leading-normal">
+                              {advisor.position.trim() && <p className="font-sans font-semibold text-xs text-emerald-700 bg-emerald-50/80 border border-emerald-150 px-3 py-1 rounded-full inline-block uppercase tracking-wider leading-normal">
                                 {advisor.position}
-                              </p>
+                              </p>}
                             </div>
                             <p className="font-sans text-slate-600 text-sm leading-relaxed pt-1">{advisor.bio}</p>
                           </div>
                           
                           {/* Social Links */}
-                          <div className="flex items-center justify-center space-x-4 pt-4 border-t border-slate-100 text-slate-400">
+                          {(advisor.socials.linkedin?.trim() || advisor.socials.email?.trim() || advisor.socials.twitter?.trim()) && <div data-advisor-socials="" className="flex items-center justify-center space-x-4 pt-4 border-t border-slate-100 text-slate-400">
                             {advisor.socials.linkedin && (
                               <a 
                                 href={advisor.socials.linkedin} 
@@ -933,7 +942,7 @@ export default function App() {
                                 <TwitterIcon />
                               </a>
                             )}
-                          </div>
+                          </div>}
                         </div>
                       );
                     })}
@@ -992,7 +1001,7 @@ export default function App() {
                 {/* Grid Layout of Activities */}
                 {filteredActivities.length === 0 ? (
                   <div className="bg-white rounded-3xl p-12 text-center text-slate-500 border border-slate-100 shadow-sm">
-                    No active campaigns found matching this filter criteria.
+                    No activities match these filters.
                   </div>
                 ) : (
                   <div className="space-y-12">
@@ -1139,7 +1148,7 @@ export default function App() {
                       onClick={() => setActivePage('opportunities')}
                       className="bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-md shrink-0 cursor-pointer"
                     >
-                      Explore Open Opportunities
+                        Explore Opportunities
                     </button>
                   </div>
                 </article>
@@ -1209,7 +1218,7 @@ export default function App() {
                         </span>
                         <span className="flex items-center gap-2">
                           <Calendar size={15} className="text-emerald-600 shrink-0" />
-                          Apply by: {selectedOpportunity.deadline}
+                          {isOpportunityOpen(selectedOpportunity) ? 'Apply by' : 'Application deadline'}: {selectedOpportunity.deadline}
                         </span>
                       </div>
                     </div>
@@ -1254,6 +1263,7 @@ export default function App() {
 
                   {/* Right Column: How to Apply (5 cols) */}
                   <div className="lg:col-span-5 space-y-6">
+                    {isOpportunityOpen(selectedOpportunity) ? (
                     <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
                       <div className="space-y-2">
                         <h3 className="font-sans font-bold text-xl text-slate-900 tracking-tight">How to Apply</h3>
@@ -1276,14 +1286,11 @@ export default function App() {
 
                         <div className="flex gap-2">
                           <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(SITE_CONFIG.applyEmail);
-                              setOppCopied(true);
-                              setTimeout(() => setOppCopied(false), 2000);
-                            }}
+                            onClick={copyEmail}
+                            disabled={copyStatus === 'copying'}
                             className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 text-slate-600 font-sans font-medium py-2 px-3 rounded-xl text-xs transition-all cursor-pointer"
                           >
-                            {oppCopied ? (
+                            {copyStatus === 'copied' ? (
                               <>
                                 <CheckCircle2 size={13} className="text-emerald-500" />
                                 <span>Copied!</span>
@@ -1291,7 +1298,7 @@ export default function App() {
                             ) : (
                               <>
                                 <Copy size={13} />
-                                <span>Copy Email</span>
+                                <span>{copyStatus === 'copying' ? 'Copying...' : 'Copy Email'}</span>
                               </>
                             )}
                           </button>
@@ -1303,6 +1310,7 @@ export default function App() {
                             <span>Send Email</span>
                           </a>
                         </div>
+                        {copyStatus === 'error' && <p role="alert" className="text-xs text-red-600">Unable to copy the email address. Please select and copy it manually.</p>}
                       </div>
 
                       {/* Instructions */}
@@ -1342,6 +1350,12 @@ export default function App() {
                         Our teams review applications on a rolling basis. You can expect to hear back from our team within 5-7 business days of submission.
                       </p>
                     </div>
+                    ) : (
+                      <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
+                        <h3 className="font-sans font-bold text-xl text-slate-900 tracking-tight">Applications Closed</h3>
+                        <p className="font-sans text-sm text-slate-500 leading-relaxed">This opportunity is closed and is not accepting applications.</p>
+                      </div>
+                    )}
                   </div>
 
                 </div>
@@ -1372,6 +1386,7 @@ export default function App() {
                   <p className="font-sans text-slate-500 text-sm md:text-base leading-relaxed">
                     Whether you want to join our team, contribute to research, participate in a programme, share your expertise, or explore a partnership, discover opportunities to contribute to Project Luminary’s growing work.
                   </p>
+                  {!hasOpenOpportunities && <p role="status" className="text-sm text-slate-500">No opportunities are currently open.</p>}
                 </div>
 
                 {/* Filters Board */}
@@ -1442,8 +1457,8 @@ export default function App() {
                 {filteredOpportunities.length === 0 ? (
                   <div className="bg-white rounded-3xl p-16 text-center text-slate-400 border border-slate-100 shadow-sm max-w-4xl mx-auto space-y-3">
                     <Info size={36} className="mx-auto text-emerald-500" />
-                    <p className="font-sans font-bold text-lg text-slate-700">No active postings match your search.</p>
-                    <p className="text-xs">Try clearing some filtering options to review alternative open listings.</p>
+                    <p className="font-sans font-bold text-lg text-slate-700">{selectedOppStatus === 'Open' && !hasOpenOpportunities ? 'No opportunities are currently open.' : 'No opportunities match these filters.'}</p>
+                    <p className="text-xs">Adjust the filters to view other opportunities.</p>
                     <button
                       id="reset-opp-filters-btn"
                       onClick={() => {

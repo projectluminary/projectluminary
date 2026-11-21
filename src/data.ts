@@ -1,4 +1,5 @@
 import { Activity, Opportunity, TeamMember, Testimonial, StatItem, CoreValue, TimelineEvent } from './types';
+import { getReadingTime } from './lib/content';
 
 // ==========================================
 // 🛠️ SITE CONFIGURATION CONTROL PANEL
@@ -48,7 +49,7 @@ export const SITE_CONFIG = {
 
   // Stats / Impact section
   statsSectionTitle: 'Our Project Metrics that Matter',
-  statsSectionDescription: 'Text Here',
+  statsSectionDescription: 'Helping Young People Learn, Grow, and Contribute Beyond Themselves.',
 
   // Social media URLs
   socials: {
@@ -89,7 +90,7 @@ export const TIMELINE_DATA: TimelineEvent[] = [
   {
     year: '2026',
     title: 'International Recognition',
-    desc: 'Project Luminary was named the First-Place Winner of the internationally competitive 2026 MacJannet Prize for Global Citizenship, awarded by Talliores Network of Engaged Universities.'
+    desc: 'Project Luminary was named the First-Place Winner of the internationally competitive 2026 MacJannet Prize for Global Citizenship, awarded by Talloires Network of Engaged Universities.'
   },
   {
     year: '2026',
@@ -170,7 +171,6 @@ The accompanying public report provides a fuller account of the Pilot Programme�
 
 Project Luminary extends its gratitude to Parami University’s Community Strengthening Initiative, the instructors, guest speakers, advisers, volunteers, community contacts, and every Luminary who contributed time, trust, and intellectual energy to this first programme.`,
     image: '/images/optimized/activities/pilot-programme/pilot_1-940.webp',
-    readTime: '5 min read',
     status: 'Previous Activity',
     additionalImages: [
       '/images/optimized/activities/pilot-programme/pilot_2-1366.webp',
@@ -252,14 +252,13 @@ The most important lesson was that meaningful research capacity cannot be built 
 
 ## Read the Full Programme Report
 
-[Download the Pilot Programme Public Report (PDF)](https://drive.google.com/file/d/1Bt3jqF2BkOLGPFBLgxKK7eMl72tai_WN/view?usp=drive_link)
+[Download the LARC Public Report (PDF)](https://drive.google.com/file/d/1Bt3jqF2BkOLGPFBLgxKK7eMl72tai_WN/view?usp=drive_link)
 
 
 ## Acknowledgements
 
 Project Luminary thanks the private donor whose support made LARC possible, the instructors and advisers who shared their expertise, the organisations that explored opportunities for participants, and the twenty young researchers who brought curiosity, resilience and commitment to the programme.`,
     image: '/images/optimized/activities/larc/larc_1-1366.webp',
-    readTime: '8 min read',
     status: 'Previous Activity',
     additionalImages: [
       '/images/optimized/activities/larc/larc_2-1366.webp',
@@ -389,7 +388,7 @@ The cycle also exposed organisational concentration. The core team carried respo
 
 ## Read the Full Programme Report
 
-[Download the Pilot Programme Public Report (PDF)](https://drive.google.com/file/d/1cp_tFsAHfgeBMohxMKEDCiG7ss_z9d8t/view?usp=drive_link)
+[Download the Pathways & Perspectives Public Report (PDF)](https://drive.google.com/file/d/1cp_tFsAHfgeBMohxMKEDCiG7ss_z9d8t/view?usp=drive_link)
 
 ## Looking ahead
 
@@ -408,7 +407,6 @@ At its best, Pathways & Perspectives makes a simple but demanding proposition: e
 
 Project Luminary is a student-led civic engagement initiative that expands access to purposeful learning for young people from Myanmar. Its programmes connect personal development with critical social engagement, bringing together practical skills, academic inquiry and a commitment to learning that serves communities as well as individuals.`,
     image: '/images/optimized/activities/p_and_p/pp_1-1080.webp',
-    readTime: '8 min read',
     status: 'Previous Activity',
     additionalImages: [
       '/images/optimized/activities/p_and_p/pp_2-1080.webp',
@@ -510,7 +508,6 @@ This is not an invitation to endorse a finished plan. It is an invitation to par
 
 The Foundation Initiative is currently underway. Its research, consultations and strategic-development activities will continue to evolve. Findings will emerge in stages, and selected updates will be shared as the work progresses. The initiative remains open to refinement as new evidence and perspectives emerge.`,
     image: '/images/optimized/home/home_1-1486.webp',
-    readTime: '7 min read',
     status: 'Ongoing Activity'
   },
   {
@@ -564,14 +561,13 @@ We believe that educational change is most sustainable when it is built through 
 
 This conference paper is led by **Kaung Myat Phyo**, Founder and Project Lead of Project Luminary. The research also incorporates complementary educational research conducted by a Parami University undergraduate researcher, bringing together practitioner and student research perspectives to explore educational transformation in Myanmar.
 
-Project Luminary's participation in ICBMS5 has been supported through the guidance and mentorship of **Dr. Dan Wassner**, Member of the Board of Advisors of Project Luminary, whose academic mentorship and encouragement continue to strengthen the initiative's commitment to rigorous scholarship and meaningful civic engagement.
+Project Luminary's participation in ICBMS5 has been supported through the guidance and mentorship of **Dr. Dan Wessner**, Member of the Board of Advisors of Project Luminary, whose academic mentorship and encouragement continue to strengthen the initiative's commitment to rigorous scholarship and meaningful civic engagement.
 
 Project Luminary believes that education should do more than help learners remember information. It should cultivate curiosity, empower critical inquiry, and inspire young people to become active contributors to their communities. Our participation at ICBMS5 is one step in that continuing journey.`,
     image: '/images/optimized/logo/PL-Logo-1080.webp',
-    readTime: '5 min read',
     status: 'Ongoing Activity'
   }
-];
+].map(activity => ({ ...activity, readTime: getReadingTime(activity.content) }));
 
 export const OPPORTUNITIES_DATA: Opportunity[] = [
   {
@@ -643,7 +639,7 @@ export const TEAM_DATA: TeamMember[] = [
     id: 'team-5',
     name: 'Myat',
     position: 'Research Associate',
-    bio: 'Myat holds B.A. degree in Liberal Arts with a background in qualitative research, and leading community initiatives focusing on gender equity, women leadership, youth development and education.',
+    bio: 'Myat holds a B.A. degree in Liberal Arts with a background in qualitative research and leading community initiatives focusing on gender equity, women’s leadership, youth development and education.',
     image: '/images/optimized/meet-the-team/mmk-288.webp',
     socials: {
       linkedin: '',
@@ -668,7 +664,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     id: 'advisor-1',
     name: 'Dr. Dan Wessner',
     position: 'Professor, Division of Social Science and Humanities, Parami University',
-    bio: 'Dr. Dan Wessner values interdisciplinary and intercultural learning. He has taught a range of Political,International Relations, History, Law, and Community Development courses in the United States, China, and Viet Nam. Having worked extensively in VietNam since 1990, Dr. Wessner and Vietnamese educators have collaborated on curricula that draw on the Asian context to integrate subjects of sustainability, resilience, inclusivity, equity, and English language acquisition. He has earned degrees in International Studies (University of Denver, Ph.D.), Law (University of Virginia, J.D.), Theology (Princeton Seminary, M.Div.), and History and Humanities (Stanford University, B.A.).',
+    bio: 'Dr. Dan Wessner values interdisciplinary and intercultural learning. He has taught a range of Political, International Relations, History, Law, and Community Development courses in the United States, China, and Viet Nam. Having worked extensively in Viet Nam since 1990, Dr. Wessner and Vietnamese educators have collaborated on curricula that draw on the Asian context to integrate subjects of sustainability, resilience, inclusivity, equity, and English language acquisition. He has earned degrees in International Studies (University of Denver, Ph.D.), Law (University of Virginia, J.D.), Theology (Princeton Seminary, M.Div.), and History and Humanities (Stanford University, B.A.).',
     image: '/images/optimized/pl-advisors/DanWessner-504.webp',
     socials: {
       linkedin: '',
@@ -712,7 +708,7 @@ export const ADVISORS_DATA: TeamMember[] = [
     id: 'advisor-5',
     name: 'Min Paing',
     position: 'Founder and CEO of Thate Pan Hub Enterprises',
-    bio: 'Min Paing is the Founder and CEO of Thate Pan Hub Enterprises, a EdTech-focused social enterprise passionately committed to delivering accessible and high-quality education in Myanmar. A full-scholarship graduate of Stony Brook University, State University of New York, he holds a bachelor’s degree in Mechanical Engineering. His international experience includes the Burma Youth Leadership Program at Indiana University Bloomington, Nanotech France 2019, and HPAIR Science and Technology 2020. Through Thate Pan Hub Enterprises, he has also participated in international education forums including the UN Transforming Education Summit 2022 in New York and the Global CS Education Conference 2022. He brings to Project Luminary experience across education, entrepreneurship, youth development, technology, and startup leadership.',
+    bio: 'Min Paing is the Founder and CEO of Thate Pan Hub Enterprises, an EdTech-focused social enterprise passionately committed to delivering accessible and high-quality education in Myanmar. A full-scholarship graduate of Stony Brook University, State University of New York, he holds a bachelor’s degree in Mechanical Engineering. His international experience includes the Burma Youth Leadership Program at Indiana University Bloomington, Nanotech France 2019, and HPAIR Science and Technology 2020. Through Thate Pan Hub Enterprises, he has also participated in international education forums including the UN Transforming Education Summit 2022 in New York and the Global CS Education Conference 2022. He brings to Project Luminary experience across education, entrepreneurship, youth development, technology, and startup leadership.',
     image: '/images/optimized/pl-advisors/MinPaing-395.webp',
     socials: {
       linkedin: '',

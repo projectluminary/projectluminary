@@ -130,7 +130,7 @@ export default function DonateForm() {
           Donation Request Received!
         </h3>
         <p className="text-slate-700 text-base md:text-lg max-w-lg leading-relaxed font-semibold">
-          Thank you for your generosity! The Luminary Team will reach you back soon.
+          Thank you for your generosity! The Luminary Team will get back to you soon.
         </p>
         <p className="text-slate-500 text-xs max-w-md leading-relaxed">
           Our team will contact you at your email or phone number to confirm details and provide payment instructions for your contribution.
